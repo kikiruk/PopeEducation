@@ -4,16 +4,16 @@ namespace assignment1
 {
 	MyString::MyString(const char* s)
 	{
-		mLength = CalculateLength(s);
+		mLength = calculateLength(s);
 		mS = new char[mLength + 1];
-		StrCopy(mS, s);
+		strCopy(mS, s);
 	}
 
 	MyString::MyString(const MyString& other)
 	{
 		mLength = other.GetLength();
 		mS = new char[other.GetLength() + 1];
-		StrCopy(mS, other.GetCString());
+		strCopy(mS, other.GetCString());
 	}
 
 	MyString::~MyString()
@@ -34,7 +34,7 @@ namespace assignment1
 	void MyString::Append(const char* s)
 	{
 		char* tmp = mS;
-		unsigned int newLength = mLength + CalculateLength(s);
+		unsigned int newLength = mLength + calculateLength(s);
 		mS = new char[newLength + 1];
 
 		for (unsigned int i = 0; i < mLength; i++)
@@ -61,21 +61,19 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
-		unsigned int LengthOfS = CalculateLength(s);
+		unsigned int lengthOfs = calculateLength(s);
 		 
-		if (mLength < LengthOfS) return -1; //비교할려는 문자열이 더 크면 실패
+		if (mLength < lengthOfs) return -1;
 
-		for (int i = 0; i + LengthOfS - 1 < mLength + 1; i++)
+		for (int i = 0; i + lengthOfs - 1 < mLength + 1; i++)
 		{
-			for (unsigned int j = 0; j < LengthOfS; j++)
+			for (unsigned int j = 0; j < lengthOfs; j++)
 			{
 				if (mS[i + j] != s[j])
-					goto END;
+					continue;
 			}
 
 			return i;
-
-		END: continue;
 		}
 
 		return -1;
@@ -83,21 +81,19 @@ namespace assignment1
 
 	int MyString::LastIndexOf(const char* s)
 	{
-		unsigned int LengthOfS = CalculateLength(s);
+		unsigned int lengthOfs = calculateLength(s);
 		
-		if (mLength < LengthOfS) return -1; //비교할려는 문자열이 더 크면 실패
+		if (mLength < lengthOfs) return -1;
 
-		for (unsigned int i = mLength - LengthOfS;i >= 0; i--) 
+		for (unsigned int i = mLength - lengthOfs; i >= 0; i--)
 		{
-			for (unsigned int j = 0; j < LengthOfS; j++)
+			for (unsigned int j = 0; j < lengthOfs; j++)
 			{
 				if (mS[i + j] != s[j])
-					goto END;
+					continue;
 			}
 
 			return i;
-
-		END: continue;
 		}
 
 		return -1;
@@ -105,16 +101,16 @@ namespace assignment1
 
 	void MyString::Interleave(const char* s)
 	{
-		unsigned int sLength = CalculateLength(s);
+		unsigned int sLength = calculateLength(s);
 		unsigned int currentMLength = mLength;
 		const char* currentMS = mS;
 		mLength = mLength + sLength;
 		mS = new char[mLength + 1];
 
-		for (unsigned int i = 0,j = 0; true ;i++)
+		for (unsigned int i = 0, j = 0; true; i++)
 		{
 			if (j >= mLength)
-			{	
+			{
 				mS[mLength] = '\0';
 				return;
 			}
@@ -161,7 +157,7 @@ namespace assignment1
 	void MyString::PadLeft(unsigned int totalLength, const char c)
 	{
 		char* tmp = new char[mLength + 1];
-		StrCopy(tmp, mS);
+		strCopy(tmp, mS);
 		
 		mS = new char[totalLength + mLength + 1];
 		mLength += totalLength;
@@ -177,13 +173,13 @@ namespace assignment1
 
 	void MyString::PadRight(unsigned int totalLength)
 	{
-		PadRight(totalLength,' ');
+		PadRight(totalLength, ' ');
 	}
 
 	void MyString::PadRight(unsigned int totalLength, const char c)
 	{
 		char* tmp = new char[mLength + 1];
-		StrCopy(tmp, mS);
+		strCopy(tmp, mS);
 
 		mS = new char[totalLength + mLength + 1];
 
@@ -213,7 +209,10 @@ namespace assignment1
 
 	bool MyString::operator==(const MyString& rhs) const
 	{
-		if (&rhs == this) return true; //같은 객체일경우 true 반환
+		if (&rhs == this)
+		{
+			return true;
+		}
 
 		if (rhs.mLength == mLength)
 		{
@@ -238,7 +237,7 @@ namespace assignment1
 			delete mS;
 			mLength = rhs.GetLength();
 			mS = new char[mLength + 1];
-			StrCopy(mS, rhs.GetCString());
+			strCopy(mS, rhs.GetCString());
 		}
 
 		return *this;
@@ -262,21 +261,21 @@ namespace assignment1
 		}
 	}
 
-	inline unsigned int MyString::CalculateLength(const char* c) const
+	inline unsigned int MyString::calculateLength(const char* c) const
 	{
-		unsigned int Length = 0;
+		unsigned int length = 0;
 
 		for (const char* i = c; *i != '\0'; i++)
-			Length++;
+			length++;
 
-		return Length;
+		return length;
 	}
 
-	inline void MyString::StrCopy(char* s,const char* c)
+	inline void MyString::strCopy(char* s, const char* c)
 	{
-		unsigned int Length = CalculateLength(s);
+		unsigned int length = calculateLength(c);
 
-		for (unsigned int i = 0; i < mLength + 1; i++)
+		for (unsigned int i = 0; i < length + 1; i++)
 			s[i] = c[i];
 	}
 }

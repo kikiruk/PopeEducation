@@ -30,7 +30,7 @@ namespace assignment1
 		char* mS;
 		unsigned int mLength;
 
-		inline unsigned int CalculateLength(const char*) const;//'\0'을제외한 char 의 갯수를 반환
-		inline void StrCopy(char* s, const char* c);
+		inline unsigned int calculateLength(const char*) const;
+		inline void strCopy(char* s, const char* c);
 	};
 }
