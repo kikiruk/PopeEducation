@@ -191,12 +191,12 @@ namespace assignment1
 		char* tmp = new char[mLength + 1];
 		strCopy(tmp, mS);
 		mS = new char[totalLength + 1];
-		unsigned int endIndex = mLength - totalLength;
+		unsigned int endIndex = totalLength - mLength;
 
 		for (unsigned int i = 0; i < endIndex; i++)
 			mS[i] = c;
 
-		for (unsigned int i = endIndex; i < totalLength; i++)
+		for (unsigned int i = endIndex; i <= totalLength; i++)
 			mS[i] = tmp[i - endIndex];
 
 		mLength = totalLength;

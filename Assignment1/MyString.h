@@ -3,6 +3,7 @@ namespace assignment1
 {
 	class MyString
 	{
+
 	public:
 		MyString(const char* s);
 		MyString(const MyString& other);
