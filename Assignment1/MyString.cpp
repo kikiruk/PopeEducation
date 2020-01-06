@@ -12,7 +12,7 @@ namespace assignment1
 	MyString::MyString(const MyString& other)
 	{
 		mLength = other.GetLength();
-		mS = new char[other.GetLength() + 1];
+		mS = new char[mLength + 1];
 		strCopy(mS, other.GetCString());
 	}
 
@@ -33,6 +33,11 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
+		if (calculateLength(s) == 0)
+		{
+			return;
+		}
+
 		char* tmp = mS;
 		unsigned int newLength = mLength + calculateLength(s);
 		mS = new char[newLength + 1];
@@ -59,11 +64,19 @@ namespace assignment1
 		return tmp;
 	}
 
-	int MyString::IndexOf(const char* s)
+	int MyString::IndexOf(const char* s) const
 	{
 		unsigned int lengthOfs = calculateLength(s);
 		 
-		if (mLength < lengthOfs) return -1;
+		if (lengthOfs == 0)
+		{
+			return 0;
+		}
+
+		if (mLength < lengthOfs)
+		{
+			return -1;
+		}
 
 		for (int i = 0; i + lengthOfs - 1 < mLength + 1; i++)
 		{
@@ -79,11 +92,19 @@ namespace assignment1
 		return -1;
 	}
 
-	int MyString::LastIndexOf(const char* s)
+	int MyString::LastIndexOf(const char* s) const
 	{
 		unsigned int lengthOfs = calculateLength(s);
 		
-		if (mLength < lengthOfs) return -1;
+		if (mLength < lengthOfs)
+		{
+			return -1;
+		}
+
+		if (lengthOfs == 0)
+		{
+			return 0;
+		}
 
 		for (unsigned int i = mLength - lengthOfs; i >= 0; i--)
 		{
@@ -102,6 +123,12 @@ namespace assignment1
 	void MyString::Interleave(const char* s)
 	{
 		unsigned int sLength = calculateLength(s);
+
+		if (sLength == 0)
+		{
+			return;
+		}
+
 		unsigned int currentMLength = mLength;
 		const char* currentMS = mS;
 		mLength = mLength + sLength;
@@ -156,17 +183,23 @@ namespace assignment1
 
 	void MyString::PadLeft(unsigned int totalLength, const char c)
 	{
+		if (totalLength <= mLength)
+		{
+			return;
+		}
+
 		char* tmp = new char[mLength + 1];
 		strCopy(tmp, mS);
-		
-		mS = new char[totalLength + mLength + 1];
-		mLength += totalLength;
+		mS = new char[totalLength + 1];
+		unsigned int endIndex = mLength - totalLength;
 
-		for (unsigned int i = 0; i < totalLength; i++)
+		for (unsigned int i = 0; i < endIndex; i++)
 			mS[i] = c;
 
-		for (unsigned int i = totalLength; i < mLength + 1; i++)
-			mS[i] = tmp[i - totalLength];
+		for (unsigned int i = endIndex; i < totalLength; i++)
+			mS[i] = tmp[i - endIndex];
+
+		mLength = totalLength;
 
 		delete[] tmp;
 	}
@@ -178,20 +211,24 @@ namespace assignment1
 
 	void MyString::PadRight(unsigned int totalLength, const char c)
 	{
+		if (totalLength <= mLength)
+		{
+			return;
+		}
+
 		char* tmp = new char[mLength + 1];
 		strCopy(tmp, mS);
 
-		mS = new char[totalLength + mLength + 1];
+		mS = new char[totalLength + 1];
 
 		for (unsigned int i = 0; i < mLength; i++)
 			mS[i] = tmp[i];
 
-		for (unsigned int i = mLength; i < mLength + totalLength; i++)
+		for (unsigned int i = mLength; i < totalLength; i++)
 			mS[i] = c;
 
-		mS[totalLength + mLength] = '\0';
-
-		mLength += totalLength;
+		mS[totalLength] = '\0';
+		mLength = totalLength;
 
 		delete[] tmp;
 	}

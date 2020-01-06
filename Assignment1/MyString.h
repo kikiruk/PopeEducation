@@ -12,8 +12,8 @@ namespace assignment1
 		const char* GetCString() const;
 		void Append(const char* s);
 		MyString operator+(const MyString& other) const;
-		int IndexOf(const char* s);
-		int LastIndexOf(const char* s);
+		int IndexOf(const char* s) const;
+		int LastIndexOf(const char* s) const;
 		void Interleave(const char* s);
 		bool RemoveAt(unsigned int i);
 		void PadLeft(unsigned int totalLength);
