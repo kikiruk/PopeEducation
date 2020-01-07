@@ -32,6 +32,6 @@ namespace assignment1
 		unsigned int mLength;
 
 		inline unsigned int calculateLength(const char*) const;
-		inline void strCopy(char* s, const char* c);
+		inline char* getStrCopy(const char* c);
 	};
 }
