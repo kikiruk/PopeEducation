@@ -11,9 +11,9 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 	{
-		mLength = other.GetLength();
-		mS = new char[mLength + 1];
 		const char* otherString = other.GetCString();
+		mLength = calculateLength(otherString);
+		mS = new char[mLength + 1];
 		for (unsigned int i = 0; i < mLength + 1; i++)
 			mS[i] = otherString[i];
 	}
