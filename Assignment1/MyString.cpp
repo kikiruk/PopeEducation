@@ -20,18 +20,19 @@ namespace assignment1
 		delete[] mS;
 	}
 
-	inline unsigned int MyString::GetLength() const
+	unsigned int MyString::GetLength() const
 	{
 		return mLength;
 	}
 
-	inline const char* MyString::GetCString() const
+	const char* MyString::GetCString() const
 	{
 		return mS;
 	}
 
 	void MyString::Append(const char* s)
 	{
+		if (calculateLength(s) == 0)
 		if (calculateLength(s) == 0)
 		{
 			return;

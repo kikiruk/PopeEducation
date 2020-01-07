@@ -73,7 +73,7 @@ void test()
 		case 4:
 			cout << "뒤에 추가할 문자열 : ";
 			cin >> input_2;
-			test.operator+(assignment1::MyString(input_2));
+			test.operator+(MyString(input_2));
 			print(test);
 			break;
 		case 5:
