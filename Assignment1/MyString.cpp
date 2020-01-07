@@ -12,7 +12,10 @@ namespace assignment1
 	MyString::MyString(const MyString& other)
 	{
 		mLength = other.GetLength();
-		mS = strCopyFactory(other.GetCString(), mLength + 1);
+		mS = new char[mLength + 1];
+
+		for (unsigned int i = 0; i < mLength + 1; i++)
+			mS[i] = other.GetCString()[i];
 	}
 
 	MyString::~MyString()
@@ -74,11 +77,11 @@ namespace assignment1
 
 		if (mLength < lengthOfs)
 		{
-			return mLength;
+			return -1;
 		}
 
 		bool bCheck = true;
-		for (int i = 0; i <= mLength - lengthOfs; i++)
+		for (unsigned int i = 0; i <= mLength - lengthOfs; i++)
 		{
 			bCheck = true;
 			for (unsigned int j = 0; j < lengthOfs; j++)
@@ -110,7 +113,7 @@ namespace assignment1
 
 		if (lengthOfs == 0)
 		{
-			return 0;
+			return mLength;
 		}
 
 		bool bCheck = true;
