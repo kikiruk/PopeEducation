@@ -11,8 +11,9 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 	{
-		mS = const_cast<char*>(other.GetCString());
-		mLength = other.GetLength();
+		const char* otherString = other.GetCString();
+		mLength = calculateLength(otherString);
+		mS = strCopyFactory(otherString, mLength + 1);
 	}
 
 	MyString::~MyString()
