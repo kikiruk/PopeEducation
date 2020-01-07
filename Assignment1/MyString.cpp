@@ -10,9 +10,9 @@ namespace assignment1
 	}
 
 	MyString::MyString(const MyString& other) : 
-		mLength(other.GetLength())
+		mLength(other.GetLength()),
+		mS(strCopyFactory(other.GetCString(), other.GetLength() + 1))
 	{
-		mS = strCopyFactory(other.GetCString(), mLength + 1);
 	}
 
 	MyString::~MyString()

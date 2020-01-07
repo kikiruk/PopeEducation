@@ -33,6 +33,7 @@ void test()
 		int input;
 		char input_2[100];
 		char forChad;
+		MyString* test2;
 		cin >> input;
 
 		switch (input)
@@ -161,7 +162,11 @@ void test()
 			break;
 
 		case 19:
-			return;
+			cout << "복사생성자 테스트" << endl;
+			test2 = new MyString(test);
+			print(*test2);
+			delete test2;
+			break;
 
 		default:
 			break;
