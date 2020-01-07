@@ -5,13 +5,13 @@ namespace assignment1
 	MyString::MyString(const char* s)
 	{
 		mLength = calculateLength(s);
-		mS = getStrCopy(s);
+		mS = getStrCopy(s, mLength + 1);
 	}
 
 	MyString::MyString(const MyString& other)
 	{
 		mLength = other.GetLength();
-		mS = getStrCopy(other.GetCString());
+		mS = getStrCopy(other.GetCString(), mLength + 1);
 	}
 
 	MyString::~MyString()
@@ -76,15 +76,23 @@ namespace assignment1
 			return -1;
 		}
 
-		for (int i = 0; i + lengthOfs - 1 < mLength + 1; i++)
+		bool check = true;
+		for (int i = 0; i <= mLength - lengthOfs; i++)
 		{
+			check = true;
 			for (unsigned int j = 0; j < lengthOfs; j++)
 			{
 				if (mS[i + j] != s[j])
-					continue;
+				{
+					check = false;
+					break;
+				}
 			}
 
-			return i;
+			if (check)
+			{
+				return i;
+			}
 		}
 
 		return -1;
@@ -104,15 +112,23 @@ namespace assignment1
 			return 0;
 		}
 
+		bool check = true;
 		for (long i = static_cast<int>(mLength - lengthOfs); i >= 0; i--)
 		{
+			check = true;
 			for (unsigned int j = 0; j < lengthOfs; j++)
 			{
 				if (mS[i + j] != s[j])
-					continue;
+				{
+					check = false;
+					break;
+				}
 			}
 
-			return i;
+			if (check)
+			{
+				return i;
+			}
 		}
 
 		return -1;
@@ -269,7 +285,7 @@ namespace assignment1
 		{
 			delete mS;
 			mLength = rhs.GetLength();
-			mS = getStrCopy(rhs.GetCString());
+			mS = getStrCopy(rhs.GetCString(), mLength + 1);
 		}
 
 		return *this;
@@ -303,13 +319,11 @@ namespace assignment1
 		return length;
 	}
 
-	inline char* MyString::getStrCopy(const char* c)
+	inline char* MyString::getStrCopy(const char* c,const int length) const
 	{
-		unsigned int length = calculateLength(c);
+		char* result = new char[length];
 
-		char* result = new char[length + 1];
-
-		for (unsigned int i = 0; i < length + 1; i++)
+		for (unsigned int i = 0; i < length; i++)
 			result[i] = c[i];
 
 		return result;

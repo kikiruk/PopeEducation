@@ -3,8 +3,10 @@
 #include "MyString.h"
 
 using namespace std;
+using namespace assignment1;
+
 void test();
-void print(assignment1::MyString Ms)
+void print(const MyString& Ms)
 {
 	cout << "¹®ÀÚ¿­ : " << Ms.GetCString() << endl;
 	cout << "mLength : " << Ms.GetLength() << endl;
@@ -12,6 +14,10 @@ void print(assignment1::MyString Ms)
 
 int main()
 {
+	//MyString Ms1("Hello World");
+	//MyString Ms2(Ms1);
+	//print(Ms2);
+	
 	test();
 	return 0;
 }
