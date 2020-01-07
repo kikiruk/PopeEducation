@@ -11,11 +11,8 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 	{
-		mLength = other.GetLength();
-		mS = new char[mLength + 1];
-
-		for (unsigned int i = 0; i < mLength + 1; i++)
-			mS[i] = other.GetCString()[i];
+		mLength = calculateLength(other.GetCString());
+		mS = strCopyFactory(other.GetCString(), mLength + 1);
 	}
 
 	MyString::~MyString()
@@ -23,12 +20,12 @@ namespace assignment1
 		delete[] mS;
 	}
 
-	unsigned int MyString::GetLength() const
+	inline unsigned int MyString::GetLength() const
 	{
 		return mLength;
 	}
 
-	const char* MyString::GetCString() const
+	inline const char* MyString::GetCString() const
 	{
 		return mS;
 	}
@@ -290,8 +287,8 @@ namespace assignment1
 		if (this != &rhs) //자기자신 대입 방지
 		{
 			delete mS;
-			mLength = rhs.GetLength();
-			mS = strCopyFactory(rhs.GetCString(), mLength + 1);
+			mLength = calculateLength(rhs.GetCString());
+			mS = strCopyFactory(rhs.GetCString() , mLength + 1);
 		}
 
 		return *this;

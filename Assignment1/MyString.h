@@ -9,8 +9,8 @@ namespace assignment1
 		MyString(const MyString& other);
 		~MyString();
 
-		unsigned int GetLength() const;
-		const char* GetCString() const;
+		inline unsigned int GetLength() const;
+		inline const char* GetCString() const;
 		void Append(const char* s);
 		MyString operator+(const MyString& other) const;
 		int IndexOf(const char* s) const;
