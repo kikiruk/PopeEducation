@@ -14,11 +14,11 @@ void print(const MyString& Ms)
 
 int main()
 {
-	//MyString Ms1("Hello World");
-	//MyString Ms2(Ms1);
-	//print(Ms2);
-	//Ms1.LastIndexOf("");
-	//print(Ms1);
+	MyString Ms1("Hello World");
+	MyString Ms2(Ms1);
+	print(Ms2);
+	Ms1.LastIndexOf("");
+	print(Ms1);
 
 	test();
 	return 0;

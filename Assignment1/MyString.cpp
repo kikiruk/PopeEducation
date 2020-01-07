@@ -9,11 +9,10 @@ namespace assignment1
 		mS = strCopyFactory(s, mLength + 1);
 	}
 
-	MyString::MyString(const MyString& other)
+	MyString::MyString(const MyString& other) : 
+		mLength(other.GetLength())
 	{
-		const char* otherString = other.GetCString();
-		mLength = calculateLength(otherString);
-		mS = strCopyFactory(otherString, mLength + 1);
+		mS = strCopyFactory(other.GetCString(), mLength + 1);
 	}
 
 	MyString::~MyString()
