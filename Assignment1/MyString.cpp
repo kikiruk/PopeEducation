@@ -11,8 +11,11 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 	{
-		mLength = calculateLength(other.GetCString());
-		mS = strCopyFactory(other.GetCString(), mLength + 1);
+		mLength = other.GetLength();
+		mS = new char[mLength + 1];
+		const char* otherString = other.GetCString();
+		for (unsigned int i = 0; i < mLength + 1; i++)
+			mS[i] = otherString[i];
 	}
 
 	MyString::~MyString()
@@ -32,7 +35,6 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
-		if (calculateLength(s) == 0)
 		if (calculateLength(s) == 0)
 		{
 			return;
@@ -289,7 +291,7 @@ namespace assignment1
 		{
 			delete mS;
 			mLength = calculateLength(rhs.GetCString());
-			mS = strCopyFactory(rhs.GetCString() , mLength + 1);
+			mS = strCopyFactory(rhs.GetCString(), mLength + 1);
 		}
 
 		return *this;
