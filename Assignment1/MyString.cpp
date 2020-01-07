@@ -1,17 +1,18 @@
 #include "MyString.h"
+#include <assert.h>
 
 namespace assignment1
 {
 	MyString::MyString(const char* s)
 	{
 		mLength = calculateLength(s);
-		mS = getStrCopy(s, mLength + 1);
+		mS = strCopyFactory(s, mLength + 1);
 	}
 
 	MyString::MyString(const MyString& other)
 	{
 		mLength = other.GetLength();
-		mS = getStrCopy(other.GetCString(), mLength + 1);
+		mS = strCopyFactory(other.GetCString(), mLength + 1);
 	}
 
 	MyString::~MyString()
@@ -73,23 +74,23 @@ namespace assignment1
 
 		if (mLength < lengthOfs)
 		{
-			return -1;
+			return mLength;
 		}
 
-		bool check = true;
+		bool bCheck = true;
 		for (int i = 0; i <= mLength - lengthOfs; i++)
 		{
-			check = true;
+			bCheck = true;
 			for (unsigned int j = 0; j < lengthOfs; j++)
 			{
 				if (mS[i + j] != s[j])
 				{
-					check = false;
+					bCheck = false;
 					break;
 				}
 			}
 
-			if (check)
+			if (bCheck)
 			{
 				return i;
 			}
@@ -112,20 +113,20 @@ namespace assignment1
 			return 0;
 		}
 
-		bool check = true;
+		bool bCheck = true;
 		for (long i = static_cast<int>(mLength - lengthOfs); i >= 0; i--)
 		{
-			check = true;
+			bCheck = true;
 			for (unsigned int j = 0; j < lengthOfs; j++)
 			{
 				if (mS[i + j] != s[j])
 				{
-					check = false;
+					bCheck = false;
 					break;
 				}
 			}
 
-			if (check)
+			if (bCheck)
 			{
 				return i;
 			}
@@ -145,7 +146,7 @@ namespace assignment1
 
 		unsigned int currentMLength = mLength;
 		char* currentMS = mS;
-		mLength = mLength + sLength;
+		mLength += sLength;
 		mS = new char[mLength + 1];
 
 		for (unsigned int i = 0, j = 0; true; i++)
@@ -153,23 +154,25 @@ namespace assignment1
 			if (j >= mLength)
 			{
 				mS[mLength] = '\0';
+				delete[] currentMS;
 				return;
 			}
 
 			if (i < currentMLength)
 			{
+				assert(mLength >= j);
 				mS[j] = currentMS[i];
 				j++;
 			}
 
 			if (i < sLength)
 			{
+				assert(mLength >= j);
 				mS[j] = s[i];
 				j++;
 			}
 		}
 
-		delete[] currentMS;
 	}
 
 	bool MyString::RemoveAt(unsigned int index)
@@ -285,7 +288,7 @@ namespace assignment1
 		{
 			delete mS;
 			mLength = rhs.GetLength();
-			mS = getStrCopy(rhs.GetCString(), mLength + 1);
+			mS = strCopyFactory(rhs.GetCString(), mLength + 1);
 		}
 
 		return *this;
@@ -319,7 +322,7 @@ namespace assignment1
 		return length;
 	}
 
-	inline char* MyString::getStrCopy(const char* c,const int length) const
+	inline char* MyString::strCopyFactory(const char* c, const unsigned int length) const
 	{
 		char* result = new char[length];
 
