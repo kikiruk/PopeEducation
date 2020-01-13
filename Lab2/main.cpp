@@ -5,6 +5,8 @@ using namespace lab2;
 
 int main()
 {
-	//PrintIntegers(cin, cout);
+	PrintIntegers(cin, cout);
 	PrintMaxFloat(cin, cout);
+
+	return 0;
 }
