@@ -6,20 +6,17 @@ namespace lab2
 	void PrintIntegers(std::istream& in, std::ostream& out)
 	{
 		out << std::setw(12) << "oct" << ' '
-			<< std::setw(12) << "dec" << ' '
+			<< std::setw(10) << "dec" << ' '
 			<< std::setw(8) << "hex" << std::endl;
 
 		out << "------------" << ' '
-			<< "------------" << ' '
+			<< "----------" << ' '
 			<< "--------" << ' ' << std::endl;
 
 		int number = 0;
 		while (true)
 		{
 			in >> number;
-
-			if (in.eof())
-				break;
 
 			if (in.fail())
 			{
@@ -30,9 +27,12 @@ namespace lab2
 			{
 				out << std::uppercase
 					<< std::setw(12) << std::oct << number << ' '
-					<< std::setw(12) << std::dec << number << ' '
+					<< std::setw(10) << std::dec << number << ' '
 					<< std::setw(8) << std::hex << number << std::endl;
 			}
+
+			if (in.eof())
+				break;
 		}
 
 		in.clear();
@@ -50,8 +50,8 @@ namespace lab2
 		{
 			in >> number;
 
-			if (in.eof())
-				break;
+			if (number > maxNum)
+				maxNum = number;
 
 			if (in.fail())
 			{
@@ -60,12 +60,12 @@ namespace lab2
 			}
 			else
 			{
-				if (number > maxNum)
-					maxNum = number;
-
 				out << "     " << std::setw(15)
 					<< std::internal << std::showpos << number << std::endl;
 			}
+
+			if (in.eof())
+				break;
 		}
 
 		out << "max: " << std::setw(15)
