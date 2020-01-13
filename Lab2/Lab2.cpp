@@ -11,12 +11,9 @@ namespace lab2
 		outPut.reserve(10);
 
 		int number = 0;
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 4;)
 		{
 			in >> number;
-
-			if (in.eof())
-				break;
 
 			if (in.fail())
 			{
@@ -25,6 +22,7 @@ namespace lab2
 			}
 			else
 			{
+				i++;
 				outPut.push_back(number);
 			}
 		}
@@ -52,12 +50,9 @@ namespace lab2
 		outPut.reserve(10);
 
 		float number = 0;
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 4;)
 		{
 			in >> number;
-
-			if (in.eof())
-				break;
 
 			if (in.fail())
 			{
@@ -66,6 +61,7 @@ namespace lab2
 			}
 			else
 			{
+				i++;
 				outPut.push_back(number);
 			}
 		}
