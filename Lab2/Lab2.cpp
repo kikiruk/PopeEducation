@@ -20,6 +20,9 @@ namespace lab2
 
 			if (in.fail())
 			{
+				if (in.eof())
+					break;
+
 				in.clear();
 				in.ignore();
 			}
@@ -31,8 +34,7 @@ namespace lab2
 					<< std::setw(8) << std::hex << number << std::endl;
 			}
 
-			if (in.eof())
-				break;
+
 		}
 
 		in.clear();
@@ -55,6 +57,9 @@ namespace lab2
 
 			if (in.fail())
 			{
+				if (in.eof())
+					break;
+
 				in.clear();
 				in.ignore();
 			}
@@ -63,9 +68,6 @@ namespace lab2
 				out << "     " << std::setw(15)
 					<< std::internal << std::showpos << number << std::endl;
 			}
-
-			if (in.eof())
-				break;
 		}
 
 		out << "max: " << std::setw(15)
