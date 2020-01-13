@@ -23,12 +23,12 @@ namespace assignment1
 		void PadRight(unsigned int totalLength, const char c);
 		void Reverse();
 		bool operator==(const MyString& rhs) const;
-		MyString& operator=(const MyString& rhs);
+		MyString& operator=(const MyString& rhs); 
 		void ToLower();
 		void ToUpper();
 
 	private:
-		char* mS;
+		char* mS; //meaning member string
 		unsigned int mLength;
 
 		inline unsigned int calculateLength(const char*) const;
