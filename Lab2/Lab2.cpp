@@ -11,7 +11,7 @@ namespace lab2
 		outPut.reserve(10);
 
 		int number = 0;
-		while (true)
+		for (int i = 0; i < 4; i++)
 		{
 			in >> number;
 
@@ -37,7 +37,7 @@ namespace lab2
 			<< "------------" << ' '
 			<< "------------" << ' ' << std::endl;
 
-		for (int i = 0; i < outPut.size(); i++)
+		for (size_t i = 0; i < outPut.size(); i++)
 		{
 			out << std::uppercase
 				<< std::setw(12) << std::oct << outPut[i] << ' '
@@ -48,11 +48,11 @@ namespace lab2
 
 	void PrintMaxFloat(std::istream& in, std::ostream& out)
 	{
-		std::vector<int> outPut;
+		std::vector<float> outPut;
 		outPut.reserve(10);
 
 		float number = 0;
-		while (true)
+		for (int i = 0; i < 4; i++)
 		{
 			in >> number;
 
@@ -70,7 +70,7 @@ namespace lab2
 			}
 		}
 
-		for (int i = 0; i < outPut.size(); i++)
+		for (size_t i = 0; i < outPut.size(); i++)
 		{
 			out << "     " << std::setw(15) 
 				<< std::internal << std::showpos << outPut[i] << std::endl;
