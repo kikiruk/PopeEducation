@@ -11,7 +11,7 @@ namespace lab2
 
 		out << "------------" << ' '
 			<< "----------" << ' '
-			<< "--------" << ' ' << std::endl;
+			<< "--------" << std::endl;
 
 		int number = 0;
 		while (true)
@@ -43,7 +43,7 @@ namespace lab2
 	void PrintMaxFloat(std::istream& in, std::ostream& out)
 	{
 		float number = 0;
-		float maxNum = 0;
+		float maxNum = -FLT_MAX;
 
 		out.setf(std::ios::fixed);
 		out.precision(3);
