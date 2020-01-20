@@ -12,6 +12,8 @@ int main()
 	
 	lab3::TimeSheet employee1(employee2);
 
+	employee1 = employee1;
+
 	std::cout << "Employee: " << employee1.GetName() << " / AverageTime: " 
 		<< employee1.GetAverageTime() << " / TotalTime: " << employee1.GetTotalTime() << std::endl;
 
