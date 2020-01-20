@@ -23,10 +23,9 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
 	{
-		delete[] mEntries;
-
 		if (this != &ather) //Prevent yourself from being assigned
 		{
+			delete[] mEntries;
 			mName = ather.mName;
 			mMax = ather.mMax;
 			mSize = ather.mSize;
