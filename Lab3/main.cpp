@@ -6,16 +6,10 @@ using namespace std;
 
 int main()
 {
+	lab3::TimeSheet employee1("John", 10);
+	employee1.AddTime(4);
+	employee1.AddTime(7);
+	std::cout << "Employee: " << employee1.GetName() << " / AverageTime: " << employee1.GetAverageTime() << " / TotalTime: " << employee1.GetTotalTime() << std::endl;
 
-	TimeSheet p("Pope", 10);
-
-	p.AddTime(4);
-	p.AddTime(7);
-	p.AddTime(6);
-	p.AddTime(5);
-	p.AddTime(1);
-	p.AddTime(2);
-
-	cout << p.GetStandardDeviation() << endl; // 2.11476 ¹ÝÈ¯
 	return 0;
 }

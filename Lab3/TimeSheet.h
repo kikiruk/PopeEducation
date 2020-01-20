@@ -7,6 +7,8 @@ namespace lab3
 	{
 	public:
 		TimeSheet(const char* name, unsigned int maxEntries);
+		TimeSheet(const TimeSheet& copy);
+		const TimeSheet& operator=(const TimeSheet& ather);
 		~TimeSheet();
 		void AddTime(int timeInHours);
 		int GetTimeEntry(unsigned int index) const;
@@ -17,7 +19,7 @@ namespace lab3
 
 	private:
 		std::string mName;
-		const size_t mMax;
+		size_t mMax;
 		size_t mSize;
 		int* mEntries;
 	};

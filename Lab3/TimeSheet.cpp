@@ -8,10 +8,34 @@ namespace lab3
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) :
 		mName(name),
 		mMax(maxEntries),
-		mSize(0)
+		mSize(0),
+		mEntries(new int[maxEntries])
+	{}
+
+	TimeSheet::TimeSheet(const TimeSheet& copy) :
+		mName(copy.mName),
+		mMax(copy.mMax),
+		mSize(copy.mSize),
+		mEntries(new int[mMax])
 	{
-		mEntries = new int[maxEntries];
+		memcpy(mEntries, copy.mEntries, sizeof(copy.mEntries));
 	}
+
+	const TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
+	{
+		if (this != &ather) //Prevent yourself from being assigned
+		{
+			mName = ather.mName;
+			mMax = ather.mMax;
+			mSize = ather.mSize;
+			mEntries = new int[mMax];
+			memcpy(mEntries, ather.mEntries, sizeof(ather.mEntries));
+		}
+
+		return *this;
+	}
+
+
 
 	TimeSheet::~TimeSheet()
 	{
