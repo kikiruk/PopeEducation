@@ -18,7 +18,7 @@ namespace lab3
 		mSize(copy.mSize),
 		mEntries(new int[mMax])
 	{
-		memcpy(mEntries, copy.mEntries, sizeof(copy.mEntries));
+		memcpy(mEntries, copy.mEntries, sizeof(int) * mMax);
 	}
 
 	const TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
@@ -29,12 +29,11 @@ namespace lab3
 			mMax = ather.mMax;
 			mSize = ather.mSize;
 			mEntries = new int[mMax];
-			memcpy(mEntries, ather.mEntries, sizeof(ather.mEntries));
+			memcpy(mEntries, ather.mEntries, sizeof(sizeof(int) * mMax));
 		}
 
 		return *this;
 	}
-
 
 
 	TimeSheet::~TimeSheet()
@@ -56,36 +55,6 @@ namespace lab3
 			return -1;
 
 		return mEntries[index];
-	}
-
-	int TimeSheet::GetTotalTime() const
-	{
-		size_t totalTime = 0;
-
-		for (size_t i = 0; i < mSize; i++)
-		{
-			totalTime += mEntries[i];
-		}
-
-		return totalTime;
-	}
-
-	float TimeSheet::GetAverageTime() const
-	{
-		return static_cast<float>(GetTotalTime()) / static_cast<float>(mSize);
-	}
-
-	float TimeSheet::GetStandardDeviation() const
-	{
-		float average = GetAverageTime();
-		float standardDeviation = 0;
-
-		for (size_t i = 0; i < mSize; i++)
-		{
-			standardDeviation += pow(mEntries[i] - average,2);
-		}
-
-		return sqrt(standardDeviation / mSize);
 	}
 
 	const std::string& TimeSheet::GetName() const
