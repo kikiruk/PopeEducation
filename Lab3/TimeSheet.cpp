@@ -23,6 +23,8 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
 	{
+		delete[] mEntries;
+
 		if (this != &ather) //Prevent yourself from being assigned
 		{
 			mName = ather.mName;
