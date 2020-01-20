@@ -7,8 +7,10 @@ using namespace std;
 int main()
 {
 	lab3::TimeSheet employee2("John", 10);
-	employee2.AddTime(7);
-	employee2.AddTime(8);
+	employee2.AddTime(4);
+	employee2.AddTime(4);
+	employee2.AddTime(4);
+	employee2.AddTime(4);
 	
 	lab3::TimeSheet employee1(employee2);
 

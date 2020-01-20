@@ -8,7 +8,7 @@ namespace lab3
 	public:
 		TimeSheet(const char* name, unsigned int maxEntries);
 		TimeSheet(const TimeSheet& copy);
-		const TimeSheet& operator=(const TimeSheet& ather);
+		TimeSheet& operator=(const TimeSheet& ather);
 		~TimeSheet();
 
 		void AddTime(int timeInHours);
@@ -39,14 +39,10 @@ namespace lab3
 	
 	inline float TimeSheet::GetAverageTime() const
 	{
-		size_t totalTime = 0;
+		if (mSize == 0)
+			return 0;
 
-		for (size_t i = 0; i < mSize; i++)
-		{
-			totalTime += mEntries[i];
-		}
-
-		return totalTime / static_cast<float>(mSize);
+		return GetTotalTime() / static_cast<float>(mSize);
 	}
 	
 	inline float TimeSheet::GetStandardDeviation() const

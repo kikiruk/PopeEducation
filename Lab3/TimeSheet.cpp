@@ -21,7 +21,7 @@ namespace lab3
 		memcpy(mEntries, copy.mEntries, sizeof(int) * mMax);
 	}
 
-	const TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
+	TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
 	{
 		if (this != &ather) //Prevent yourself from being assigned
 		{
