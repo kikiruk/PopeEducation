@@ -40,7 +40,7 @@ namespace lab3
 	inline float TimeSheet::GetAverageTime() const
 	{
 		if (mSize == 0)
-			return 0;
+			return 0.0f;
 
 		return GetTotalTime() / static_cast<float>(mSize);
 	}
