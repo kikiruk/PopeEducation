@@ -39,7 +39,14 @@ namespace lab3
 	
 	inline float TimeSheet::GetAverageTime() const
 	{
-		return static_cast<float>(GetTotalTime()) / static_cast<float>(mSize);
+		size_t totalTime = 0;
+
+		for (size_t i = 0; i < mSize; i++)
+		{
+			totalTime += mEntries[i];
+		}
+
+		return totalTime / static_cast<float>(mSize);
 	}
 	
 	inline float TimeSheet::GetStandardDeviation() const
@@ -52,9 +59,9 @@ namespace lab3
 	
 		for (size_t i = 0; i < mSize; i++)
 		{
-			standardDeviation += pow(mEntries[i] - average, 2);
+			standardDeviation += static_cast<float>(pow(mEntries[i] - static_cast<double>(average), 2));
 		}
 	
-		return sqrt(standardDeviation / mSize);
+		return static_cast<float>(sqrt(standardDeviation / mSize));
 	}
 }

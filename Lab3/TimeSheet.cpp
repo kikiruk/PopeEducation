@@ -23,14 +23,11 @@ namespace lab3
 
 	const TimeSheet& TimeSheet::operator=(const TimeSheet& ather)
 	{
-		if (this != &ather) //Prevent yourself from being assigned
-		{
-			mName = ather.mName;
-			mMax = ather.mMax;
-			mSize = ather.mSize;
-			mEntries = new int[mMax];
-			memcpy(mEntries, ather.mEntries, sizeof(sizeof(int) * mMax));
-		}
+		mName = ather.mName;
+		mMax = ather.mMax;
+		mSize = ather.mSize;
+		mEntries = new int[mMax];
+		memcpy(mEntries, ather.mEntries, sizeof(sizeof(int) * mMax));
 
 		return *this;
 	}
