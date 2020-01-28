@@ -100,19 +100,24 @@ namespace lab4
 		return true;
 	}
 
-	const Point& PolyLine::operator=(const PolyLine& other)
+	const PolyLine& PolyLine::operator=(const PolyLine& other)
 	{
-		for (size_t i = 0; i < mSize; i++)
+		if (this != &other)
 		{
-			delete mPoints[i];
+			for (size_t i = 0; i < mSize; i++)
+			{
+				delete mPoints[i];
+			}
+		
+			for (size_t i = 0; i < other.mSize; i++)
+			{
+				mPoints[i] = new Point(*(other.mPoints[i]));
+			}
+		
+			mSize = other.mSize;
 		}
 
-		for (size_t i = 0; i < other.mSize; i++)
-		{
-			mPoints[i] = new Point(*(other.mPoints[i]));
-		}
-
-		mSize = other.mSize;
+		return *this;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
