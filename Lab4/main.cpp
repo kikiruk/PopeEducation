@@ -10,12 +10,17 @@ int main()
 	PolyLine pl;
 
 	pl.AddPoint(1, 2);
-	pl.AddPoint(2, 3);
-	pl.AddPoint(2, 4);
-	pl.AddPoint(2, 5);
-	pl.AddPoint(2, 6);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
+	pl.AddPoint(1, 2);
 
-	pl.RemovePoint(2);
+	pl.RemovePoint(7);
 
 	for (int i = 0; i < 10; i++)
 	{

@@ -13,7 +13,7 @@ namespace lab4
 	PolyLine::PolyLine(const PolyLine& other) :
 		mSize(other.mSize)
 	{
-		for (int i = 0; i < other.mSize; i++)
+		for (size_t i = 0; i < other.mSize; i++)
 		{
 			mPoints[i] = new Point(*(other.mPoints[i]));
 		}
@@ -21,7 +21,7 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
-		for (int i = 0; i < mSize; i++)
+		for (size_t i = 0; i < mSize; i++)
 		{
 			delete mPoints[i];
 		}
@@ -52,12 +52,12 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
-		if (i >= PointMax)
+		if (i >= mSize)
 			return false;
 
 		delete mPoints[i];
+		memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
 		mSize--;
-		memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (PointMax - i - 1));
 
 		return true;
 	}
@@ -74,7 +74,7 @@ namespace lab4
 
 		float mX = 0;
 		float mY = 0;
-		for (int i = 0; i < mSize; i++)
+		for (size_t i = 0; i < mSize; i++)
 		{
 			mX = mPoints[i]->mX;
 			mY = mPoints[i]->mY;

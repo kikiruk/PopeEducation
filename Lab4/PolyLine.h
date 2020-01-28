@@ -21,6 +21,6 @@ namespace lab4
 	private:
 		enum { PointMax = 10 };
 		const Point* mPoints[PointMax];
-		int mSize;
+		size_t mSize;
 	};
 }
