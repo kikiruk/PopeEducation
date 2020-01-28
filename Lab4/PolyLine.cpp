@@ -64,14 +64,15 @@ namespace lab4
 		if (mSize < 2)
 			return false;
 
-		float minX = FLT_MAX;
-		float minY = FLT_MAX;
-		float maxX = -FLT_MAX;
-		float maxY = -FLT_MAX;
+		float mX = mPoints[0]->mX;
+		float mY = mPoints[0]->mY;
 
-		float mX = 0;
-		float mY = 0;
-		for (size_t i = 0; i < mSize; i++)
+		float minX = mX;
+		float minY = mY;
+		float maxX = mX;
+		float maxY = mY;
+
+		for (size_t i = 1; i < mSize; i++)
 		{
 			mX = mPoints[i]->mX;
 			mY = mPoints[i]->mY;

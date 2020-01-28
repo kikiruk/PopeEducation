@@ -14,6 +14,12 @@ namespace lab4
 	{
 	}
 
+	Point::Point() : 
+		mX(0),
+		mY(0)
+	{
+	}
+
 	Point Point::operator+(const Point& other) const
 	{
 		return Point(this->mX + other.mX, this->mY + other.mY);
