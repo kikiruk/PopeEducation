@@ -53,7 +53,10 @@ namespace lab4
 			return false;
 
 		delete mPoints[i];
-		memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
+
+		if(mSize - i - 1 != 0)
+			memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
+
 		mSize--;
 
 		return true;
@@ -128,4 +131,5 @@ namespace lab4
 
 		return mPoints[i];
 	}
+
 }
