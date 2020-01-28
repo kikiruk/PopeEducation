@@ -54,8 +54,16 @@ namespace lab4
 
 		delete mPoints[i];
 
-		if(mSize - i - 1 != 0)
-			memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
+		//if (mSize - i - 1 != 0)
+		//	memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
+
+		if (mSize - i - 1 != 0)
+		{
+			for (int j = i; j < mSize - 1; j++)
+			{
+				mPoints[j] = mPoints[j + 1];
+			}
+		}
 
 		mSize--;
 
@@ -92,7 +100,7 @@ namespace lab4
 			if (mY > maxY)
 				maxY = mY;
 		}
-		
+
 		if (minX == maxX && minY == maxY)
 			return false;
 
@@ -112,12 +120,12 @@ namespace lab4
 			{
 				delete mPoints[i];
 			}
-		
+
 			for (size_t i = 0; i < other.mSize; i++)
 			{
 				mPoints[i] = new Point(*(other.mPoints[i]));
 			}
-		
+
 			mSize = other.mSize;
 		}
 
