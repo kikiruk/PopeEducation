@@ -88,8 +88,8 @@ namespace lab4
 			if (mY > maxY)
 				maxY = mY;
 		}
-
-		if (minX == maxX || minY == maxY)
+		
+		if (minX == maxX && minY == maxY)
 			return false;
 
 		outMin->mX = minX;
