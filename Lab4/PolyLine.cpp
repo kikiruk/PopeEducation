@@ -40,10 +40,7 @@ namespace lab4
 	bool PolyLine::AddPoint(const Point* point)
 	{
 		if (mSize == PointMax)
-		{
-			delete point;
 			return false;
-		}
 
 		mPoints[mSize++] = point;
 
@@ -92,12 +89,30 @@ namespace lab4
 				maxY = mY;
 		}
 
+		if (minX == maxX || minY == maxY)
+			return false;
+
 		outMin->mX = minX;
 		outMin->mY = minY;
 		outMax->mX = maxX;
 		outMax->mY = maxY;
 
 		return true;
+	}
+
+	const Point& PolyLine::operator=(const PolyLine& other)
+	{
+		for (size_t i = 0; i < mSize; i++)
+		{
+			delete mPoints[i];
+		}
+
+		for (size_t i = 0; i < other.mSize; i++)
+		{
+			mPoints[i] = new Point(*(other.mPoints[i]));
+		}
+
+		mSize = other.mSize;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
