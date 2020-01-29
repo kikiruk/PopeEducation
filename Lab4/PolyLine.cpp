@@ -1,3 +1,4 @@
+#include <cstring>
 #include "PolyLine.h"
 
 namespace lab4
@@ -51,16 +52,8 @@ namespace lab4
 
 		delete mPoints[i];
 
-		//if (mSize - i - 1 != 0)
-		//	memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
-
-		if (mSize - 1 != i)
-		{
-			for (size_t j = i; j < mSize - 1; j++)
-			{
-				mPoints[j] = mPoints[j + 1];
-			}
-		}
+		if (mSize - i - 1 != 0)
+			memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
 
 		mSize--;
 
@@ -97,9 +90,6 @@ namespace lab4
 			if (mY > maxY)
 				maxY = mY;
 		}
-
-		//if (minX == maxX && minY == maxY)
-		//	return false;
 
 		outMin->mX = minX;
 		outMin->mY = minY;
