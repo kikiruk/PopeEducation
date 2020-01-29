@@ -1,6 +1,3 @@
-#include <cstring>
-#include <cmath>
-#include <cfloat>
 #include "PolyLine.h"
 
 namespace lab4
@@ -40,7 +37,10 @@ namespace lab4
 	bool PolyLine::AddPoint(const Point* point)
 	{
 		if (mSize == PointMax)
+		{
+			delete point;
 			return false;
+		}
 
 		mPoints[mSize++] = point;
 
@@ -57,7 +57,7 @@ namespace lab4
 		//if (mSize - i - 1 != 0)
 		//	memcpy(mPoints + i, mPoints + i + 1, sizeof(Point*) * (mSize - i - 1));
 
-		if (mSize - i - 1 != 0)
+		if (mSize - 1 != i)
 		{
 			for (int j = i; j < mSize - 1; j++)
 			{
@@ -72,7 +72,7 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
-		if (mSize < 2)
+		if (mSize == 0)
 			return false;
 
 		float mX = mPoints[0]->mX;
@@ -101,8 +101,8 @@ namespace lab4
 				maxY = mY;
 		}
 
-		if (minX == maxX && minY == maxY)
-			return false;
+		//if (minX == maxX && minY == maxY)
+		//	return false;
 
 		outMin->mX = minX;
 		outMin->mY = minY;
