@@ -37,10 +37,7 @@ namespace lab4
 	bool PolyLine::AddPoint(const Point* point)
 	{
 		if (mSize == PointMax)
-		{
-			delete point;
 			return false;
-		}
 
 		mPoints[mSize++] = point;
 
@@ -59,7 +56,7 @@ namespace lab4
 
 		if (mSize - 1 != i)
 		{
-			for (int j = i; j < mSize - 1; j++)
+			for (size_t j = i; j < mSize - 1; j++)
 			{
 				mPoints[j] = mPoints[j + 1];
 			}
