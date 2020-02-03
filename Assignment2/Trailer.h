@@ -2,12 +2,15 @@
 
 namespace assignment2
 {
-	class Trailer
+	class Trailer 
 	{
 	public:
 		Trailer(unsigned int weight);
-		~Trailer();
+		~Trailer() = default;
 
 		unsigned int GetWeight() const;
+
+	private:
+		unsigned int mWeight;
 	};
 }

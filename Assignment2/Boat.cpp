@@ -3,6 +3,7 @@
 namespace assignment2
 {
 	Boat::Boat(unsigned int maxPassengersCount)
+		:Vehicle(maxPassengersCount)
 	{
 	}
 
@@ -14,5 +15,9 @@ namespace assignment2
 	{
 		Boatplane bp(5);
 		return bp;
+	}
+	unsigned int Boat::GetMaxSpeed()
+	{
+		return 0;
 	}
 }

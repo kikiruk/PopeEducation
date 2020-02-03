@@ -4,7 +4,8 @@
 
 namespace assignment2
 {
-	Airplane::Airplane(unsigned int maxPassengersCount)
+	Airplane::Airplane(unsigned int maxPassengersCount) :
+		Vehicle(maxPassengersCount)
 	{
 	}
 
@@ -16,5 +17,10 @@ namespace assignment2
 	{
 		Boatplane bp(0);
 		return bp;
+	}
+
+	unsigned int Airplane::GetMaxSpeed()
+	{
+		return 0;
 	}
 }
