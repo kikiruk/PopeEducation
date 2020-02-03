@@ -3,7 +3,8 @@
 namespace lab5
 {
 	RectangleLawn::RectangleLawn(unsigned int width, unsigned int height) :
-		SquareLawn(width),
+		Lawn(),
+		mWidth(width),
 		mHeight(height)
 	{
 	}
