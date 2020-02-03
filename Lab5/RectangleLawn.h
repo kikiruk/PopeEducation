@@ -5,7 +5,7 @@
 
 namespace lab5
 {
-	class RectangleLawn : public Lawn, IFenceable, SquareLawn
+	class RectangleLawn : public SquareLawn
 	{
 	public:
 		RectangleLawn(unsigned int width, unsigned int height);
