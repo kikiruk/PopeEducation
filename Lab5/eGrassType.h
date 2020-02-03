@@ -2,7 +2,7 @@
 
 namespace lab5
 {
-	enum class eGrassType
+	enum eGrassType
 	{
 		BERMUDA,
 		BAHIA,

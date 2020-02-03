@@ -2,7 +2,7 @@
 
 namespace lab5
 {
-	enum class eFenceType
+	enum eFenceType
 	{
 		RED_CEDAR,
 		SPRUCE

@@ -10,23 +10,23 @@ namespace lab5
 
 		switch (grassType)
 		{
-		case eGrassType::BERMUDA :
+		case BERMUDA :
 			price = 8;
 			break;
 
-		case eGrassType::BAHIA :
+		case BAHIA :
 			price = 5;
 			break;
 
-		case eGrassType::BENTGRASS :
+		case BENTGRASS :
 			price = 3;
 			break;
 
-		case eGrassType::PERENNIAL_RYEGRASS :
+		case PERENNIAL_RYEGRASS :
 			price = 2.5;
 			break;
 
-		case eGrassType::ST_AUGUSTINE:
+		case ST_AUGUSTINE:
 			price = 4.5;
 			break;
 

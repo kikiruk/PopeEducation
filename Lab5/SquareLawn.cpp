@@ -23,11 +23,11 @@ namespace lab5
 	
 		switch (fenceType)
 		{
-		case eFenceType::RED_CEDAR:
+		case RED_CEDAR:
 			price = 6;
 			break;
 
-		case eFenceType::SPRUCE:
+		case SPRUCE:
 			price = 7;
 			break;
 
