@@ -15,7 +15,8 @@ namespace lab5
 		// IFenceable을(를) 통해 상속됨
 		virtual unsigned int GetMinimumFencesCount() const override;
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const override;
-	private:
+
+	protected:
 		const unsigned int mWidth;
 	};
 }

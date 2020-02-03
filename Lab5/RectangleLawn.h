@@ -1,10 +1,11 @@
 #pragma once
 #include "Lawn.h"
 #include "IFenceable.h"
+#include "SquareLawn.h"
 
 namespace lab5
 {
-	class RectangleLawn : public Lawn, IFenceable
+	class RectangleLawn : public Lawn, IFenceable, SquareLawn
 	{
 	public:
 		RectangleLawn(unsigned int width, unsigned int height);
@@ -17,8 +18,6 @@ namespace lab5
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const override;
 
 	private:
-		const unsigned int mWidth;
 		const unsigned int mHeight;
 	};
 }
-
