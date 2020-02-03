@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 
 #include "Lawn.h"
 #include "IFenceable.h"
@@ -7,6 +8,7 @@
 #include "SquareLawn.h"
 #include "EquilateralTriangleLawn.h"
 
+using namespace std;
 using namespace lab5;
 
 int main()
@@ -16,6 +18,10 @@ int main()
 	unsigned int grassPrice = lawn->GetGrassPrice(eGrassType::BERMUDA);
 	unsigned int sodRollsCount = lawn->GetMinimumSodRollsCount();
 
+	cout << area << endl;
+	cout << grassPrice << endl;
+	cout << sodRollsCount << endl;
+
 	assert(area == 200);
 	assert(grassPrice == 1600);
 	assert(sodRollsCount == 667);
@@ -24,6 +30,10 @@ int main()
 
 	unsigned int fencePrice = rectangleLawn->GetFencePrice(eFenceType::RED_CEDAR);
 	unsigned int fencesCount = rectangleLawn->GetMinimumFencesCount();
+
+
+	cout << fencePrice << endl;
+	cout << fencesCount << endl;
 
 	assert(fencePrice == 360);
 	assert(fencesCount == 240);
