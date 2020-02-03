@@ -7,7 +7,7 @@ namespace lab5
 	class RectangleLawn : public Lawn, IFenceable
 	{
 	public:
-		RectangleLawn(unsigned int width,unsigned int height);
+		RectangleLawn(unsigned int width, unsigned int height);
 
 		// Lawn을(를) 통해 상속됨
 		virtual unsigned int GetArea() const override;

@@ -3,6 +3,7 @@
 namespace lab5
 {
 	RectangleLawn::RectangleLawn(unsigned int width, unsigned int height) :
+		Lawn(),
 		mWidth(width),
 		mHeight(height)
 	{
@@ -20,7 +21,7 @@ namespace lab5
 
 	unsigned int RectangleLawn::GetFencePrice(eFenceType fenceType) const
 	{
-		double price = 0;
+		unsigned int price = 0;
 
 		switch (fenceType)
 		{

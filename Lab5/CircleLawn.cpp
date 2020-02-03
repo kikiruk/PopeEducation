@@ -5,6 +5,7 @@
 namespace lab5
 {
 	CircleLawn::CircleLawn(unsigned int radius) :
+		Lawn(),
 		mRadius(radius)
 	{
 	}
@@ -13,6 +14,6 @@ namespace lab5
 	{
 		double area = static_cast<double>(mRadius) * mRadius * PI;
 
-		return area + 0.5;
+		return static_cast<unsigned int>(area + 0.5);
 	}
 }

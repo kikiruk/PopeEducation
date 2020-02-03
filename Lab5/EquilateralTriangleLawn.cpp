@@ -3,6 +3,7 @@
 namespace lab5
 {
 	EquilateralTriangleLawn::EquilateralTriangleLawn(unsigned int oneSide) :
+		Lawn(),
 		mOneSide(oneSide)
 	{
 	}
@@ -11,7 +12,7 @@ namespace lab5
 	{
 		double area = static_cast<double>(mOneSide) * mOneSide * 0.4330127018922193;
 
-		return area + 0.5;
+		return static_cast<unsigned int>(area + 0.5);
 	}
 
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
@@ -21,7 +22,7 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetFencePrice(eFenceType fenceType) const
 	{
-		double price = 0;
+		unsigned int price = 0;
 
 		switch (fenceType)
 		{

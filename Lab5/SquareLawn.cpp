@@ -3,6 +3,7 @@
 namespace lab5
 {
 	SquareLawn::SquareLawn(unsigned int width) :
+		Lawn(),
 		mWidth(width)
 	{
 	}
@@ -19,7 +20,7 @@ namespace lab5
 
 	unsigned int SquareLawn::GetFencePrice(eFenceType fenceType) const
 	{
-		double price = 0;
+		unsigned int price = 0;
 	
 		switch (fenceType)
 		{
