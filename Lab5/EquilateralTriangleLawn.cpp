@@ -39,6 +39,6 @@ namespace lab5
 			break;
 		}
 
-		return mOneSide * 12 * price;
+		return mOneSide * 3 * price;
 	}
 }
