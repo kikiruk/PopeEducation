@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Lawn.h"
 #include "eGrassType.h"
 
@@ -41,6 +42,6 @@ namespace lab5
 
 	unsigned int Lawn::GetMinimumSodRollsCount() const
 	{
-		return static_cast<unsigned int>(GetArea() / 0.3 + 0.5);
+		return static_cast<unsigned int>(ceil(GetArea() / 0.3 + 0.5));
 	}
 }
