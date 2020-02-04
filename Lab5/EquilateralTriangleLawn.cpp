@@ -13,7 +13,7 @@ namespace lab5
 	{
 		double area = static_cast<double>(mOneSide) * mOneSide * sqrt(3);
 
-		return static_cast<unsigned int>(area);
+		return static_cast<unsigned int>(ceil(area));
 	}
 
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
@@ -39,6 +39,6 @@ namespace lab5
 			break;
 		}
 
-		return mOneSide * 3 * price;
+		return mOneSide * 12 * price;
 	}
 }

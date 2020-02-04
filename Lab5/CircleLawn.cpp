@@ -1,6 +1,7 @@
-#define PI 3.14
-
+#include <cmath>
 #include "CircleLawn.h"
+
+#define PI 3.14
 
 namespace lab5
 {
@@ -14,6 +15,6 @@ namespace lab5
 	{
 		double area = static_cast<double>(mRadius) * mRadius * PI;
 
-		return static_cast<unsigned int>(area);
+		return static_cast<unsigned int>(ceil(area));
 	}
 }
