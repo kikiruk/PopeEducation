@@ -11,7 +11,7 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
-		double area = static_cast<double>(mOneSide) * mOneSide * sqrt(3);
+		double area = static_cast<double>(mOneSide) * mOneSide * sqrt(3) / 4;
 
 		return static_cast<unsigned int>(area + 0.5);
 	}
