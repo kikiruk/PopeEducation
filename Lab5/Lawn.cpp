@@ -36,11 +36,11 @@ namespace lab5
 
 		price *= GetArea();
 
-		return price + 0.5;
+		return static_cast<unsigned int>(price + 0.5);
 	}
 
 	unsigned int Lawn::GetMinimumSodRollsCount() const
 	{
-		return GetArea() / 0.3 + 0.5;
+		return static_cast<unsigned int>(GetArea() / 0.3 + 0.5);
 	}
 }

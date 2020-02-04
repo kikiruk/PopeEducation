@@ -1,4 +1,5 @@
-﻿#include "EquilateralTriangleLawn.h"
+﻿#include <cmath>
+#include "EquilateralTriangleLawn.h"
 
 namespace lab5
 {
@@ -10,7 +11,7 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
-		double area = static_cast<double>(mOneSide) * mOneSide * 0.4330127018922193;
+		double area = static_cast<double>(mOneSide) * mOneSide * sqrt(3);
 
 		return static_cast<unsigned int>(area + 0.5);
 	}
