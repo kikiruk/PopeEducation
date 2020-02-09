@@ -6,6 +6,7 @@ namespace assignment2
 {
 	class Vehicle
 	{
+		friend Airplane;
 	public:
 		Vehicle(unsigned int maxPassengersCount);
 		Vehicle(const Vehicle& other);
@@ -19,7 +20,7 @@ namespace assignment2
 		unsigned int GetPassengersCount() const;
 		unsigned int GetMaxPassengersCount() const;
 
-	private:
+	protected:
 		const unsigned int mMaxPassengerCount = 10;
 		unsigned int mCount;
 		const Person** mPassengers;

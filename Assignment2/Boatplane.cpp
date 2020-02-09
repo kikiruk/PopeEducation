@@ -15,4 +15,12 @@ namespace assignment2
 	{
 		return 0;
 	}
+	unsigned int Boatplane::GetFlySpeed() const
+	{
+		return 0;
+	}
+	unsigned int Boatplane::GetSailSpeed() const
+	{
+		return 0;
+	}
 }

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Boatplane.h"
 #include "Vehicle.h"
 #include "IFlyable.h"
@@ -9,8 +8,10 @@ namespace assignment2
 {
 	class Boat;
 
-	class Airplane : Vehicle, IFlyable, IDrivable
+	class Airplane : public Vehicle, IFlyable, IDrivable
 	{
+		friend Boat;
+
 	public:
 		Airplane(unsigned int maxPassengersCount);
 		~Airplane();

@@ -1,6 +1,5 @@
 #include "Airplane.h"
 #include "Boat.h"
-#include "Boatplane.h"
 
 namespace assignment2
 {
@@ -15,7 +14,23 @@ namespace assignment2
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		Boatplane bp(0);
+		Boatplane bp(this->mCount + boat.mCount);
+
+		for (int i = 0; i < this->mCount; i++)
+		{
+			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
+			delete this->mPassengers[i];
+		}
+		
+		for (int i = 0; i < boat.mCount; i++)
+		{
+			bp.mPassengers[bp.mCount++] = new Person(*(boat.mPassengers[i]));
+			delete boat.mPassengers[i];
+		}
+
+		this->mCount = 0;
+		boat.mCount = 0;
+
 		return bp;
 	}
 

@@ -2,13 +2,16 @@
 #include "Vehicle.h"
 
 #include "Boatplane.h"
+#include "ISailable.h"
 
 namespace assignment2
 {
 	class Airplane;
 
-	class Boat : Vehicle
+	class Boat : public Vehicle, ISailable
 	{
+		friend Airplane;
+
 	public:
 		Boat(unsigned int maxPassengersCount);
 		~Boat();
@@ -16,5 +19,6 @@ namespace assignment2
 		Boatplane operator+(Airplane& plane);
 
 		virtual unsigned int GetMaxSpeed() const;
+		virtual unsigned int GetSailSpeed() const;
 	};
 }
