@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Vehicle">
+      <UniqueIdentifier>{9f93a0b5-2979-41e5-87f1-e8e6beb71c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vehicle">
+      <UniqueIdentifier>{9b69b9b3-dd22-4546-bcea-f92b1c5714ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{04b4d7c6-87e6-4a41-af0c-852125a14dee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,19 +30,7 @@
     <ClCompile Include="Person.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vehicle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Trailer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Airplane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Boat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Boatplane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Motorcycle.cpp">
@@ -48,36 +45,24 @@
     <ClCompile Include="DeusExMachina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Boat.cpp">
+      <Filter>Source Files\Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Airplane.cpp">
+      <Filter>Source Files\Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Boatplane.cpp">
+      <Filter>Source Files\Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files\Vehicle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IDivable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDrivable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IFlyable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISailable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Person.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vehicle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Trailer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Airplane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Boat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Boatplane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Motorcycle.h">
@@ -86,11 +71,35 @@
     <ClInclude Include="Sedan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DeusExMachina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Airplane.h">
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Boat.h">
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Boatplane.h">
+      <Filter>Header Files\Vehicle</Filter>
+    </ClInclude>
     <ClInclude Include="UBoat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DeusExMachina.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ISailable.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IFlyable.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrivable.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IDivable.h">
+      <Filter>Header Files\Interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

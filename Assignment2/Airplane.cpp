@@ -19,7 +19,17 @@ namespace assignment2
 		return bp;
 	}
 
-	unsigned int Airplane::GetMaxSpeed()
+	unsigned int Airplane::GetMaxSpeed() const
+	{
+		return 0;
+	}
+
+	unsigned int Airplane::GetFlySpeed() const
+	{
+		return 0;
+	}
+
+	unsigned int Airplane::GetDriveSpeed() const
 	{
 		return 0;
 	}

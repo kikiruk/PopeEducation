@@ -15,6 +15,6 @@ namespace assignment2
 
 		Boatplane operator+(Airplane& plane);
 
-		virtual unsigned int GetMaxSpeed();
+		virtual unsigned int GetMaxSpeed() const;
 	};
 }

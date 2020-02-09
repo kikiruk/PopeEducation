@@ -9,6 +9,6 @@ namespace assignment2
 		Boatplane(unsigned int maxPassengersCount);
 		~Boatplane();
 
-		virtual unsigned int GetMaxSpeed();
+		virtual unsigned int GetMaxSpeed() const;
 	};
 }

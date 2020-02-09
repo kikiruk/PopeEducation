@@ -1,5 +1,6 @@
 #include "Boat.h"
 
+
 namespace assignment2
 {
 	Boat::Boat(unsigned int maxPassengersCount)
@@ -16,7 +17,8 @@ namespace assignment2
 		Boatplane bp(5);
 		return bp;
 	}
-	unsigned int Boat::GetMaxSpeed()
+
+	unsigned int Boat::GetMaxSpeed() const
 	{
 		return 0;
 	}
