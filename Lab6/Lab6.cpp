@@ -78,42 +78,42 @@ namespace lab6
 		//		numberNow = v[i];
 		//	}
 		//}
-
+		//
 		//return answer;
 		return 0;
 	}
 
 	void SortDescending(std::vector<int>& v)
 	{
-		//quickSort(0, v.size() - 1, v);
+		quickSort(0, v.size() - 1, v);
 	}
 
-	//void quickSort(int left, int right, std::vector<int>& v)
-	//{
-	//	int pivot = left;
-	//	int j = pivot;
-	//	int i = left + 1;
-	//	int tmp;
-	//
-	//	if (left < right) 
-	//	{
-	//		for (; i <= right; i++) 
-	//		{
-	//			if (v[i] > v[pivot]) 
-	//			{
-	//				j++;
-	//				tmp = v[j];
-	//				v[j] = v[i];
-	//				v[i] = tmp;
-	//			}
-	//		}
-	//		tmp = v[left];
-	//		v[left] = v[j];
-	//		v[j] = tmp;
-	//		pivot = j;
-	//
-	//		quickSort(left, pivot - 1, v);
-	//		quickSort(pivot + 1, right, v);
-	//	}
-	//}
+	void quickSort(int left, int right, std::vector<int>& v)
+	{
+		int pivot = left;
+		int j = pivot;
+		int i = left + 1;
+		int tmp;
+	
+		if (left < right) 
+		{
+			for (; i <= right; i++) 
+			{
+				if (v[i] > v[pivot]) 
+				{
+					j++;
+					tmp = v[j];
+					v[j] = v[i];
+					v[i] = tmp;
+				}
+			}
+			tmp = v[left];
+			v[left] = v[j];
+			v[j] = tmp;
+			pivot = j;
+	
+			quickSort(left, pivot - 1, v);
+			quickSort(pivot + 1, right, v);
+		}
+	}
 }
