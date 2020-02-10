@@ -14,7 +14,7 @@ namespace lab6
 		for (unsigned int i = 0; i < v.size(); i++)
 			answer += v[i];
 
-		return 0;
+		return answer;
 	}
 
 	int Min(const std::vector<int>& v)
@@ -27,7 +27,7 @@ namespace lab6
 				minNum = v[i];
 		}
 
-		return 0;
+		return minNum;
 	}
 
 	int Max(const std::vector<int>& v)
@@ -40,7 +40,7 @@ namespace lab6
 				maxNum = v[i];
 		}
 
-		return 0;
+		return maxNum;
 	}
 
 	float Average(const std::vector<int>& v)
