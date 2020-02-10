@@ -34,9 +34,6 @@ namespace lab6
 	{
 		int maxNum = INT_MIN;
 
-		if (v.empty())
-			return maxNum;
-
 		for (unsigned int i = 0; i < v.size(); i++)
 		{
 			if (maxNum < v[i])
