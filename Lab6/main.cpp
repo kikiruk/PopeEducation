@@ -14,5 +14,5 @@ int main()
 	v.push_back(7);
 	v.push_back(11);
 
-	cout << lab6::Sum(v) << endl; // 41
+	cout << (float)lab6::Average(v) << endl; // 41
 }
