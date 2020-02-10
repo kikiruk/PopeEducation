@@ -45,6 +45,9 @@ namespace lab6
 
 	float Average(const std::vector<int>& v)
 	{
+		if (v.empty())
+			return 0.0f;
+
 		return static_cast<float>(Sum(v)) / v.size();
 	}
 
