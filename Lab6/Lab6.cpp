@@ -17,7 +17,7 @@ namespace lab6
 		return 0;
 	}
 
-	int Min(const std::vector<int> & v)
+	int Min(const std::vector<int>& v)
 	{
 		int minNum = INT_MAX;
 
@@ -29,7 +29,7 @@ namespace lab6
 		return 0;
 	}
 
-	int Max(const std::vector<int> & v)
+	int Max(const std::vector<int>& v)
 	{
 		int maxNum = -INT_MAX;
 
@@ -41,12 +41,12 @@ namespace lab6
 		return 0;
 	}
 
-	float Average(const std::vector<int> & v)
+	float Average(const std::vector<int>& v)
 	{
 		return static_cast<float>(Sum(v) / v.size());
 	}
 
-	int NumberWithMaxOccurrence(const std::vector<int> & v)
+	int NumberWithMaxOccurrence(const std::vector<int>& v)
 	{
 		std::vector<int> tmp(v);
 		SortDescending(tmp);
@@ -76,32 +76,32 @@ namespace lab6
 		return answer;
 	}
 
-	void SortDescending(std::vector<int> & v)
+	void SortDescending(std::vector<int>& v)
 	{
 		quickSort(0, v.size() - 1, v);
 	}
 
-	void quickSort(int left, int right, std::vector<int> & v)
+	void quickSort(int left, int right, std::vector<int>& v)
 	{
-		int pivot = right;
+		int pivot = left;
 		int j = pivot;
-		int i = right - 1;
+		int i = left + 1;
 		int tmp;
 
 		if (left < right) 
 		{
-			for (; i >= left; i--) 
+			for (; i <= right; i++) 
 			{
-				if (v[i] < v[pivot]) 
+				if (v[i] > v[pivot]) 
 				{
-					j--;
+					j++;
 					tmp = v[j];
 					v[j] = v[i];
 					v[i] = tmp;
 				}
 			}
-			tmp = v[right];
-			v[right] = v[j];
+			tmp = v[left];
+			v[left] = v[j];
 			v[j] = tmp;
 			pivot = j;
 
