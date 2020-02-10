@@ -54,28 +54,24 @@ namespace lab6
 
 	int NumberWithMaxOccurrence(const std::vector<int>& v)
 	{
-		std::vector<int> tmp(v);
-		SortDescending(tmp);
+		int answer = 0;
+		int numberNow = 0;
+		int numberCount = 0;
+		int maxCount = 0;
 		
-		int answer = v[0];
-		int maxCount = 1;
-		int numberNow = v[0];
-		int numberCount = 1;
-		
-		for (unsigned int i = 1; i < tmp.size(); i++)
+		for (auto i = v.begin(); i != v.end(); i++)
 		{
-			if (numberNow == v[i])
-				numberCount++;
-			else
+			numberNow = *i;
+			for (auto j = i + 1; j != v.end(); j++)
 			{
-				if (maxCount < numberCount)
-				{
-					maxCount = numberCount;
-					answer = numberNow;
-				}
-		
-				numberCount = 1;
-				numberNow = v[i];
+				if (numberNow == *j)
+					numberCount++;
+			}
+			
+			if (maxCount < numberCount)
+			{
+				maxCount = numberCount;
+				answer = numberNow;
 			}
 		}
 		
