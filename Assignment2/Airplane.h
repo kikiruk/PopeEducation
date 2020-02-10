@@ -25,5 +25,8 @@ namespace assignment2
 
 		// IDrivable을(를) 통해 상속됨
 		virtual unsigned int GetDriveSpeed() const override;
+
+		// Vehicle을(를) 통해 상속됨
+		virtual void Travel() override;
 	};
 }

@@ -16,7 +16,7 @@ namespace assignment2
 
 	private:
 		enum{ mMaxCount = 10 };
-		Vehicle* Vehicles[mMaxCount];
+		Vehicle* mVehicles[mMaxCount];
 		unsigned int mCount;
 	};
 }

@@ -20,5 +20,8 @@ namespace assignment2
 
 		virtual unsigned int GetMaxSpeed() const;
 		virtual unsigned int GetSailSpeed() const;
+
+		// Vehicle을(를) 통해 상속됨
+		virtual void Travel() override;
 	};
 }

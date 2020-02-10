@@ -5,7 +5,9 @@ namespace assignment2
 {
 	Vehicle::Vehicle(unsigned int maxPassengersCount) :
 		mMaxPassengerCount(maxPassengersCount),
-		mCount(0)
+		mCount(0),
+		mDistance(0), 
+		mTravelCount(0)
 	{
 		mPassengers = new Person*[mMaxPassengerCount];
 	}

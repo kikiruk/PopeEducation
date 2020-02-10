@@ -26,5 +26,8 @@ namespace assignment2
 
 	private:
 		const Trailer* mTrailer;
+
+		// Vehicle을(를) 통해 상속됨
+		virtual void Travel() override;
 	};
 }

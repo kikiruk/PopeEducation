@@ -21,6 +21,10 @@ namespace assignment2
 		return 0;
 	}
 
+	void UBoat::Travel()
+	{
+	}
+
 	unsigned int UBoat::GetMaxSpeed() const
 	{
 		return 0;

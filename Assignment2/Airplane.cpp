@@ -41,11 +41,19 @@ namespace assignment2
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return 0;
+		return 200 * pow(e, ((-(mCount * ) + 800) / 500));
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
 		return 0;
+	}
+
+	void Airplane::Travel()
+	{
+		if(mTravelCount == 0)
+			//±¸Çö
+
+		mTravelCount = (mTravelCount + 1) % 3;
 	}
 }

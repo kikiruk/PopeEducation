@@ -23,7 +23,7 @@ namespace assignment2
 		if (mCount == mMaxCount)
 			return false;
 
-		Vehicles[mCount++] = vehicle;
+		mVehicles[mCount++] = vehicle;
 
 		return true;
 	}
@@ -33,13 +33,17 @@ namespace assignment2
 		if (mCount <= i)
 			return false;
 
-		delete Vehicles[i];
-		memcpy(Vehicles + i, Vehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
+		delete mVehicles[i];
+		memcpy(mVehicles + i, mVehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
 		mCount--;
 	}
 
 	const Vehicle* DeusExMachina::GetFurthestTravelled() const
 	{
-		return NULL;
+		if(mCount == 0)
+			return NULL;
+
+		for (int i = 0; i < mCount; i++)
+			mVehicles[i]->Travel;
 	}
-}
+} 

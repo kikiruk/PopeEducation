@@ -4,15 +4,19 @@
 
 namespace assignment2
 {
+	class DeusExMachina;
+
 	class Vehicle
 	{
-		friend Airplane;
+		friend DeusExMachina;
+
 	public:
 		Vehicle(unsigned int maxPassengersCount);
 		Vehicle(const Vehicle& other);
 		~Vehicle();
 
 		virtual unsigned int GetMaxSpeed() const = 0;
+		virtual void Travel() = 0;
 
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);
@@ -24,5 +28,7 @@ namespace assignment2
 		const unsigned int mMaxPassengerCount = 10;
 		unsigned int mCount;
 		const Person** mPassengers;
+		unsigned int mTravelCount;
+		unsigned int mDistance;
 	};
 }

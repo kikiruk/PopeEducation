@@ -43,4 +43,8 @@ namespace assignment2
 	{
 		return 0;
 	}
+
+	void Boat::Travel()
+	{
+	}
 }
