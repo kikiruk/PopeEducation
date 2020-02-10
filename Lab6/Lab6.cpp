@@ -34,6 +34,9 @@ namespace lab6
 	{
 		int maxNum = -INT_MAX;
 
+		if (v.empty())
+			return maxNum;
+
 		for (unsigned int i = 0; i < v.size(); i++)
 		{
 			if (maxNum < v[i])
@@ -41,6 +44,7 @@ namespace lab6
 		}
 
 		return maxNum;
+
 	}
 
 	float Average(const std::vector<int>& v)
