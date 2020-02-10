@@ -32,7 +32,7 @@ namespace lab6
 
 	int Max(const std::vector<int>& v)
 	{
-		int maxNum = -INT_MAX;
+		int maxNum = INT_MIN;
 
 		if (v.empty())
 			return maxNum;
