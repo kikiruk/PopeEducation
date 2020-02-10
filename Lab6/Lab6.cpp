@@ -11,7 +11,7 @@ namespace lab6
 
 		int answer = 0;
 
-		for (int i = 0; i < v.size(); i++)
+		for (unsigned int i = 0; i < v.size(); i++)
 			answer += v[i];
 
 		return 0;
@@ -21,8 +21,10 @@ namespace lab6
 	{
 		int minNum = INT_MAX;
 
-		for (int i = 0; i < v.size(); i++)
+		for (unsigned int i = 0; i < v.size(); i++)
+		{
 			if (minNum > v[i]) minNum = v[i];
+		}
 
 		return 0;
 	}
@@ -31,15 +33,17 @@ namespace lab6
 	{
 		int maxNum = -INT_MAX;
 
-		for (int i = 0; i < v.size(); i++)
+		for (unsigned int i = 0; i < v.size(); i++)
+		{
 			if (maxNum < v[i]) maxNum = v[i];
+		}
 
 		return 0;
 	}
 
 	float Average(const std::vector<int> & v)
 	{
-		return Sum(v) / v.size();
+		return static_cast<float>(Sum(v) / v.size());
 	}
 
 	int NumberWithMaxOccurrence(const std::vector<int> & v)
@@ -52,7 +56,7 @@ namespace lab6
 		int numberNow = v[0];
 		int numberCount = 1;
 
-		for (int i = 1; i < tmp.size(); i++)
+		for (unsigned int i = 1; i < tmp.size(); i++)
 		{
 			if (numberNow == v[i])
 				numberCount++;
@@ -84,9 +88,12 @@ namespace lab6
 		int i = right - 1;
 		int tmp;
 
-		if (left < right) {
-			for (; i >= left; i--) {
-				if (v[i] < v[pivot]) {
+		if (left < right) 
+		{
+			for (; i >= left; i--) 
+			{
+				if (v[i] < v[pivot]) 
+				{
 					j--;
 					tmp = v[j];
 					v[j] = v[i];
