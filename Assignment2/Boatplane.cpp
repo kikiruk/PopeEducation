@@ -21,11 +21,11 @@ namespace assignment2
 	}
 	unsigned int Boatplane::GetFlySpeed() const
 	{
-		return (unsigned int)(150 * pow(M_E, ((double)(500 - mPassengerWeight) / 300)) + 0.5);
+		return (unsigned int)(150 * pow(M_E, (((double)500 - mPassengerWeight) / 300)) + 0.5);
 	}
 	unsigned int Boatplane::GetSailSpeed() const
 	{
-		return (unsigned int)(std::max((800 - (double)1.7 * mPassengerWeight), (double)20) + 0.5);
+		return (unsigned int)(std::max(((double)800 - 1.7 * mPassengerWeight), (double)20) + 0.5);
 	}
 
 	void Boatplane::Travel()

@@ -37,12 +37,12 @@ namespace assignment2
 
 	unsigned int Boat::GetMaxSpeed() const
 	{
-		return (unsigned int)(std::max((800 - 10 * mPassengerWeight), (unsigned int)20) + 0.5);
+		return (unsigned int)(std::max((800 - 10 * mPassengerWeight), (unsigned int)20));
 	}
 
 	unsigned int Boat::GetSailSpeed() const
 	{
-		return (unsigned int)(std::max((800 - 10 * mPassengerWeight), (unsigned int)20) + 0.5);
+		return (unsigned int)(std::max((800 - 10 * mPassengerWeight), (unsigned int)20));
 	}
 
 	void Boat::Travel()

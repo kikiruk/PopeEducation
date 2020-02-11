@@ -67,16 +67,16 @@ namespace assignment2
 
 	unsigned int Sedan::GetDriveSpeed() const
 	{
-		if (mPassengerWeight <= 80)
-			return 480;
-		else if (mPassengerWeight > 80)
-			return 458;
-		else if (mPassengerWeight > 160)
-			return 400;
+		if (mPassengerWeight > 350)
+			return 300;
 		else if (mPassengerWeight > 260)
 			return 380;
-		else if (mPassengerWeight > 350)
-			return 300;
+		else if (mPassengerWeight > 160)
+			return 400;
+		else if (mPassengerWeight > 80)
+			return 458;
+		else if (mPassengerWeight <= 80)
+			return 480;
 		else
 			assert(false);
 	}
