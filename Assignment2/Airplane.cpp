@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+#define M_E        2.71828182845904523536   // e
 
 #include <cmath>
 #include <algorithm>
