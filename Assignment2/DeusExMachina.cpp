@@ -37,7 +37,10 @@ namespace assignment2
 			return false;
 
 		delete mVehicles[i];
-		memcpy(mVehicles + i, mVehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
+
+		if (mCount - 1 != i)
+			memcpy(mVehicles + i, mVehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
+
 		mCount--;
 
 		return true;

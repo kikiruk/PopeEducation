@@ -80,7 +80,7 @@ namespace assignment2
 		delete mPassengers[i];
 
 		if (mCount - 1 != i)
-			memcpy(mPassengers + i, mPassengers + i + 1, mCount - 1 - i);
+			memcpy(mPassengers + i, mPassengers + i + 1, sizeof(Person*) * (mCount - 1 - i));
 
 		mCount--;
 

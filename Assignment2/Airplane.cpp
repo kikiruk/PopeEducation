@@ -20,16 +20,16 @@ namespace assignment2
 	{
 		Boatplane bp(this->mMaxPassengerCount + boat.mMaxPassengerCount);
 
-		for (unsigned int i = 0; i < this->mCount; i++)
-		{
-			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
-			delete this->mPassengers[i];
-		}
-
 		for (unsigned int i = 0; i < boat.mCount; i++)
 		{
 			bp.mPassengers[bp.mCount++] = new Person(*(boat.mPassengers[i]));
 			delete boat.mPassengers[i];
+		}
+
+		for (unsigned int i = 0; i < this->mCount; i++)
+		{
+			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
+			delete this->mPassengers[i];
 		}
 
 		this->mCount = 0;
