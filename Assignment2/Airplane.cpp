@@ -20,13 +20,13 @@ namespace assignment2
 	{
 		Boatplane bp(this->mMaxPassengerCount + boat.mMaxPassengerCount);
 
-		for (int i = 0; i < this->mCount; i++)
+		for (unsigned int i = 0; i < this->mCount; i++)
 		{
 			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
 			delete this->mPassengers[i];
 		}
 
-		for (int i = 0; i < boat.mCount; i++)
+		for (unsigned int i = 0; i < boat.mCount; i++)
 		{
 			bp.mPassengers[bp.mCount++] = new Person(*(boat.mPassengers[i]));
 			delete boat.mPassengers[i];
@@ -45,12 +45,12 @@ namespace assignment2
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return (double)200 * pow(M_E, ((double)(800 - mPassengerWeight) / 500)) + 0.5;
+		return (unsigned int)((double)200 * pow(M_E, ((double)(800 - mPassengerWeight) / 500)) + 0.5);
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
-		return (double)4 * pow(M_E, ((double)(400 - mPassengerWeight) / 70)) + 0.5;
+		return (unsigned int)((double)4 * pow(M_E, ((double)(400 - mPassengerWeight) / 70)) + 0.5);
 	}
 
 	void Airplane::Travel()

@@ -15,12 +15,12 @@ namespace assignment2
 
 	unsigned int UBoat::GetSailSpeed() const
 	{
-		return std::max((550 - (double)mPassengerWeight / 10), (double)200) + 0.5;
+		return (unsigned int)(std::max((550 - (double)mPassengerWeight / 10), (double)200) + 0.5);
 	}
 
 	unsigned int UBoat::GetDiveSpeed() const
 	{
-		return 500 * log(((double)mPassengerWeight + 150) / 150) + 30 + 0.5;
+		return (unsigned int)(500 * log(((double)mPassengerWeight + 150) / 150) + 30 + 0.5);
 	}
 
 	unsigned int UBoat::GetMaxSpeed() const

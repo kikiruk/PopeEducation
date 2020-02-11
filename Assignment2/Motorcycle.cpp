@@ -15,12 +15,12 @@ namespace assignment2
 
 	unsigned int Motorcycle::GetMaxSpeed() const
 	{
-		return std::max((-pow(((double)mPassengerWeight / 15), 3) + (2 * (double)mPassengerWeight) + 400), (double)0) + 0.5;
+		return (unsigned int)(std::max((-pow(((double)mPassengerWeight / 15), 3) + (2 * (double)mPassengerWeight) + 400), (double)0) + 0.5);
 	}
 
 	unsigned int Motorcycle::GetDriveSpeed() const
 	{
-		return std::max((-pow(((double)mPassengerWeight / 15) , 3) + (2 * (double)mPassengerWeight) + 400), (double)0) + 0.5;
+		return (unsigned int)(std::max((-pow(((double)mPassengerWeight / 15), 3) + (2 * (double)mPassengerWeight) + 400), (double)0) + 0.5);
 	}
 
 	void Motorcycle::Travel()
