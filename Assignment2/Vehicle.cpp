@@ -34,6 +34,30 @@ namespace assignment2
 		delete[] mPassengers;
 	}
 
+	const Vehicle& Vehicle::operator=(const Vehicle& other)
+	{
+		for (int i = 0; i < mCount; i++)
+			delete mPassengers[i];
+
+		delete[] mPassengers;
+
+		if (this != &other)
+		{
+			mMaxPassengerCount = other.mMaxPassengerCount;
+			mCount = other.mCount;
+			mDistance = other.mDistance;
+			mTravelCount = other.mTravelCount;
+			mPassengerWeight = other.mPassengerWeight;
+
+			mPassengers = new const Person * [other.mMaxPassengerCount];
+
+			for (int i = 0; i < mCount; i++)
+				mPassengers[i] = new Person(*(other.mPassengers[i]));
+		}
+		
+		return *this;
+	}
+
 	bool Vehicle::AddPassenger(const Person* person)
 	{
 		if (mCount == mMaxPassengerCount)

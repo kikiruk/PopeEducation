@@ -13,6 +13,8 @@ namespace assignment2
 		Sedan();
 		~Sedan();
 
+		const Sedan& operator=(const Sedan& other);
+
 		bool AddTrailer(const Trailer* trailer);
 		bool RemoveTrailer();
 

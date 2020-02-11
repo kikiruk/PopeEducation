@@ -11,6 +11,32 @@ namespace assignment2
 
 	Sedan::~Sedan()
 	{
+		delete mTrailer;
+	}
+
+	const Sedan& Sedan::operator=(const Sedan& other)
+	{
+		for (int i = 0; i < mCount; i++)
+			delete mPassengers[i];
+
+		delete[] mPassengers;
+
+		if (this != &other)
+		{
+			mMaxPassengerCount = other.mMaxPassengerCount;
+			mCount = other.mCount;
+			mDistance = other.mDistance;
+			mTravelCount = other.mTravelCount;
+			mPassengerWeight = other.mPassengerWeight;
+
+			mPassengers = new const Person * [other.mMaxPassengerCount];
+			mTrailer = new Trailer(*other.mTrailer);
+
+			for (int i = 0; i < mCount; i++)
+				mPassengers[i] = new Person(*(other.mPassengers[i]));
+		}
+
+		return *this;
 	}
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
