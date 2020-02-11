@@ -1,4 +1,5 @@
 #include <cassert>
+#include <iostream>
 
 #include "Vehicle.h"
 #include "Airplane.h"
@@ -12,6 +13,7 @@
 #include "Person.h"
 
 using namespace assignment2;
+using namespace std;
 
 int main()
 {

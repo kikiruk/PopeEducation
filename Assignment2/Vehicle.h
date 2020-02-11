@@ -28,6 +28,7 @@ namespace assignment2
 		const unsigned int mMaxPassengerCount = 10;
 		unsigned int mCount;
 		const Person** mPassengers;
+		unsigned int mPassengerWeight;
 		unsigned int mTravelCount;
 		unsigned int mDistance;
 	};

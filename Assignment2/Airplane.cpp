@@ -1,3 +1,7 @@
+#define _USE_MATH_DEFINES
+
+#include <cmath>
+#include <algorithm>
 #include "Airplane.h"
 #include "Boat.h"
 
@@ -14,14 +18,14 @@ namespace assignment2
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		Boatplane bp(this->mCount + boat.mCount);
+		Boatplane bp(this->mMaxPassengerCount + boat.mMaxPassengerCount);
 
 		for (int i = 0; i < this->mCount; i++)
 		{
 			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
 			delete this->mPassengers[i];
 		}
-		
+
 		for (int i = 0; i < boat.mCount; i++)
 		{
 			bp.mPassengers[bp.mCount++] = new Person(*(boat.mPassengers[i]));
@@ -36,24 +40,24 @@ namespace assignment2
 
 	unsigned int Airplane::GetMaxSpeed() const
 	{
-		return 0;
+		return std::max(GetFlySpeed(), GetDriveSpeed());
 	}
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return 200 * pow(e, ((-(mCount * ) + 800) / 500));
+		return (double)200 * pow(M_E, ((double)(800 - mPassengerWeight) / 500)) + 0.5;
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
-		return 0;
+		return (double)4 * pow(M_E, ((double)(400 - mPassengerWeight) / 70)) + 0.5;
 	}
 
 	void Airplane::Travel()
 	{
-		if(mTravelCount == 0)
-			//±¸Çö
+		if (mTravelCount == 0)
+			mDistance += GetMaxSpeed();
 
-		mTravelCount = (mTravelCount + 1) % 3;
+			mTravelCount = (mTravelCount + 1) % 4;
 	}
 }

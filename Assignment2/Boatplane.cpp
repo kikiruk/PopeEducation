@@ -1,3 +1,7 @@
+#define _USE_MATH_DEFINES
+
+#include <algorithm>
+#include <cmath>
 #include "Boatplane.h"
 
 namespace assignment2
@@ -13,18 +17,22 @@ namespace assignment2
 
 	unsigned int Boatplane::GetMaxSpeed() const
 	{
-		return 0;
+		return std::max(GetFlySpeed(), GetSailSpeed());
 	}
 	unsigned int Boatplane::GetFlySpeed() const
 	{
-		return 0;
+		return 150 * pow(M_E , ((double)(500 - mPassengerWeight) / 300)) + 0.5;
 	}
 	unsigned int Boatplane::GetSailSpeed() const
 	{
-		return 0;
+		return std::max((800 - (double)1.7 * mPassengerWeight), (double)20) + 0.5;
 	}
 
 	void Boatplane::Travel()
 	{
+		if (mTravelCount == 0)
+			mDistance += GetMaxSpeed();
+
+		mTravelCount = (mTravelCount + 1) % 4;
 	}
 }

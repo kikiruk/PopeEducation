@@ -1,3 +1,4 @@
+#include <cassert>
 #include "Sedan.h"
 
 namespace assignment2
@@ -35,15 +36,40 @@ namespace assignment2
 
 	unsigned int Sedan::GetMaxSpeed() const
 	{
-		return 0;
+		return GetDriveSpeed();
 	}
 
 	unsigned int Sedan::GetDriveSpeed() const
 	{
-		return 0;
+		if (mPassengerWeight <= 80)
+			return 480;
+		else if (mPassengerWeight > 80)
+			return 458;
+		else if (mPassengerWeight > 160)
+			return 400;
+		else if (mPassengerWeight > 260)
+			return 380;
+		else if (mPassengerWeight > 350)
+			return 300;
+		else
+			assert(false);
 	}
 
 	void Sedan::Travel()
 	{
+		if (mTrailer != nullptr)
+		{
+			if (mTravelCount != 5)
+				mDistance += GetMaxSpeed();
+
+			mTravelCount = (mTravelCount + 1) % 6;
+		}
+		else
+		{
+			if (mTravelCount != 5 && mTravelCount != 6)
+				mDistance += GetMaxSpeed();
+
+			mTravelCount = (mTravelCount + 1) % 7;
+		}
 	}
 }

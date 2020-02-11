@@ -1,3 +1,5 @@
+#include <cmath>
+#include <algorithm>
 #include "UBoat.h"
 
 namespace assignment2
@@ -13,20 +15,24 @@ namespace assignment2
 
 	unsigned int UBoat::GetSailSpeed() const
 	{
-		return 0;
+		return std::max((550 - (double)mPassengerWeight / 10), (double)200) + 0.5;
 	}
 
 	unsigned int UBoat::GetDiveSpeed() const
 	{
-		return 0;
-	}
-
-	void UBoat::Travel()
-	{
+		return 500 * log(((double)mPassengerWeight + 150) / 150) + 30 + 0.5;
 	}
 
 	unsigned int UBoat::GetMaxSpeed() const
 	{
-		return 0;
+		return std::max(GetSailSpeed(), GetDiveSpeed());
+	}
+
+	void UBoat::Travel()
+	{
+		if (mTravelCount == 0 || mTravelCount == 1)
+			mDistance += GetMaxSpeed();
+
+		mTravelCount = (mTravelCount + 1) % 6;
 	}
 }

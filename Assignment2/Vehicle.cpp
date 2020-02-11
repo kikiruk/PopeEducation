@@ -7,16 +7,20 @@ namespace assignment2
 		mMaxPassengerCount(maxPassengersCount),
 		mCount(0),
 		mDistance(0), 
-		mTravelCount(0)
+		mTravelCount(0),
+		mPassengerWeight(0)
 	{
-		mPassengers = new Person*[mMaxPassengerCount];
+		mPassengers = new const Person*[mMaxPassengerCount];
 	}
 
 	Vehicle::Vehicle(const Vehicle & other) :
 		mMaxPassengerCount(other.mMaxPassengerCount),
-		mCount(other.mCount)
+		mCount(other.mCount),
+		mDistance(other.mDistance),
+		mTravelCount(other.mTravelCount),
+		mPassengerWeight(other.mPassengerWeight)
 	{
-		mPassengers = new Person*[mMaxPassengerCount];
+		mPassengers = new const Person*[other.mMaxPassengerCount];
 
 		for (int i = 0; i < mCount; i++)
 			mPassengers[i] = new Person(*(other.mPassengers[i]));
@@ -37,6 +41,8 @@ namespace assignment2
 
 		mPassengers[mCount++] = person;
 
+		mPassengerWeight += person->GetWeight();
+
 		return true;
 	}
 
@@ -44,6 +50,8 @@ namespace assignment2
 	{
 		if (mCount <= i)
 			return false;
+
+		mPassengerWeight -= mPassengers[i]->GetWeight();
 
 		delete mPassengers[i];
 
