@@ -16,13 +16,13 @@ namespace assignment2
 
 	const Sedan& Sedan::operator=(const Sedan& other)
 	{
-		for (int i = 0; i < mCount; i++)
-			delete mPassengers[i];
-
-		delete[] mPassengers;
-
 		if (this != &other)
 		{
+			for (int i = 0; i < mCount; i++)
+				delete mPassengers[i];
+
+			delete[] mPassengers;
+
 			mMaxPassengerCount = other.mMaxPassengerCount;
 			mCount = other.mCount;
 			mDistance = other.mDistance;

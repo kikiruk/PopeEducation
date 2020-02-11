@@ -36,13 +36,13 @@ namespace assignment2
 
 	const Vehicle& Vehicle::operator=(const Vehicle& other)
 	{
-		for (int i = 0; i < mCount; i++)
-			delete mPassengers[i];
-
-		delete[] mPassengers;
-
 		if (this != &other)
 		{
+			for (int i = 0; i < mCount; i++)
+				delete mPassengers[i];
+
+			delete[] mPassengers;
+
 			mMaxPassengerCount = other.mMaxPassengerCount;
 			mCount = other.mCount;
 			mDistance = other.mDistance;
@@ -84,7 +84,7 @@ namespace assignment2
 
 		mCount--;
 
-		return false;
+		return true;
 	}
 
 	unsigned int Vehicle::GetPassengersCount() const
