@@ -14,7 +14,7 @@ namespace assignment2
 
 	public:
 		Airplane(unsigned int maxPassengersCount);
-		~Airplane();
+		virtual ~Airplane();
 
 		Boatplane operator+(Boat& boat);
 

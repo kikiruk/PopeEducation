@@ -9,7 +9,7 @@ namespace assignment2
 	{
 	public:
 		UBoat();
-		~UBoat();
+		virtual ~UBoat();
 
 		// Vehicle을(를) 통해 상속됨
 		virtual unsigned int GetMaxSpeed() const override;

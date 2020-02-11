@@ -39,6 +39,8 @@ namespace assignment2
 		delete mVehicles[i];
 		memcpy(mVehicles + i, mVehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
 		mCount--;
+
+		return true;
 	}
 
 	const Vehicle* DeusExMachina::GetFurthestTravelled() const
