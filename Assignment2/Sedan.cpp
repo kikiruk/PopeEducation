@@ -11,7 +11,8 @@ namespace assignment2
 
 	Sedan::~Sedan()
 	{
-		delete mTrailer;
+		if (mTrailer != nullptr)
+			delete mTrailer;
 	}
 
 	const Sedan& Sedan::operator=(const Sedan& other)
@@ -22,6 +23,9 @@ namespace assignment2
 				delete mPassengers[i];
 
 			delete[] mPassengers;
+
+			if (mTrailer != nullptr)
+				delete mTrailer;
 
 			mMaxPassengerCount = other.mMaxPassengerCount;
 			mCount = other.mCount;
