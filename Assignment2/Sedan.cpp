@@ -49,10 +49,7 @@ namespace assignment2
 			return false;
 			
 		if (mTrailer != nullptr)
-		{
-			delete trailer;
 			return false;
-		}
 
 		mTrailer = trailer;
 
@@ -77,7 +74,10 @@ namespace assignment2
 
 	unsigned int Sedan::GetDriveSpeed() const
 	{
-		unsigned int weight = weight + mTrailer->GetWeight();
+		unsigned int weight = mPassengerWeight;
+
+		if(mTrailer != nullptr)
+			weight += mTrailer->GetWeight();
 
 		if (weight > 350)
 			return 300;
