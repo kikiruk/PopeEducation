@@ -11,24 +11,26 @@ namespace assignment2
 
 	Boatplane Boat::operator+(Airplane& plane)
 	{
-		Boatplane bp(this->mMaxPassengerCount + plane.mMaxPassengerCount);
+		const Person** passengersTmp = new const Person * [this->mMaxPassengerCount + plane.mMaxPassengerCount];
+		unsigned int index = 0;
+		
 
 		for (unsigned int i = 0; i < plane.mCount; i++)
 		{
-			bp.mPassengers[bp.mCount++] = plane.mPassengers[i];
+			passengersTmp[index++] = plane.mPassengers[i];
 			plane.mPassengers[i] = nullptr;
 		}
 
 		for (unsigned int i = 0; i < this->mCount; i++)
 		{
-			bp.mPassengers[bp.mCount++] = this->mPassengers[i];
+			passengersTmp[index++] = this->mPassengers[i];
 			mPassengers[i] = nullptr;
 		}
 
 		this->mCount = 0;
 		plane.mCount = 0;
 
-		return bp;
+		return Boatplane(this->mMaxPassengerCount + plane.mMaxPassengerCount, index, passengersTmp);
 	}
 
 	unsigned int Boat::GetMaxSpeed() const

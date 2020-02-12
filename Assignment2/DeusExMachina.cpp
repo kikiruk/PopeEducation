@@ -3,6 +3,9 @@
 
 namespace assignment2
 {
+
+	DeusExMachina* DeusExMachina::mInstence = nullptr;
+
 	DeusExMachina::DeusExMachina() :
 		mCount(0)
 	{
@@ -10,8 +13,10 @@ namespace assignment2
 
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
-		static DeusExMachina hInstence;
-		return &hInstence;
+		if (mInstence == nullptr)
+			mInstence = new DeusExMachina();
+
+		return mInstence;
 	}
 
 	void DeusExMachina::Travel() const

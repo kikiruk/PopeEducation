@@ -134,7 +134,7 @@ int main()
 		d->Travel();
 	}
 
-	//delete d;
+	delete d;
 
 	return 0;
 }

@@ -6,6 +6,9 @@ namespace assignment2
 {
 	class DeusExMachina
 	{
+	private:
+		static DeusExMachina* mInstence;
+
 	public:
 		DeusExMachina();
 		static DeusExMachina* GetInstance();

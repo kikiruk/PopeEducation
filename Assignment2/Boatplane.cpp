@@ -11,6 +11,13 @@ namespace assignment2
 	{
 	}
 
+	Boatplane::Boatplane(unsigned int maxPassengersCount, unsigned int count, const Person** passengers) :
+		Vehicle(maxPassengersCount)
+	{
+		mCount = count;
+		mPassengers = passengers;
+	}
+
 	unsigned int Boatplane::GetMaxSpeed() const
 	{
 		return std::max(GetFlySpeed(), GetSailSpeed());
