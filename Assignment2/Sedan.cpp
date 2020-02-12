@@ -3,7 +3,7 @@
 
 namespace assignment2
 {
-	Sedan::Sedan() : 
+	Sedan::Sedan() :
 		Vehicle(4),
 		mTrailer(nullptr)
 	{
@@ -18,7 +18,7 @@ namespace assignment2
 	{
 		if (this != &other)
 		{
-			for (int i = 0; i < mCount; i++)
+			for (unsigned int i = 0; i < mCount; i++)
 				delete mPassengers[i];
 
 			delete[] mPassengers;
@@ -29,10 +29,10 @@ namespace assignment2
 			mTravelCount = other.mTravelCount;
 			mPassengerWeight = other.mPassengerWeight;
 
-			mPassengers = new const Person * [other.mMaxPassengerCount];
+			mPassengers = new const Person* [other.mMaxPassengerCount];
 			mTrailer = new Trailer(*other.mTrailer);
 
-			for (int i = 0; i < mCount; i++)
+			for (unsigned int i = 0; i < mCount; i++)
 				mPassengers[i] = new Person(*(other.mPassengers[i]));
 		}
 
@@ -41,9 +41,9 @@ namespace assignment2
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
 	{
-		if(mTrailer != nullptr)
+		if (mTrailer != nullptr)
 			return false;
-		
+
 		mTrailer = trailer;
 
 		return true;
@@ -51,7 +51,7 @@ namespace assignment2
 
 	bool Sedan::RemoveTrailer()
 	{
-		if(mTrailer == nullptr)
+		if (mTrailer == nullptr)
 			return false;
 
 		delete mTrailer;

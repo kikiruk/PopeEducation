@@ -37,12 +37,12 @@ namespace assignment2
 
 	unsigned int Boat::GetMaxSpeed() const
 	{
-		return (unsigned int)(std::max((800 - 10 * (int)mPassengerWeight), 20));
+		return static_cast<unsigned int>(std::max((800 - 10 * static_cast<int>(mPassengerWeight)), 20));
 	}
 
 	unsigned int Boat::GetSailSpeed() const
 	{
-		return (unsigned int)(std::max((800 - 10 * (int)mPassengerWeight), 20));
+		return static_cast<unsigned int>(std::max((800 - 10 * static_cast<int>(mPassengerWeight)), 20));
 	}
 
 	void Boat::Travel()

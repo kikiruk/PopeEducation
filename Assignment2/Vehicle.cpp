@@ -6,29 +6,29 @@ namespace assignment2
 	Vehicle::Vehicle(unsigned int maxPassengersCount) :
 		mMaxPassengerCount(maxPassengersCount),
 		mCount(0),
-		mDistance(0), 
+		mDistance(0),
 		mTravelCount(0),
 		mPassengerWeight(0)
 	{
-		mPassengers = new const Person*[mMaxPassengerCount];
+		mPassengers = new const Person* [mMaxPassengerCount];
 	}
 
-	Vehicle::Vehicle(const Vehicle & other) :
+	Vehicle::Vehicle(const Vehicle& other) :
 		mMaxPassengerCount(other.mMaxPassengerCount),
 		mCount(other.mCount),
 		mDistance(other.mDistance),
 		mTravelCount(other.mTravelCount),
 		mPassengerWeight(other.mPassengerWeight)
 	{
-		mPassengers = new const Person*[other.mMaxPassengerCount];
+		mPassengers = new const Person* [other.mMaxPassengerCount];
 
-		for (int i = 0; i < mCount; i++)
+		for (unsigned int i = 0; i < mCount; i++)
 			mPassengers[i] = new Person(*(other.mPassengers[i]));
 	}
 
 	Vehicle::~Vehicle()
 	{
-		for (int i = 0; i < mCount; i++)
+		for (unsigned int i = 0; i < mCount; i++)
 			delete mPassengers[i];
 
 		delete[] mPassengers;
@@ -38,7 +38,7 @@ namespace assignment2
 	{
 		if (this != &other)
 		{
-			for (int i = 0; i < mCount; i++)
+			for (unsigned int i = 0; i < mCount; i++)
 				delete mPassengers[i];
 
 			delete[] mPassengers;
@@ -51,10 +51,10 @@ namespace assignment2
 
 			mPassengers = new const Person * [other.mMaxPassengerCount];
 
-			for (int i = 0; i < mCount; i++)
+			for (unsigned int i = 0; i < mCount; i++)
 				mPassengers[i] = new Person(*(other.mPassengers[i]));
 		}
-		
+
 		return *this;
 	}
 

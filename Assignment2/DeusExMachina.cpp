@@ -16,7 +16,7 @@ namespace assignment2
 
 	void DeusExMachina::Travel() const
 	{
-		for (int i = 0; i < mCount; i++)
+		for (unsigned int i = 0; i < mCount; i++)
 			mVehicles[i]->Travel();
 	}
 
@@ -46,9 +46,9 @@ namespace assignment2
 		return true;
 	}
 
-	const Vehicle* DeusExMachina::GetFurthestTravelled() const
+	const Vehicle * DeusExMachina::GetFurthestTravelled() const
 	{
-		if(mCount == 0)
+		if (mCount == 0)
 			return nullptr;
 
 		if (mVehicles[0]->mDistance == 0)
@@ -68,4 +68,4 @@ namespace assignment2
 
 		return furthestTravelledVehicle;
 	}
-} 
+}

@@ -8,7 +8,7 @@ namespace assignment2
 	{
 	}
 
-	Person::Person(const Person & other) :
+	Person::Person(const Person& other) :
 		mName(other.mName),
 		mWeight(other.mWeight)
 	{

@@ -15,7 +15,7 @@ namespace assignment2
 		const Vehicle* GetFurthestTravelled() const;
 
 	private:
-		enum{ mMaxCount = 10 };
+		enum { mMaxCount = 10 };
 		Vehicle* mVehicles[mMaxCount];
 		unsigned int mCount;
 	};
