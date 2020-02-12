@@ -31,7 +31,7 @@ namespace assignment2
 			mCount = other.mCount;
 			mDistance = other.mDistance;
 			mTravelCount = other.mTravelCount;
-			mPassengerWeight = other.mPassengerWeight;
+			weight = other.weight;
 
 			mPassengers = new const Person* [other.mMaxPassengerCount];
 			mTrailer = new Trailer(*other.mTrailer);
@@ -77,13 +77,15 @@ namespace assignment2
 
 	unsigned int Sedan::GetDriveSpeed() const
 	{
-		if (mPassengerWeight > 350)
+		unsigned int weight = weight + mTrailer->GetWeight();
+
+		if (weight > 350)
 			return 300;
-		else if (mPassengerWeight > 260)
+		else if (weight > 260)
 			return 380;
-		else if (mPassengerWeight > 160)
+		else if (weight > 160)
 			return 400;
-		else if (mPassengerWeight > 80)
+		else if (weight > 80)
 			return 458;
 		else
 			return 480;
