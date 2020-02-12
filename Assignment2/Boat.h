@@ -14,7 +14,7 @@ namespace assignment2
 
 	public:
 		Boat(unsigned int maxPassengersCount);
-		virtual ~Boat();
+		virtual ~Boat() = default;
 
 		Boatplane operator+(Airplane& plane);
 

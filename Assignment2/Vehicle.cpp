@@ -22,7 +22,7 @@ namespace assignment2
 	{
 		mPassengers = new const Person* [other.mMaxPassengerCount];
 
-		for (unsigned int i = 0; i < mCount; i++)
+		for (unsigned int i = 0; i < other.mCount; i++)
 			mPassengers[i] = new Person(*(other.mPassengers[i]));
 	}
 
@@ -49,7 +49,7 @@ namespace assignment2
 			mTravelCount = other.mTravelCount;
 			mPassengerWeight = other.mPassengerWeight;
 
-			mPassengers = new const Person * [other.mMaxPassengerCount];
+			mPassengers = new const Person* [other.mMaxPassengerCount];
 
 			for (unsigned int i = 0; i < mCount; i++)
 				mPassengers[i] = new Person(*(other.mPassengers[i]));
@@ -62,6 +62,15 @@ namespace assignment2
 	{
 		if (mCount == mMaxPassengerCount)
 			return false;
+
+		if (person == NULL)
+			return false;
+
+		for (unsigned int i = 0; i < mCount; i++)
+		{
+			if (mPassengers[i] == person)
+				return false;
+		}
 
 		mPassengers[mCount++] = person;
 

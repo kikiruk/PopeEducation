@@ -46,7 +46,7 @@ namespace assignment2
 		return true;
 	}
 
-	const Vehicle * DeusExMachina::GetFurthestTravelled() const
+	const Vehicle* DeusExMachina::GetFurthestTravelled() const
 	{
 		if (mCount == 0)
 			return nullptr;
@@ -55,7 +55,7 @@ namespace assignment2
 			return mVehicles[0];
 
 		unsigned int maxDistance = 0;
-		const Vehicle * furthestTravelledVehicle = nullptr;
+		const Vehicle* furthestTravelledVehicle = nullptr;
 
 		for (unsigned int i = 0; i < mCount; i++)
 		{
@@ -67,5 +67,13 @@ namespace assignment2
 		}
 
 		return furthestTravelledVehicle;
+	}
+	
+	Vehicle* DeusExMachina::GetVehicle(unsigned int i) const
+	{
+		if (i >= mMaxCount)
+			return nullptr;
+
+		return mVehicles[i];
 	}
 }

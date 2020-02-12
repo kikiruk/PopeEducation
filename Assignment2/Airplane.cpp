@@ -12,24 +12,20 @@ namespace assignment2
 	{
 	}
 
-	Airplane::~Airplane()
-	{
-	}
-
 	Boatplane Airplane::operator+(Boat& boat)
 	{
 		Boatplane bp(this->mMaxPassengerCount + boat.mMaxPassengerCount);
 
 		for (unsigned int i = 0; i < this->mCount; i++)
 		{
-			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
-			delete this->mPassengers[i];
+			bp.mPassengers[bp.mCount++] = this->mPassengers[i];
+			this->mPassengers[i] = nullptr;
 		}
 
 		for (unsigned int i = 0; i < boat.mCount; i++)
 		{
-			bp.mPassengers[bp.mCount++] = new Person(*(boat.mPassengers[i]));
-			delete boat.mPassengers[i];
+			bp.mPassengers[bp.mCount++] = boat.mPassengers[i];
+			boat.mPassengers[i] = nullptr;
 		}
 
 		this->mCount = 0;
@@ -45,14 +41,12 @@ namespace assignment2
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return static_cast<unsigned int>(200 *
-			pow(M_E, ((static_cast<double>(800) - mPassengerWeight) / 500)) + 0.5);
+		return static_cast<unsigned int>(200 * pow(M_E, ((static_cast<double>(800) - mPassengerWeight) / 500)) + 0.5);
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
-		return static_cast<unsigned int>(4 *
-			pow(M_E, ((static_cast <double>(400) - mPassengerWeight) / 70)) + 0.5);
+		return static_cast<unsigned int>(4 * pow(M_E, ((static_cast <double>(400) - mPassengerWeight) / 70)) + 0.5);
 	}
 
 	void Airplane::Travel()

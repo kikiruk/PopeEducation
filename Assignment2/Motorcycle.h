@@ -8,7 +8,7 @@ namespace assignment2
 	{
 	public:
 		Motorcycle();
-		virtual ~Motorcycle();
+		virtual ~Motorcycle() = default;
 
 
 		// Vehicle을(를) 통해 상속됨

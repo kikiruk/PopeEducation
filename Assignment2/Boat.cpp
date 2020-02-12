@@ -4,12 +4,8 @@
 
 namespace assignment2
 {
-	Boat::Boat(unsigned int maxPassengersCount)
-		:Vehicle(maxPassengersCount)
-	{
-	}
-
-	Boat::~Boat()
+	Boat::Boat(unsigned int maxPassengersCount) :
+		Vehicle(maxPassengersCount)
 	{
 	}
 
@@ -19,14 +15,14 @@ namespace assignment2
 
 		for (unsigned int i = 0; i < plane.mCount; i++)
 		{
-			bp.mPassengers[bp.mCount++] = new Person(*(plane.mPassengers[i]));
-			delete plane.mPassengers[i];
+			bp.mPassengers[bp.mCount++] = plane.mPassengers[i];
+			plane.mPassengers[i] = nullptr;
 		}
 
 		for (unsigned int i = 0; i < this->mCount; i++)
 		{
-			bp.mPassengers[bp.mCount++] = new Person(*this->mPassengers[i]);
-			delete this->mPassengers[i];
+			bp.mPassengers[bp.mCount++] = this->mPassengers[i];
+			mPassengers[i] = nullptr;
 		}
 
 		this->mCount = 0;
