@@ -31,7 +31,7 @@ namespace assignment2
 			mCount = other.mCount;
 			mDistance = other.mDistance;
 			mTravelCount = other.mTravelCount;
-			weight = other.weight;
+			mPassengerWeight = other.mPassengerWeight;
 
 			mPassengers = new const Person* [other.mMaxPassengerCount];
 			mTrailer = new Trailer(*other.mTrailer);
