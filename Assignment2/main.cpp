@@ -100,19 +100,19 @@ int main()
 	assert(!bRemoved);
 
 	deusExMachina1->Travel(); // 모든 운송 수단이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
-	deusExMachina1->Travel(); // Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // UBoat만 빼고 전부 이동
-	deusExMachina1->Travel(); // 어떤 운송 수단도 움직이지 않음
-	deusExMachina1->Travel(); // Boat, Motorcycle, 트레일러 안 달린 Sedan, UBoat가 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
-	deusExMachina1->Travel(); // Airplane, Boatplane, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
-	deusExMachina1->Travel(); // 트레일러 달린 Sedan만 이동
+	//deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
+	//deusExMachina1->Travel(); // Motorcycle, 두 Sedan이 이동
+	//deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
+	//deusExMachina1->Travel(); // UBoat만 빼고 전부 이동
+	//deusExMachina1->Travel(); // 어떤 운송 수단도 움직이지 않음
+	//deusExMachina1->Travel(); // Boat, Motorcycle, 트레일러 안 달린 Sedan, UBoat가 이동
+	//deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
+	//deusExMachina1->Travel(); // Airplane, Boatplane, Motorcycle, 두 Sedan이 이동
+	//deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
+	//deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan이 이동
+	//deusExMachina1->Travel(); // 트레일러 달린 Sedan만 이동
 
-	assert(deusExMachina1->GetFurthestTravelled() == boat);
+	cout << (deusExMachina1->GetFurthestTravelled() == boat) << endl;
 
 	return 0;
 }
