@@ -58,6 +58,6 @@ namespace assignment2
 		if (mTravelCount == 0)
 			mDistance += GetMaxSpeed();
 
-			mTravelCount = (mTravelCount + 1) % 4;
+		mTravelCount = (mTravelCount + 1) % 4;
 	}
 }
