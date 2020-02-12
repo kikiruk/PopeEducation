@@ -13,7 +13,6 @@ namespace assignment2
 	{
 		const Person** passengersTmp = new const Person * [this->mMaxPassengerCount + plane.mMaxPassengerCount];
 		unsigned int index = 0;
-		
 
 		for (unsigned int i = 0; i < plane.mCount; i++)
 		{

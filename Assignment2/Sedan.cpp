@@ -45,8 +45,14 @@ namespace assignment2
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
 	{
-		if (mTrailer != nullptr)
+		if (trailer == NULL)
 			return false;
+			
+		if (mTrailer != nullptr)
+		{
+			delete trailer;
+			return false;
+		}
 
 		mTrailer = trailer;
 

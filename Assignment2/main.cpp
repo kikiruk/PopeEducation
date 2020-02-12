@@ -72,7 +72,7 @@ int main()
 
 	const Person* comp2 = bp1.GetPassenger(0);
 
-	//assert(comp1 == comp2);
+	assert(comp1 == comp2);
 	assert(dockingTest1.GetPassengersCount() == 0);
 	assert(dockingTest2.GetPassengersCount() == 0);
 	assert(bp1.GetPassengersCount() == 10);
