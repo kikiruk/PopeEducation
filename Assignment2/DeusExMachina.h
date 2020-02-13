@@ -8,9 +8,9 @@ namespace assignment2
 	{
 	private:
 		static DeusExMachina* mInstence;
+		DeusExMachina();
 
 	public:
-		DeusExMachina();
 		~DeusExMachina();
 		static DeusExMachina* GetInstance();
 		void Travel() const;

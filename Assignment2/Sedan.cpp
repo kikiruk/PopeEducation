@@ -23,6 +23,37 @@ namespace assignment2
 			delete mTrailer;
 	}
 
+	const Sedan& Sedan::operator=(const Sedan& other)
+	{
+		if (this != &other)
+		{
+			for (unsigned int i = 0; i < mCount; i++)
+				delete mPassengers[i];
+
+			delete[] mPassengers;
+
+			if (this->mTrailer != nullptr)
+				delete this->mTrailer;
+
+			mMaxPassengerCount = other.mMaxPassengerCount;
+			mCount = other.mCount;
+			mDistance = 0;
+			mTravelCount = 0;
+			mPassengerWeight = other.mPassengerWeight;
+			mTrailer = nullptr;
+
+			if (other.mTrailer != nullptr)
+				this->mTrailer = new Trailer(*other.mTrailer);
+
+			mPassengers = new const Person * [other.mMaxPassengerCount];
+
+			for (unsigned int i = 0; i < mCount; i++)
+				mPassengers[i] = new Person(*(other.mPassengers[i]));
+		}
+
+		return *this;
+	}
+
 	bool Sedan::AddTrailer(const Trailer* trailer)
 	{
 		if (trailer == NULL)
