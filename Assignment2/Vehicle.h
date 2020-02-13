@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Person.h"
-#include "Trailer.h"
 
 namespace assignment2
 {
@@ -36,6 +35,5 @@ namespace assignment2
 		unsigned int mPassengerWeight;
 		unsigned int mTravelCount;
 		unsigned int mDistance;
-		const Trailer* mTrailer;
 	};
 }

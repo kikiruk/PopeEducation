@@ -4,10 +4,18 @@
 namespace assignment2
 {
 	Sedan::Sedan() :
-		Vehicle(4)
+		Vehicle(4),
+		mTrailer(nullptr)
 	{
 	}
 
+	Sedan::Sedan(const Sedan& copy) :
+		Vehicle(copy),
+		mTrailer(nullptr)
+	{
+		if (copy.mTrailer != nullptr)
+			mTrailer = new Trailer(*copy.mTrailer);
+	}
 
 	Sedan::~Sedan()
 	{

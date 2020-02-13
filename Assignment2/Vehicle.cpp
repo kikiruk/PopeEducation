@@ -8,8 +8,7 @@ namespace assignment2
 		mCount(0),
 		mDistance(0),
 		mTravelCount(0),
-		mPassengerWeight(0),
-		mTrailer(nullptr)
+		mPassengerWeight(0)
 	{
 		mPassengers = new const Person* [mMaxPassengerCount];
 	}
@@ -19,23 +18,16 @@ namespace assignment2
 		mCount(other.mCount),
 		mDistance(0),
 		mTravelCount(0),
-		mPassengerWeight(other.mPassengerWeight),
-		mTrailer(nullptr)
+		mPassengerWeight(other.mPassengerWeight)
 	{
 		mPassengers = new const Person* [other.mMaxPassengerCount];
 
 		for (unsigned int i = 0; i < other.mCount; i++)
 			mPassengers[i] = new Person(*(other.mPassengers[i]));
-
-		if (other.mTrailer != nullptr)
-			mTrailer = new Trailer(*other.mTrailer);
 	}
 
 	Vehicle::~Vehicle()
 	{
-		if (mTrailer != nullptr)
-			delete mTrailer;
-
 		for (unsigned int i = 0; i < mCount; i++)
 			delete mPassengers[i];
 
@@ -51,23 +43,16 @@ namespace assignment2
 
 			delete[] mPassengers;
 
-			if (mTrailer != nullptr)
-				delete mTrailer;
-
 			mMaxPassengerCount = other.mMaxPassengerCount;
 			mCount = other.mCount;
 			mDistance = 0;
 			mTravelCount = 0;
 			mPassengerWeight = other.mPassengerWeight;
-			mTrailer = nullptr;
 
 			mPassengers = new const Person* [other.mMaxPassengerCount];
 
 			for (unsigned int i = 0; i < mCount; i++)
 				mPassengers[i] = new Person(*(other.mPassengers[i]));
-
-			if (other.mTrailer != nullptr)
-				mTrailer = new Trailer(*other.mTrailer);
 		}
 
 		return *this;
