@@ -43,9 +43,15 @@ namespace assignment2
 
 		delete mVehicles[i];
 
-		if (mCount - 1 != i)
-			memcpy(mVehicles + i, mVehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
 
+		for (unsigned int j = i + 1; j < mCount; j++)
+		{
+			mVehicles[j - 1] = mVehicles[j];
+		}
+
+		//if (mCount - 1 != i)
+		//	memcpy(mVehicles + i, mVehicles + i + 1, sizeof(Vehicle*) * (mCount - i - 1));
+		
 		mCount--;
 
 		return true;

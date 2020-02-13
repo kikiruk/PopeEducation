@@ -10,7 +10,7 @@ namespace assignment2
 		mTravelCount(0),
 		mPassengerWeight(0)
 	{
-		mPassengers = new const Person* [mMaxPassengerCount];
+		mPassengers = new const Person * [mMaxPassengerCount];
 	}
 
 	Vehicle::Vehicle(const Vehicle& other) :
@@ -20,7 +20,7 @@ namespace assignment2
 		mTravelCount(other.mTravelCount),
 		mPassengerWeight(other.mPassengerWeight)
 	{
-		mPassengers = new const Person* [other.mMaxPassengerCount];
+		mPassengers = new const Person * [other.mMaxPassengerCount];
 
 		for (unsigned int i = 0; i < other.mCount; i++)
 			mPassengers[i] = new Person(*(other.mPassengers[i]));
@@ -34,7 +34,7 @@ namespace assignment2
 		delete[] mPassengers;
 	}
 
-	const Vehicle& Vehicle::operator=(const Vehicle& other)
+	const Vehicle& Vehicle::operator=(const Vehicle & other)
 	{
 		if (this != &other)
 		{
@@ -49,7 +49,7 @@ namespace assignment2
 			mTravelCount = other.mTravelCount;
 			mPassengerWeight = other.mPassengerWeight;
 
-			mPassengers = new const Person* [other.mMaxPassengerCount];
+			mPassengers = new const Person * [other.mMaxPassengerCount];
 
 			for (unsigned int i = 0; i < mCount; i++)
 				mPassengers[i] = new Person(*(other.mPassengers[i]));
@@ -58,13 +58,10 @@ namespace assignment2
 		return *this;
 	}
 
-	bool Vehicle::AddPassenger(const Person* person)
+	bool Vehicle::AddPassenger(const Person * person)
 	{
 		if (mCount == mMaxPassengerCount)
-		{
-			delete person;
 			return false;
-		}
 
 		if (person == NULL)
 			return false;
@@ -91,8 +88,13 @@ namespace assignment2
 
 		delete mPassengers[i];
 
-		if (mCount - 1 != i)
-			memcpy(mPassengers + i, mPassengers + i + 1, sizeof(Person*) * (mCount - 1 - i));
+		for (unsigned int j = i + 1; j < mCount; j++)
+		{
+			mPassengers[j - 1] = mPassengers[j];
+		}
+
+		//if (mCount - 1 != i)
+		//	memcpy(mPassengers + i, mPassengers + i + 1, sizeof(Person*) * (mCount - 1 - i));
 
 		mCount--;
 
