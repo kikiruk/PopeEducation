@@ -9,6 +9,25 @@ namespace assignment2
 	{
 	}
 
+	const UBoat& UBoat::operator=(const UBoat& other)
+	{
+		if (this != &other)
+		{
+			for (unsigned int i = 0; i < mCount; i++)
+				delete mPassengers[i];
+
+			mCount = other.mCount;
+			mDistance = 0;
+			mTravelCount = 0;
+			mPassengerWeight = other.mPassengerWeight;
+
+			for (unsigned int i = 0; i < mCount; i++)
+				mPassengers[i] = new Person(*(other.mPassengers[i]));
+		}
+
+		return *this;
+	}
+
 	unsigned int UBoat::GetSailSpeed() const
 	{
 		return static_cast<unsigned int>(std::max((550 - static_cast<double>(mPassengerWeight) / 10), static_cast<double>(200)) + 0.5);

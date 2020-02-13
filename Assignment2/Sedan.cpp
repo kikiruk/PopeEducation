@@ -30,12 +30,9 @@ namespace assignment2
 			for (unsigned int i = 0; i < mCount; i++)
 				delete mPassengers[i];
 
-			delete[] mPassengers;
-
 			if (this->mTrailer != nullptr)
 				delete this->mTrailer;
 
-			mMaxPassengerCount = other.mMaxPassengerCount;
 			mCount = other.mCount;
 			mDistance = 0;
 			mTravelCount = 0;
@@ -44,8 +41,6 @@ namespace assignment2
 
 			if (other.mTrailer != nullptr)
 				this->mTrailer = new Trailer(*other.mTrailer);
-
-			mPassengers = new const Person * [other.mMaxPassengerCount];
 
 			for (unsigned int i = 0; i < mCount; i++)
 				mPassengers[i] = new Person(*(other.mPassengers[i]));

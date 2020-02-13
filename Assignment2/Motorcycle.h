@@ -10,6 +10,7 @@ namespace assignment2
 		Motorcycle();
 		virtual ~Motorcycle() = default;
 
+		const Motorcycle& operator=(const Motorcycle& other);
 
 		// Vehicle을(를) 통해 상속됨
 		virtual unsigned int GetMaxSpeed() const override;

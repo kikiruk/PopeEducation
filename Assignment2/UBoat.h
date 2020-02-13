@@ -11,6 +11,8 @@ namespace assignment2
 		UBoat();
 		virtual ~UBoat() = default;
 
+		const UBoat& operator=(const UBoat& other);
+
 		// Vehicle을(를) 통해 상속됨
 		virtual unsigned int GetMaxSpeed() const override;
 
