@@ -11,6 +11,7 @@ namespace assignment2
 	{
 	public:
 		Sedan();
+		Sedan(const Sedan& copy);
 		virtual ~Sedan();
 
 		const Sedan& operator=(const Sedan& other);

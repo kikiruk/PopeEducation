@@ -9,6 +9,12 @@ namespace assignment2
 	{
 	}
 
+	Sedan::Sedan(const Sedan& copy) : 
+		Vehicle(copy),
+		mTrailer(copy.mTrailer)
+	{
+	}
+
 	Sedan::~Sedan()
 	{
 		if (mTrailer != nullptr)
