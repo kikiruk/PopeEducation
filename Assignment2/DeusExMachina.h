@@ -11,6 +11,7 @@ namespace assignment2
 
 	public:
 		DeusExMachina();
+		~DeusExMachina();
 		static DeusExMachina* GetInstance();
 		void Travel() const;
 		bool AddVehicle(Vehicle* vehicle);

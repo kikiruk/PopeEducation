@@ -11,6 +11,12 @@ namespace assignment2
 	{
 	}
 
+	DeusExMachina::~DeusExMachina()
+	{
+		for (unsigned int i = 0; i < mCount; i++)
+			delete mVehicles[i];
+	}
+
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
 		if (mInstence == nullptr)
@@ -31,6 +37,7 @@ namespace assignment2
 			return false;
 
 		vehicle->mDistance = 0;
+		vehicle->mTravelCount = 0;
 		mVehicles[mCount++] = vehicle;
 
 		return true;

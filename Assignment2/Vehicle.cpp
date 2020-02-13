@@ -17,8 +17,8 @@ namespace assignment2
 	Vehicle::Vehicle(const Vehicle& other) :
 		mMaxPassengerCount(other.mMaxPassengerCount),
 		mCount(other.mCount),
-		mDistance(other.mDistance),
-		mTravelCount(other.mTravelCount),
+		mDistance(0),
+		mTravelCount(0),
 		mPassengerWeight(other.mPassengerWeight),
 		mTrailer(nullptr)
 	{
@@ -56,8 +56,8 @@ namespace assignment2
 
 			mMaxPassengerCount = other.mMaxPassengerCount;
 			mCount = other.mCount;
-			mDistance = other.mDistance;
-			mTravelCount = other.mTravelCount;
+			mDistance = 0;
+			mTravelCount = 0;
 			mPassengerWeight = other.mPassengerWeight;
 			mTrailer = nullptr;
 
