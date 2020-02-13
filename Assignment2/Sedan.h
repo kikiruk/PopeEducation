@@ -11,10 +11,7 @@ namespace assignment2
 	{
 	public:
 		Sedan();
-		Sedan(const Sedan& copy);
 		virtual ~Sedan();
-
-		const Sedan& operator=(const Sedan& other);
 
 		bool AddTrailer(const Trailer* trailer);
 		bool RemoveTrailer();
@@ -27,8 +24,5 @@ namespace assignment2
 
 		// IDrivable을(를) 통해 상속됨
 		virtual unsigned int GetDriveSpeed() const override;
-
-	private:
-		const Trailer* mTrailer;
 	};
 }

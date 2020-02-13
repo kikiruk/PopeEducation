@@ -4,49 +4,15 @@
 namespace assignment2
 {
 	Sedan::Sedan() :
-		Vehicle(4),
-		mTrailer(nullptr)
+		Vehicle(4)
 	{
 	}
 
-	Sedan::Sedan(const Sedan& copy) : 
-		Vehicle(copy),
-		mTrailer(copy.mTrailer)
-	{
-	}
 
 	Sedan::~Sedan()
 	{
 		if (mTrailer != nullptr)
 			delete mTrailer;
-	}
-
-	const Sedan& Sedan::operator=(const Sedan& other)
-	{
-		if (this != &other)
-		{
-			for (unsigned int i = 0; i < mCount; i++)
-				delete mPassengers[i];
-
-			delete[] mPassengers;
-
-			if (mTrailer != nullptr)
-				delete mTrailer;
-
-			mMaxPassengerCount = other.mMaxPassengerCount;
-			mCount = other.mCount;
-			mDistance = other.mDistance;
-			mTravelCount = other.mTravelCount;
-			mPassengerWeight = other.mPassengerWeight;
-
-			mPassengers = new const Person* [other.mMaxPassengerCount];
-			mTrailer = new Trailer(*other.mTrailer);
-
-			for (unsigned int i = 0; i < mCount; i++)
-				mPassengers[i] = new Person(*(other.mPassengers[i]));
-		}
-
-		return *this;
 	}
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
