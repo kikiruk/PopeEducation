@@ -44,13 +44,26 @@ int main()
 	b.AddPassenger(p5);
 	b.AddPassenger(p6);
 
+	Airplane a2(a);
+	Boat b2(b);
+
 	Boatplane bp = a + b;
+	Boatplane bp2 = b2 + a2;
 
 	assert(bp.GetPassengersCount() == 6);
 	assert(bp.GetMaxPassengersCount() == 10);
 
 	assert(a.GetPassengersCount() == 0);
 	assert(b.GetPassengersCount() == 0);
+
+	assert(bp.GetMaxPassengersCount() == bp2.GetMaxPassengersCount());
+	assert(bp.GetMaxSpeed() == bp2.GetMaxSpeed());
+
+	for (int i = 0; i < bp.GetPassengersCount(); i++)
+	{
+		assert(bp.GetPassenger(i)->GetName() == bp2.GetPassenger(i)->GetName());
+		assert(bp.GetPassenger(i)->GetWeight() == bp2.GetPassenger(i)->GetWeight());
+	}
 
 	DeusExMachina* deusExMachina1 = DeusExMachina::GetInstance();
 	DeusExMachina* deusExMachina2 = DeusExMachina::GetInstance();

@@ -14,7 +14,7 @@ namespace assignment2
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		return Boatplane(this->mMaxPassengerCount + boat.mMaxPassengerCount, this, &boat);
+		return Boatplane(this, &boat);
 	}
 
 	unsigned int Airplane::GetMaxSpeed() const

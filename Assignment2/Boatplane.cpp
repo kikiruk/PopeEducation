@@ -13,13 +13,13 @@ namespace assignment2
 	{
 	}
 
-	Boatplane::Boatplane(unsigned int maxPassengersCount, Airplane* airplane, Boat* boat) :
-		Vehicle(maxPassengersCount)
+	Boatplane::Boatplane(Airplane* airplane, Boat* boat) :
+		Vehicle(airplane->mMaxPassengerCount + boat->mMaxPassengerCount)
 	{
 		for (unsigned int i = 0; i < airplane->mCount; i++)
 		{
 			this->mPassengers[this->mCount++] = airplane->mPassengers[i];
-			this->mPassengers[i] = nullptr;
+			airplane->mPassengers[i] = nullptr;
 		}
 
 		for (unsigned int i = 0; i < boat->mCount; i++)
