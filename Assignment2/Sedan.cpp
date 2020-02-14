@@ -99,7 +99,7 @@ namespace assignment2
 
 	void Sedan::Travel()
 	{
-		if (mTrailer != nullptr)
+		if (mTrailer == nullptr)
 		{
 			if (mTravelCount != 5)
 				mDistance += GetMaxSpeed();
