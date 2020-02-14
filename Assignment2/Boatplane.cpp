@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cmath>
 #include "Boatplane.h"
+#include "Airplane.h"
+#include "Boat.h"
 
 namespace assignment2
 {
@@ -11,11 +13,23 @@ namespace assignment2
 	{
 	}
 
-	Boatplane::Boatplane(unsigned int maxPassengersCount, unsigned int count, const Person** passengers) :
+	Boatplane::Boatplane(unsigned int maxPassengersCount, Airplane* airplane, Boat* boat) :
 		Vehicle(maxPassengersCount)
 	{
-		mCount = count;
-		mPassengers = passengers;
+		for (unsigned int i = 0; i < airplane->mCount; i++)
+		{
+			this->mPassengers[this->mCount++] = airplane->mPassengers[i];
+			this->mPassengers[i] = nullptr;
+		}
+
+		for (unsigned int i = 0; i < boat->mCount; i++)
+		{
+			this->mPassengers[this->mCount++] = boat->mPassengers[i];
+			boat->mPassengers[i] = nullptr;
+		}
+
+		airplane->mCount = 0;
+		boat->mCount = 0;
 	}
 
 	unsigned int Boatplane::GetMaxSpeed() const

@@ -14,6 +14,7 @@ namespace assignment2
 
 	public:
 		Vehicle(unsigned int maxPassengersCount);
+		Vehicle() = delete;
 		Vehicle(const Vehicle& other);
 		virtual ~Vehicle();
 

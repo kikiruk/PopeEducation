@@ -7,10 +7,12 @@
 namespace assignment2
 {
 	class Boat;
+	class Boatplane;
 
 	class Airplane : public Vehicle, IFlyable, IDrivable
 	{
 		friend Boat;
+		friend Boatplane;
 
 	public:
 		Airplane(unsigned int maxPassengersCount);
