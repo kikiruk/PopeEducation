@@ -82,7 +82,7 @@ namespace assignment2
 	{
 		unsigned int weight = mPassengerWeight;
 
-		if(mTrailer != nullptr)
+		if (mTrailer != nullptr)
 			weight += mTrailer->GetWeight();
 
 		if (weight > 350)
