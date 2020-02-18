@@ -92,10 +92,10 @@ namespace assignment3
 	template<typename T>
 	inline const T SmartStack<T>::Pop()
 	{
-		mSum -= data;
+		mSum -= mTop->number;
 		--mCount;
 
-		T returnNum mTop->number;
+		T returnNum = mTop->number;
 		Node<T>* tmp = mTop;
 		mTop = mTop->next;
 		delete tmp;
