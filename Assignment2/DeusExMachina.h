@@ -9,7 +9,7 @@ namespace assignment2
 	private:
 		static DeusExMachina* mInstence;
 		DeusExMachina();
-
+		DeusExMachina(const DeusExMachina& copy) = delete;
 	public:
 		~DeusExMachina();
 		static DeusExMachina* GetInstance();
