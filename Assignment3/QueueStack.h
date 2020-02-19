@@ -21,11 +21,14 @@ namespace assignment3
 		inline const unsigned int GetCount() const;
 		inline const unsigned int GetStackCount() const;
 
+	private:
+		T mTmp;
 	};
 
 	template<typename T>
 	inline QueueStack<T>::QueueStack()
 	{
+		mTmp = 0;
 	}
 
 	template<typename T>
@@ -41,7 +44,7 @@ namespace assignment3
 	template<typename T>
 	inline const QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& copy)
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
@@ -52,25 +55,25 @@ namespace assignment3
 	template<typename T>
 	inline const T& QueueStack<T>::Peek() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
 	inline const T QueueStack<T>::Dequeue()
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
 	inline const T& QueueStack<T>::GetMax() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
 	inline const T& QueueStack<T>::GetMin() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
@@ -82,7 +85,7 @@ namespace assignment3
 	template<typename T>
 	inline const T& QueueStack<T>::GetSum() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>

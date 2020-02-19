@@ -21,11 +21,15 @@ namespace assignment3
 		inline const double GetVariance() const;
 		inline const double GetStandardDeviation() const;
 		inline const unsigned int GetCount() const;
+
+	private:
+		T mTmp;
 	};
 
 	template<typename T>
 	inline SmartQueue<T>::SmartQueue()
 	{
+		mTmp = 0;
 	}
 
 	template<typename T>
@@ -52,25 +56,25 @@ namespace assignment3
 	template<typename T>
 	inline const T& SmartQueue<T>::Peek() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
 	inline const T SmartQueue<T>::Dequeue()
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
 	inline const T& SmartQueue<T>::GetMax() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
 	inline const T& SmartQueue<T>::GetMin() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
@@ -82,7 +86,7 @@ namespace assignment3
 	template<typename T>
 	inline const T& SmartQueue<T>::GetSum() const
 	{
-		return T();
+		return mTmp;
 	}
 
 	template<typename T>
