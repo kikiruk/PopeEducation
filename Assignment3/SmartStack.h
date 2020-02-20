@@ -1,11 +1,9 @@
 #pragma once
 #include <cassert>
-#include <stack>
 #include <limits>
 #include <cmath>
 
 template<typename T>
-
 struct Node
 {
 	Node(T number, Node* next) :
