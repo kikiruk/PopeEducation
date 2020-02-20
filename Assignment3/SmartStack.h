@@ -3,26 +3,24 @@
 #include <limits>
 #include <cmath>
 
-template<typename T>
-struct Node
-{
-	Node(T number, Node* next) :
-		number(number),
-		next(next)
-	{}
-
-	T number;
-	Node* next;
-};
+#include "Node.h"
 
 namespace assignment3
 {
+	template<typename T>
+	class QueueStack;
+
 	template <typename T>// int, unsigned int, double, short
 	class SmartStack
 	{
+		friend QueueStack<T>;
+
 	public:
 		SmartStack();
+		SmartStack(const SmartStack<T>& copy);
 		~SmartStack();
+
+		const SmartStack<T>& operator=(const SmartStack<T>& copy);
 		inline void Push(const T& data);
 		inline const T Pop();
 		inline const T& Peek() const;
@@ -39,6 +37,8 @@ namespace assignment3
 		inline const unsigned int GetCount() const;
 
 	private:
+		inline void copyFunc(const SmartStack<T>& copy);
+
 		Node<T>* mTop;
 		unsigned int mCount;
 		T mSum;
@@ -53,9 +53,19 @@ namespace assignment3
 		mTop(nullptr),
 		mCount(0),
 		mSum(0),
-		mMaxNum(std::numeric_limits<T>::max()),
-		mMinNum(std::numeric_limits<T>::min())
+		mMaxNum(std::numeric_limits<T>::min()),
+		mMinNum(std::numeric_limits<T>::max())
 	{
+	}
+
+	template<typename T>
+	inline SmartStack<T>::SmartStack(const SmartStack<T>& copy) :
+		mCount(copy.mCount),
+		mSum(copy.mSum),
+		mMaxNum(copy.mMaxNum),
+		mMinNum(copy.mMinNum)
+	{
+		copyFunc(copy);
 	}
 
 	template<typename T>
@@ -67,6 +77,29 @@ namespace assignment3
 			i = i->next;
 			delete tmp;
 		}
+	}
+
+	template<typename T>
+	inline const SmartStack<T>& SmartStack<T>::operator=(const SmartStack<T>& copy)
+	{
+		if (this != &copy)
+		{
+			for (Node<T>* i = mTop; i != nullptr;)
+			{
+				Node<T>* tmp = i;
+				i = i->next;
+				delete tmp;
+			}
+
+			mCount = copy.mCount;
+			mSum = copy.mSum;
+			mMaxNum = copy.mMaxNum;
+			mMinNum = copy.mMinNum;
+
+			copyFunc(copy);
+		}
+
+		return *this;
 	}
 
 	template<typename T>
@@ -142,7 +175,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartStack<T>::GetAverage() const
 	{
-		return std::round(static_cast<double>(mSum) / mCount * 10000) / 10000;
+		return std::round(static_cast<double>(mSum) / mCount * 1000) / 1000;
 	}
 
 	template<typename T>
@@ -160,7 +193,7 @@ namespace assignment3
 		for (Node<T>* i = mTop; i != nullptr; i = i->next)
 			deviationSquareSum += std::pow(i->number - average,2);
 
-		return std::round(deviationSquareSum / mCount * 10000) / 10000;
+		return std::round(deviationSquareSum / mCount * 1000) / 1000;
 	}
 
 	template<typename T>
@@ -174,13 +207,23 @@ namespace assignment3
 
 		standardDeviation = sqrt(standardDeviation / mCount);
 
-		return std::round(standardDeviation * 10000) / 10000;
+		return std::round(standardDeviation * 1000) / 1000;
 	}
 
 	template<typename T>
 	inline const unsigned int SmartStack<T>::GetCount() const
 	{
 		return mCount;
+	}
+
+	template<typename T>
+	inline void SmartStack<T>::copyFunc(const SmartStack<T>& copy)
+	{
+		this->mTop = new Node<T>(*copy.mTop);
+		Node<T>* j = this->mTop;
+
+		for (Node<T>* i = copy.mTop->next; i != nullptr; i = i->next,j = j->next)
+			j->next = new Node<T>(*i);
 	}
 
 }

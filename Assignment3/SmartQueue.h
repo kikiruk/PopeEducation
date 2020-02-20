@@ -2,22 +2,7 @@
 #include <limits>
 #include <cmath>
 
-template<typename T>
-struct Node
-{
-	Node(T number, Node* next) :
-		number(number),
-		next(next)
-	{}
-
-	Node(const Node<T>& copy) :
-		number(copy.number),
-		next(nullptr)
-	{}
-
-	T number;
-	Node* next;
-};
+#include "Node.h"
 
 namespace assignment3
 {
@@ -28,7 +13,7 @@ namespace assignment3
 		SmartQueue();
 		~SmartQueue();
 		SmartQueue(const SmartQueue<T>& copy);
-		const SmartQueue& operator=(const SmartQueue<T>& copy);
+		const SmartQueue<T>& operator=(const SmartQueue<T>& copy);
 
 		inline void Enqueue(const T& number);
 		inline const T& Peek() const;
@@ -50,23 +35,21 @@ namespace assignment3
 		T mSum;
 		T mMaxNum;
 		T mMinNum;
-		T mTmp;
 	};
 
 	template<typename T>
-	inline SmartQueue<T>::SmartQueue() :
+	SmartQueue<T>::SmartQueue() :
 		mHead(nullptr),
 		mTail(nullptr),
 		mCount(0),
 		mSum(0),
-		mMaxNum(std::numeric_limits<T>::max()),
-		mMinNum(std::numeric_limits<T>::min())
+		mMaxNum(std::numeric_limits<T>::min()),
+		mMinNum(std::numeric_limits<T>::max())
 	{
-		mTmp = 0;
 	}
 
 	template<typename T>
-	inline SmartQueue<T>::~SmartQueue()
+	SmartQueue<T>::~SmartQueue()
 	{
 		for (Node<T>* i = mHead; i != nullptr;)
 		{
@@ -77,7 +60,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline SmartQueue<T>::SmartQueue(const SmartQueue<T>& copy)	:
+	SmartQueue<T>::SmartQueue(const SmartQueue<T>& copy)	:
 		mCount(copy.mCount),
 		mSum(copy.mSum),
 		mMaxNum(copy.mMaxNum),
@@ -97,6 +80,11 @@ namespace assignment3
 				i = i->next;
 				delete tmp;
 			}
+
+			mCount = copy.mCount;
+			mSum = copy.mSum;
+			mMaxNum = copy.mMaxNum;
+			mMinNum = copy.mMinNum;
 
 			copyFunc(copy);
 		}
@@ -120,11 +108,11 @@ namespace assignment3
 		mSum += number;
 		++mCount;
 
-		if (mMax < number)
-			mMax = number;
+		if (mMaxNum < number)
+			mMaxNum = number;
 
-		if (mMin > number)
-			mMin = number;
+		if (mMinNum > number)
+			mMinNum = number;
 	}
 
 	template<typename T>
@@ -150,10 +138,10 @@ namespace assignment3
 			delete tmp;
 		}
 
-		mSum -= number;
+		mSum -= answer;
 		--mCount;
 
-		if (mMax == number)
+		if (mMaxNum == answer)
 		{
 			T minNum = std::numeric_limits<T>::max();
 			for (Node<T>* i = mHead; i != nullptr; i = i->next)
@@ -165,7 +153,7 @@ namespace assignment3
 			mMinNum = minNum;
 		}
 
-		if (mMin == number)
+		if (mMinNum == answer)
 		{
 			T maxNum = std::numeric_limits<T>::min();
 			for (Node<T>* i = mHead; i != nullptr; i = i->next)
@@ -195,7 +183,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartQueue<T>::GetAverage() const
 	{
-		return static_cast<double>(mSum) / mCount;
+		return std::round(static_cast<double>(mSum) / mCount * 1000) / 1000;
 	}
 
 	template<typename T>
@@ -213,7 +201,7 @@ namespace assignment3
 		for (Node<T>* i = mHead; i != nullptr; i = i->next)
 			deviationSquareSum += std::pow(i->number - average, 2);
 
-		return std::round(deviationSquareSum / mCount * 10000) / 10000;
+		return std::round(deviationSquareSum / mCount * 1000) / 1000;
 	}
 
 	template<typename T>
@@ -227,7 +215,7 @@ namespace assignment3
 
 		standardDeviation = sqrt(standardDeviation / mCount);
 
-		return std::round(standardDeviation * 10000) / 10000;
+		return std::round(standardDeviation * 1000) / 1000;
 	}
 
 	template<typename T>
