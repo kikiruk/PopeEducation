@@ -237,7 +237,7 @@ namespace assignment3
 	inline const T& QueueStack<T>::GetMin() const
 	{
 		if (mMinNum == nullptr)
-			std::numeric_limits<T>::max();
+			return std::numeric_limits<T>::max();
 
 		return mMinNum->number;
 	}
