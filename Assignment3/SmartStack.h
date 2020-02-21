@@ -42,8 +42,8 @@ namespace assignment3
 		Node<T>* mTop;
 		unsigned int mCount;
 		T mSum;
-		T mMaxNum;
-		T mMinNum;
+		Node<T>* mMaxNum;
+		Node<T>* mMinNum;
 	};
 
 
@@ -53,17 +53,15 @@ namespace assignment3
 		mTop(nullptr),
 		mCount(0),
 		mSum(0),
-		mMaxNum(std::numeric_limits<T>::min()),
-		mMinNum(std::numeric_limits<T>::max())
+		mMaxNum(nullptr),
+		mMinNum(nullptr)
 	{
 	}
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack(const SmartStack<T>& copy) :
 		mCount(copy.mCount),
-		mSum(copy.mSum),
-		mMaxNum(copy.mMaxNum),
-		mMinNum(copy.mMinNum)
+		mSum(copy.mSum)
 	{
 		copyFunc(copy);
 	}
@@ -93,8 +91,6 @@ namespace assignment3
 
 			mCount = copy.mCount;
 			mSum = copy.mSum;
-			mMaxNum = copy.mMaxNum;
-			mMinNum = copy.mMinNum;
 
 			copyFunc(copy);
 		}
@@ -105,19 +101,24 @@ namespace assignment3
 	template<typename T>
 	inline void SmartStack<T>::Push(const T& data)
 	{
-		if (data > mMaxNum)
-			mMaxNum = data;
-
-		if (data < mMinNum)
-			mMinNum = data;
-
 		mSum += data;
 		++mCount;
 
 		if (mTop == nullptr)
+		{
 			mTop = new Node<T>(data, nullptr);
+			mMaxNum = mMinNum = mTop ;
+		}
 		else
+		{
 			mTop = new Node<T>(data, mTop);
+
+			if (data > mMaxNum->number)
+				mMaxNum = mTop;
+
+			if (data < mMinNum->number)
+				mMinNum = mTop;
+		}
 	}
 
 	template<typename T>
@@ -126,30 +127,36 @@ namespace assignment3
 		mSum -= mTop->number;
 		--mCount;
 
+		if (mTop == mMinNum)
+		{
+			T minNum = std::numeric_limits<T>::max();
+			for (Node<T>* i = mTop->next; i != nullptr; i = i->next)
+			{
+				if (i->number < minNum)
+				{
+					minNum = i->number;
+					mMinNum = i;
+				}
+			}
+		}
+
+		if (mTop == mMaxNum)
+		{
+			for (Node<T>* i = mTop->next; i != nullptr; i = i->next)
+			{
+				T maxNum = std::numeric_limits<T>::min();
+				if (i->number > maxNum)
+				{
+					maxNum = i->number;
+					mMaxNum = i;
+				}
+			}
+		}
+
 		T returnNum = mTop->number;
 		Node<T>* tmp = mTop;
 		mTop = mTop->next;
 		delete tmp;
-
-		if (returnNum == mMinNum)
-		{
-			mMinNum = std::numeric_limits<T>::max();
-			for (Node<T>* i = mTop; i != nullptr; i = i->next)
-			{
-				if (i->number < mMinNum)
-					mMinNum = i->number;
-			}
-		}
-
-		if (returnNum == mMaxNum)
-		{
-			mMaxNum = std::numeric_limits<T>::min();
-			for (Node<T>* i = mTop; i != nullptr; i = i->next)
-			{
-				if (i->number > mMaxNum)
-					mMaxNum = i->number;
-			}
-		}
 
 		return returnNum;
 	}
@@ -163,13 +170,19 @@ namespace assignment3
 	template<typename T>
 	inline const T& SmartStack<T>::GetMax() const
 	{
-		return mMaxNum;
+		if (mMaxNum == nullptr)
+			return std::numeric_limits<T>::min();
+
+		return mMaxNum->number;
 	}
 
 	template<typename T>
 	inline const T& SmartStack<T>::GetMin() const
 	{
-		return mMinNum;
+		if (mMinNum == nullptr)
+			return std::numeric_limits<T>::max();
+
+		return mMinNum->number;
 	}
 
 	template<typename T>
@@ -222,8 +235,16 @@ namespace assignment3
 		this->mTop = new Node<T>(*copy.mTop);
 		Node<T>* j = this->mTop;
 
-		for (Node<T>* i = copy.mTop->next; i != nullptr; i = i->next,j = j->next)
+		for (Node<T>* i = copy.mTop->next; i != nullptr; i = i->next, j = j->next)
+		{
 			j->next = new Node<T>(*i);
+
+			if (i == copy.mMaxNum)
+				mMaxNum = j->next;
+
+			if (i == copy.mMinNum)
+				mMinNum = j->next;
+		}
 	}
 
 }

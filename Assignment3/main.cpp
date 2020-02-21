@@ -1,10 +1,11 @@
 #include <cassert>
-
+#include <iostream>
 #include "SmartStack.h"
 #include "SmartQueue.h"
 #include "QueueStack.h"
 
 using namespace assignment3;
+using namespace std;
 
 int main()
 {
@@ -39,6 +40,7 @@ int main()
 	assert(ss.GetCount() == 8U);
 	assert(ss.Peek() == 1.1f);
 	assert(ss.GetMax() == 10.2f);
+	cout << ss.GetMin() << endl;
 	assert(ss.GetMin() == -5.9f);
 	assert(ss.GetSum() == 19.1853008f);
 	assert(ss.GetAverage() == 2.398);
@@ -119,5 +121,4 @@ int main()
 	assert(qs.GetSum() == 6.62000322f);
 	assert(qs.GetAverage() == 0.946);
 
-	return 0;
 }

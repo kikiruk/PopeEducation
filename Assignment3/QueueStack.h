@@ -49,8 +49,8 @@ namespace assignment3
 		unsigned int mCount;
 		unsigned int mStackCount;
 		T mSum;
-		T mMaxNum;
-		T mMinNum;
+		Node<T>* mMaxNum;
+		Node<T>* mMinNum;
 	};
 
 	template<typename T>
@@ -61,8 +61,8 @@ namespace assignment3
 		mCount(0),
 		mStackCount(0),
 		mSum(0),
-		mMaxNum(std::numeric_limits<T>::min()),
-		mMinNum(std::numeric_limits<T>::max())
+		mMaxNum(nullptr),
+		mMinNum(nullptr)
 	{
 	}
 
@@ -82,9 +82,9 @@ namespace assignment3
 		maxStackSize(copy.maxStackSize),
 		mCount(copy.mCount),
 		mStackCount(copy.mStackCount),
-		mSum(copy.mSum),
-		mMaxNum(copy.mMaxNum),
-		mMinNum(copy.mMinNum)
+		mSum(copy.mSum)
+		//mMaxNum(nullptr),
+		//mMinNum(nullptr)
 	{
 		copyFunc(copy);
 	}
@@ -105,8 +105,8 @@ namespace assignment3
 			mCount = copy.mCount;
 			mStackCount = copy.mStackCount;
 			mSum = copy.mSum;
-			mMaxNum = copy.mMaxNum;
-			mMinNum = copy.mMinNum;
+			//mMaxNum = copy.mMaxNum;
+			//mMinNum = copy.mMinNum;
 
 			copyFunc(copy);
 		}
@@ -121,6 +121,10 @@ namespace assignment3
 		{
 			mHead = mTail = new StackNode<T>(nullptr);
 			++mStackCount;
+
+			mTail->stack.Push(number);
+
+			mMaxNum = mMinNum = mTail->stack.mTop;
 		}
 		else
 		{
@@ -130,18 +134,19 @@ namespace assignment3
 				++mStackCount;
 				mTail = mTail->next;
 			}
-		}
 
-		mTail->stack.Push(number);
+			mTail->stack.Push(number);
+
+			if (mMaxNum->number < number)
+				mMaxNum = mTail->stack.mMaxNum;
+
+			if (mMinNum->number > number)
+				mMinNum = mTail->stack.mMinNum;
+		}
 
 		mSum += number;
 		++mCount;
 
-		if (mMaxNum < number)
-			mMaxNum = number;
-
-		if (mMinNum > number)
-			mMinNum = number;
 	}
 
 	template<typename T>
@@ -153,6 +158,15 @@ namespace assignment3
 	template<typename T>
 	inline const T QueueStack<T>::Dequeue()
 	{
+		bool bFindMinNum = false;
+		bool bFindMaxNum = false;
+
+		if(mHead->stack.mTop == mMaxNum)
+			bFindMaxNum = true;
+
+		if (mHead->stack.mTop == mMinNum)
+			bFindMinNum = false;
+
 		T answer = mHead->stack.mTop->number;
 
 		if (mHead->stack.mCount == 1)
@@ -176,32 +190,36 @@ namespace assignment3
 			mHead->stack.Pop();
 		}
 
-		mSum -= answer;
-		--mCount;
-
-		if (mMaxNum == answer)
+		if (bFindMinNum)
 		{
+			mMinNum = nullptr;
 			T minNum = std::numeric_limits<T>::max();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->next)
 			{
-				if (minNum > i->stack.mMinNum)
-					minNum = i->stack.mMinNum;
+				if (minNum > i->stack.mMinNum->number)
+				{
+					mMinNum = i->stack.mMinNum;
+					minNum = i->stack.mMinNum->number;
+				}
 			}
-
-			mMinNum = minNum;
 		}
 
-		if (mMinNum == answer)
+		if (bFindMaxNum)
 		{
+			mMaxNum = nullptr;
 			T maxNum = std::numeric_limits<T>::min();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->next)
 			{
-				if (maxNum < i->stack.mMaxNum)
-					maxNum = i->stack.mMaxNum;
+				if (maxNum < i->stack.mMaxNum->number)
+				{
+					mMaxNum = i->stack.mMaxNum;
+					maxNum = i->stack.mMaxNum->number;
+				}
 			}
-
-			mMaxNum = maxNum;
 		}
+
+		mSum -= answer;
+		--mCount;
 
 		return answer;
 	}
@@ -209,13 +227,19 @@ namespace assignment3
 	template<typename T>
 	inline const T& QueueStack<T>::GetMax() const
 	{
-		return mMaxNum;
+		if(mMaxNum == nullptr)
+			return std::numeric_limits<T>::min();
+
+		return mMaxNum->number;
 	}
 
 	template<typename T>
 	inline const T& QueueStack<T>::GetMin() const
 	{
-		return mMinNum;
+		if (mMinNum == nullptr)
+			std::numeric_limits<T>::max();
+
+		return mMinNum->number;
 	}
 
 	template<typename T>
@@ -252,15 +276,25 @@ namespace assignment3
 
 		while (true)
 		{
-			if (j->next == nullptr)
+			if (j->stack.mMaxNum == copy.mMaxNum)
+				mMaxNum = i->stack.mMaxNum;
+
+			if (j->stack.mMinNum == copy.mMinNum)
+				mMinNum = i->stack.mMinNum;
+
+			j = j->next;
+
+			if (j == nullptr)
 			{
 				mTail = i;
 				break;
 			}
 
-			i->next = new StackNode<T>(*j->next);
+			i->next = new StackNode<T>(*j);
+
+			if(j)
+
 			i = i->next;
-			j = j->next;
 		}
 	}
 }

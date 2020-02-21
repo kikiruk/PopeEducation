@@ -33,8 +33,8 @@ namespace assignment3
 		Node<T>* mTail;
 		unsigned int mCount;
 		T mSum;
-		T mMaxNum;
-		T mMinNum;
+		Node<T>* mMaxNum;
+		Node<T>* mMinNum;
 	};
 
 	template<typename T>
@@ -43,8 +43,8 @@ namespace assignment3
 		mTail(nullptr),
 		mCount(0),
 		mSum(0),
-		mMaxNum(std::numeric_limits<T>::min()),
-		mMinNum(std::numeric_limits<T>::max())
+		mMaxNum(nullptr),//std::numeric_limits<T>::min()
+		mMinNum(nullptr) //std::numeric_limits<T>::max()
 	{
 	}
 
@@ -62,9 +62,9 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue<T>& copy)	:
 		mCount(copy.mCount),
-		mSum(copy.mSum),
-		mMaxNum(copy.mMaxNum),
-		mMinNum(copy.mMinNum)
+		mSum(copy.mSum)
+		//mMaxNum(copy.mMaxNum),
+		//mMinNum(copy.mMinNum)
 	{
 		copyFunc(copy);
 	}
@@ -83,8 +83,6 @@ namespace assignment3
 
 			mCount = copy.mCount;
 			mSum = copy.mSum;
-			mMaxNum = copy.mMaxNum;
-			mMinNum = copy.mMinNum;
 
 			copyFunc(copy);
 		}
@@ -98,21 +96,23 @@ namespace assignment3
 		if (mHead == nullptr)
 		{
 			mHead = mTail = new Node<T>(number,nullptr);
+			mMaxNum = mMinNum = mTail;
 		}
 		else
 		{
 			mTail->next = new Node<T>(number, nullptr);
 			mTail = mTail->next;
+
+			if (mMaxNum->number < number)
+				mMaxNum = mTail;
+
+			if (mMinNum->number > number)
+				mMinNum = mTail;
 		}
 
 		mSum += number;
 		++mCount;
 
-		if (mMaxNum < number)
-			mMaxNum = number;
-
-		if (mMinNum > number)
-			mMinNum = number;
 	}
 
 	template<typename T>
@@ -125,6 +125,34 @@ namespace assignment3
 	inline const T SmartQueue<T>::Dequeue()
 	{
 		T answer = mHead->number;
+
+		if (mMaxNum == mHead)
+		{
+			mMaxNum = nullptr;
+			T minNum = std::numeric_limits<T>::max();
+			for (Node<T>* i = mHead->next; i != nullptr; i = i->next)
+			{
+				if (minNum > i->number)
+				{
+					minNum = i->number;
+					mMinNum = i;
+				}
+			}
+		}
+
+		if (mMinNum == mHead)
+		{
+			mMinNum = nullptr;
+			T maxNum = std::numeric_limits<T>::min();
+			for (Node<T>* i = mHead->next; i != nullptr; i = i->next)
+			{
+				if (maxNum < i->number)
+				{
+					maxNum = i->number;
+					mMaxNum = i;
+				}
+			}
+		}
 
 		if (mHead == mTail)
 		{
@@ -141,29 +169,6 @@ namespace assignment3
 		mSum -= answer;
 		--mCount;
 
-		if (mMaxNum == answer)
-		{
-			T minNum = std::numeric_limits<T>::max();
-			for (Node<T>* i = mHead; i != nullptr; i = i->next)
-			{
-				if (minNum > i->number)
-					minNum = i->number;
-			}
-
-			mMinNum = minNum;
-		}
-
-		if (mMinNum == answer)
-		{
-			T maxNum = std::numeric_limits<T>::min();
-			for (Node<T>* i = mHead; i != nullptr; i = i->next)
-			{
-				if (maxNum < i->number)
-					maxNum = i->number;
-			}
-
-			mMaxNum = maxNum;
-		}
 
 		return answer;
 	}
@@ -171,13 +176,19 @@ namespace assignment3
 	template<typename T>
 	inline const T& SmartQueue<T>::GetMax() const
 	{
-		return mMaxNum;
+		if (mHead == nullptr)
+			return std::numeric_limits<T>::min();
+
+		return mMaxNum->number;
 	}
 
 	template<typename T>
 	inline const T& SmartQueue<T>::GetMin() const
 	{
-		return mMinNum;
+		if (mHead == nullptr)
+			return std::numeric_limits<T>::max();
+
+		return mMinNum->number;
 	}
 
 	template<typename T>
@@ -241,6 +252,13 @@ namespace assignment3
 			}
 
 			i->next = new Node<T>(*j->next);
+
+			if (j == copy.mMaxNum)
+				mMaxNum = i->next;
+
+			if (j == copy.mMinNum)
+				mMinNum = i->next; 
+
 			i = i->next;
 			j = j->next;
 		}
