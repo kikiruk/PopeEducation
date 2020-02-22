@@ -43,8 +43,8 @@ namespace assignment3
 		mTail(nullptr),
 		mCount(0),
 		mSum(0),
-		mMaxNum(nullptr),//std::numeric_limits<T>::min()
-		mMinNum(nullptr) //std::numeric_limits<T>::max()
+		mMaxNum(nullptr),
+		mMinNum(nullptr) 
 	{
 	}
 
@@ -63,8 +63,6 @@ namespace assignment3
 	SmartQueue<T>::SmartQueue(const SmartQueue<T>& copy)	:
 		mCount(copy.mCount),
 		mSum(copy.mSum)
-		//mMaxNum(copy.mMaxNum),
-		//mMinNum(copy.mMinNum)
 	{
 		copyFunc(copy);
 	}

@@ -29,9 +29,6 @@ namespace assignment3
 		inline const double GetAverage() const;
 		inline const T& GetSum() const;
 
-		//큐에 있는 수들의 분산을 반환합니다. 반환 값은 소수 넷째 자리에서 반올림해야 합니다.
-		//만점을 받으려면 이 메서드의 시간 복잡도가 O(1)이어야 합니다.
-		//빌드봇은 큐가 비어 있지 않을 때만 이 메서드를 테스트합니다.
 		inline const double GetVariance() const;
 		inline const double GetStandardDeviation() const;
 		inline const unsigned int GetCount() const;

@@ -83,8 +83,6 @@ namespace assignment3
 		mCount(copy.mCount),
 		mStackCount(copy.mStackCount),
 		mSum(copy.mSum)
-		//mMaxNum(nullptr),
-		//mMinNum(nullptr)
 	{
 		copyFunc(copy);
 	}
@@ -105,8 +103,6 @@ namespace assignment3
 			mCount = copy.mCount;
 			mStackCount = copy.mStackCount;
 			mSum = copy.mSum;
-			//mMaxNum = copy.mMaxNum;
-			//mMinNum = copy.mMinNum;
 
 			copyFunc(copy);
 		}
