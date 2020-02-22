@@ -1,20 +1,21 @@
 #pragma once
 
 template<typename T>
-struct Node
+class Node
 {
-	Node(T number, Node<T>* next) :
-		number(number),
-		next(next)
+public:
+	Node(T mNumber, Node<T>* mNext) :
+		mNumber(mNumber),
+		mNext(mNext)
 	{}
 
 	Node(const Node<T>& copy) :
-		number(copy.number),
-		next(nullptr)
+		mNumber(copy.mNumber),
+		mNext(nullptr)
 	{}
 
-	T number;
-	Node<T>* next;
+	T mNumber;
+	Node<T>* mNext;
 };
 
 

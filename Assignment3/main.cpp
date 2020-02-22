@@ -9,28 +9,28 @@ using namespace std;
 
 int main()
 {
-	SmartStack<float> ss;
+	SmartStack<int> ss;
 
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(3.4999f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(1.2f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(4.6555f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(3.3299f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(10.2f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(1.1f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(-5.9f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(1.1f);
+	ss.Push(100);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(-12.4f);
+	ss.Push(-102);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
-	ss.Push(9.2f);
+	ss.Push(-103);
 	cout << ss.GetMin() << "," << ss.GetMax() << endl;
 
 	cout << "----------------------------------------------------------" << endl;
