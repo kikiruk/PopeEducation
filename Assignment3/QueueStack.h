@@ -287,9 +287,6 @@ namespace assignment3
 			}
 
 			i->next = new StackNode<T>(*j);
-
-			if(j)
-
 			i = i->next;
 		}
 	}

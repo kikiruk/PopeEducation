@@ -126,6 +126,7 @@ namespace assignment3
 
 		if (mTop == mMinNum)
 		{
+			mMinNum = nullptr;
 			T minNum = std::numeric_limits<T>::max();
 			for (Node<T>* i = mTop->next; i != nullptr; i = i->next)
 			{
@@ -139,6 +140,7 @@ namespace assignment3
 
 		if (mTop == mMaxNum)
 		{
+			mMaxNum = nullptr;
 			for (Node<T>* i = mTop->next; i != nullptr; i = i->next)
 			{
 				T maxNum = std::numeric_limits<T>::min();
