@@ -4,18 +4,18 @@ template<typename T>
 class Node
 {
 public:
-	Node(T mNumber, Node<T>* mNext) :
-		mNumber(mNumber),
-		mNext(mNext)
+	Node(T MNumber, Node<T>* MNext) :
+		MNumber(MNumber),
+		MNext(MNext)
 	{}
 
 	Node(const Node<T>& copy) :
-		mNumber(copy.mNumber),
-		mNext(nullptr)
+		MNumber(copy.MNumber),
+		MNext(nullptr)
 	{}
 
-	T mNumber;
-	Node<T>* mNext;
+	T MNumber;
+	Node<T>* MNext;
 };
 
 

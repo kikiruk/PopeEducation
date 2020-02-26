@@ -54,7 +54,7 @@ namespace assignment3
 		for (Node<T>* i = mHead; i != nullptr;)
 		{
 			Node<T>* tmp = i;
-			i = i->mNext;
+			i = i->MNext;
 			delete tmp;
 		}
 	}
@@ -75,7 +75,7 @@ namespace assignment3
 			for (Node<T>* i = mHead; i != nullptr;)
 			{
 				Node<T>* tmp = i;
-				i = i->mNext;
+				i = i->MNext;
 				delete tmp;
 			}
 
@@ -98,13 +98,13 @@ namespace assignment3
 		}
 		else
 		{
-			mTail->mNext = new Node<T>(number, nullptr);
-			mTail = mTail->mNext;
+			mTail->MNext = new Node<T>(number, nullptr);
+			mTail = mTail->MNext;
 
-			if (mMaxNum->mNumber < number)
+			if (mMaxNum->MNumber < number)
 				mMaxNum = mTail;
 
-			if (mMinNum->mNumber > number)
+			if (mMinNum->MNumber > number)
 				mMinNum = mTail;
 		}
 
@@ -116,23 +116,23 @@ namespace assignment3
 	template<typename T>
 	inline const T& SmartQueue<T>::Peek() const
 	{
-		return mHead->mNumber;
+		return mHead->MNumber;
 	}
 
 	template<typename T>
 	inline const T SmartQueue<T>::Dequeue()
 	{
-		T answer = mHead->mNumber;
+		T answer = mHead->MNumber;
 
 		if (mMaxNum == mHead)
 		{
 			mMaxNum = nullptr;
 			T minNum = std::numeric_limits<T>::max();
-			for (Node<T>* i = mHead->mNext; i != nullptr; i = i->mNext)
+			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
-				if (minNum >= i->mNumber)
+				if (minNum >= i->MNumber)
 				{
-					minNum = i->mNumber;
+					minNum = i->MNumber;
 					mMinNum = i;
 				}
 			}
@@ -142,11 +142,11 @@ namespace assignment3
 		{
 			mMinNum = nullptr;
 			T maxNum = std::numeric_limits<T>::min();
-			for (Node<T>* i = mHead->mNext; i != nullptr; i = i->mNext)
+			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
-				if (maxNum <= i->mNumber)
+				if (maxNum <= i->MNumber)
 				{
-					maxNum = i->mNumber;
+					maxNum = i->MNumber;
 					mMaxNum = i;
 				}
 			}
@@ -160,7 +160,7 @@ namespace assignment3
 		else
 		{
 			Node<T>* tmp = mHead;
-			mHead = mHead->mNext;
+			mHead = mHead->MNext;
 			delete tmp;
 		}
 
@@ -177,7 +177,7 @@ namespace assignment3
 		if (mHead == nullptr)
 			return std::numeric_limits<T>::min();
 
-		return mMaxNum->mNumber;
+		return mMaxNum->MNumber;
 	}
 
 	template<typename T>
@@ -186,7 +186,7 @@ namespace assignment3
 		if (mHead == nullptr)
 			return std::numeric_limits<T>::max();
 
-		return mMinNum->mNumber;
+		return mMinNum->MNumber;
 	}
 
 	template<typename T>
@@ -207,8 +207,8 @@ namespace assignment3
 		double average = GetAverage();
 		double deviationSquareSum = 0;
 
-		for (Node<T>* i = mHead; i != nullptr; i = i->mNext)
-			deviationSquareSum += std::pow(i->mNumber - average, 2);
+		for (Node<T>* i = mHead; i != nullptr; i = i->MNext)
+			deviationSquareSum += std::pow(i->MNumber - average, 2);
 
 		return std::round(deviationSquareSum / mCount * 1000) / 1000;
 	}
@@ -219,8 +219,8 @@ namespace assignment3
 		double average = GetAverage();
 		double standardDeviation = 0;
 
-		for (Node<T>* i = mHead; i != nullptr; i = i->mNext)
-			standardDeviation += std::pow(i->mNumber - average, 2);
+		for (Node<T>* i = mHead; i != nullptr; i = i->MNext)
+			standardDeviation += std::pow(i->MNumber - average, 2);
 
 		standardDeviation = sqrt(standardDeviation / mCount);
 
@@ -243,22 +243,22 @@ namespace assignment3
 
 		while (true)
 		{
-			if (j->mNext == nullptr)
+			if (j->MNext == nullptr)
 			{
 				mTail = i;
 				break;
 			}
 
-			i->mNext = new Node<T>(*j->mNext);
+			i->MNext = new Node<T>(*j->MNext);
 
 			if (j == copy.mMaxNum)
-				mMaxNum = i->mNext;
+				mMaxNum = i->MNext;
 
 			if (j == copy.mMinNum)
-				mMinNum = i->mNext; 
+				mMinNum = i->MNext; 
 
-			i = i->mNext;
-			j = j->mNext;
+			i = i->MNext;
+			j = j->MNext;
 		}
 	}
 }
