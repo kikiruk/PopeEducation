@@ -141,9 +141,9 @@ namespace assignment3
 		if (mTop == mMaxNum)
 		{
 			mMaxNum = nullptr;
+			T maxNum = std::numeric_limits<T>::min();
 			for (Node<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
 			{
-				T maxNum = std::numeric_limits<T>::min();
 				if (i->MNumber >= maxNum)
 				{
 					maxNum = i->MNumber;

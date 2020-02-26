@@ -33,7 +33,15 @@ int main()
 	assert(ss.Peek() == 9.2f);
 
 	float popped1 = ss.Pop();
-	float popped2 = ss.Pop();
+	float popped2 = ss.Pop(); //minnum
+	//ss.Pop();
+	//ss.Pop(); //minnum
+	//ss.Pop(); //minnum
+	//ss.Pop(); //maxnum
+	//ss.Pop();
+	//ss.Pop(); //maxnum
+	//ss.Pop(); //minnum
+	//ss.Pop(); //minnum,maxnum
 
 	assert(popped1 == 9.2f);
 	assert(popped2 == -12.4f);
