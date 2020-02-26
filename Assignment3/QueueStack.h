@@ -6,9 +6,9 @@ template<typename T>
 class StackNode
 {
 public:
-	StackNode(StackNode<T>* MNext) :
+	StackNode(StackNode<T>* next) :
 		MStack(),
-		MNext(MNext)
+		MNext(next)
 	{}
 
 	StackNode(const StackNode<T>& copy) :
@@ -26,7 +26,7 @@ namespace assignment3
 	class QueueStack
 	{
 	public:
-		QueueStack(unsigned int mMaxStackSize);
+		QueueStack(unsigned int maxStackSize);
 		~QueueStack();
 		QueueStack(const QueueStack<T>& copy);
 		const QueueStack<T>& operator=(const QueueStack<T>& copy);
@@ -48,19 +48,19 @@ namespace assignment3
 		StackNode<T>* mTail;
 		unsigned int mMaxStackSize;
 		unsigned int mCount;
-		unsigned int MStackCount;
+		unsigned int mStackCount;
 		T mSum;
 		Node<T>* mMaxNum;
 		Node<T>* mMinNum;
 	};
 
 	template<typename T>
-	QueueStack<T>::QueueStack(unsigned int mMaxStackSize) :
+	QueueStack<T>::QueueStack(unsigned int maxStackSize) :
 		mHead(nullptr),
 		mTail(nullptr),
-		mMaxStackSize(mMaxStackSize),
+		mMaxStackSize(maxStackSize),
 		mCount(0),
-		MStackCount(0),
+		mStackCount(0),
 		mSum(0),
 		mMaxNum(nullptr),
 		mMinNum(nullptr)
@@ -82,7 +82,7 @@ namespace assignment3
 	QueueStack<T>::QueueStack(const QueueStack<T>& copy) : 
 		mMaxStackSize(copy.mMaxStackSize),
 		mCount(copy.mCount),
-		MStackCount(copy.MStackCount),
+		mStackCount(copy.mStackCount),
 		mSum(copy.mSum)
 	{
 		copyFunc(copy);
@@ -102,7 +102,7 @@ namespace assignment3
 
 			mMaxStackSize = copy.mMaxStackSize;
 			mCount = copy.mCount;
-			MStackCount = copy.MStackCount;
+			mStackCount = copy.mStackCount;
 			mSum = copy.mSum;
 
 			copyFunc(copy);
@@ -117,7 +117,7 @@ namespace assignment3
 		if (mHead == nullptr)
 		{
 			mHead = mTail = new StackNode<T>(nullptr);
-			++MStackCount;
+			++mStackCount;
 
 			mTail->MStack.Push(number);
 
@@ -128,7 +128,7 @@ namespace assignment3
 			if (mTail->MStack.mCount == mMaxStackSize)
 			{
 				mTail->MNext = new StackNode<T>(nullptr);
-				++MStackCount;
+				++mStackCount;
 				mTail = mTail->MNext;
 			}
 
@@ -180,7 +180,7 @@ namespace assignment3
 				delete tmp;
 			}
 
-			--MStackCount;
+			--mStackCount;
 		}
 		else
 		{
@@ -260,7 +260,7 @@ namespace assignment3
 	template<typename T>
 	inline const unsigned int QueueStack<T>::GetStackCount() const
 	{
-		return MStackCount;
+		return mStackCount;
 	}
 	template<typename T>
 
