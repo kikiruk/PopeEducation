@@ -11,6 +11,8 @@ int main()
 {
 	SmartStack<float> ss;
 
+	cout << ss.GetMax() << endl;
+
 	ss.Push(3.4999f);
 	ss.Push(1.2f);
 	ss.Push(4.6555f);
