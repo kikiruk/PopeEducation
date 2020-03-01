@@ -1,8 +1,8 @@
 #pragma once
 #include <cassert>
-#include <limits>
 #include <cmath>
 
+#include "MinMaxNum.h"
 #include "Node.h"
 
 namespace assignment3
@@ -24,8 +24,8 @@ namespace assignment3
 		inline void Push(const T& data);
 		inline const T Pop();
 		inline const T& Peek() const;
-		inline const T& GetMax() const;
-		inline const T& GetMin() const;
+		inline const T GetMax() const;
+		inline const T GetMin() const;
 		inline const double GetAverage() const;
 		inline const T& GetSum() const;
 
@@ -127,7 +127,7 @@ namespace assignment3
 		if (mTop == mMinNum)
 		{
 			mMinNum = nullptr;
-			T minNum = std::numeric_limits<T>::max();
+			T minNum = MinMaxNum<T>::max();
 			for (Node<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
 			{
 				if (i->MNumber <= minNum)
@@ -141,7 +141,7 @@ namespace assignment3
 		if (mTop == mMaxNum)
 		{
 			mMaxNum = nullptr;
-			T maxNum = std::numeric_limits<T>::min();
+			T maxNum = MinMaxNum<T>::min();
 			for (Node<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
 			{
 				if (i->MNumber >= maxNum)
@@ -167,19 +167,19 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline const T& SmartStack<T>::GetMax() const
+	inline const T SmartStack<T>::GetMax() const
 	{
 		if (mMaxNum == nullptr)
-			return std::numeric_limits<T>::min();
+			return MinMaxNum<T>::min();
 
 		return mMaxNum->MNumber;
 	}
 
 	template<typename T>
-	inline const T& SmartStack<T>::GetMin() const
+	inline const T SmartStack<T>::GetMin() const
 	{
 		if (mMinNum == nullptr)
-			return std::numeric_limits<T>::max();
+			return MinMaxNum<T>::max();
 
 		return mMinNum->MNumber;
 	}

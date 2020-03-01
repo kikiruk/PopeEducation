@@ -34,8 +34,8 @@ namespace assignment3
 		inline void Enqueue(const T& number);
 		inline const T& Peek() const;
 		inline const T Dequeue();
-		inline const T& GetMax() const;
-		inline const T& GetMin() const;
+		inline const T GetMax() const;
+		inline const T GetMin() const;
 		inline const double GetAverage() const;
 		inline const T& GetSum() const;
 		inline const unsigned int GetCount() const;
@@ -190,7 +190,7 @@ namespace assignment3
 		if (bFindMinNum)
 		{
 			mMinNum = nullptr;
-			T minNum = std::numeric_limits<T>::max();
+			T minNum = MinMaxNum<T>::max();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->MNext)
 			{
 				if (minNum >= i->MStack.mMinNum->MNumber)
@@ -204,7 +204,7 @@ namespace assignment3
 		if (bFindMaxNum)
 		{
 			mMaxNum = nullptr;
-			T maxNum = std::numeric_limits<T>::min();
+			T maxNum = MinMaxNum<T>::min();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->MNext)
 			{
 				if (maxNum <= i->MStack.mMaxNum->MNumber)
@@ -222,19 +222,19 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline const T& QueueStack<T>::GetMax() const
+	inline const T QueueStack<T>::GetMax() const
 	{
 		if (mMaxNum == nullptr)
-			return std::numeric_limits<T>::min();
+			return MinMaxNum<T>::min();
 
 		return mMaxNum->MNumber;
 	}
 
 	template<typename T>
-	inline const T& QueueStack<T>::GetMin() const
+	inline const T QueueStack<T>::GetMin() const
 	{
 		if (mMinNum == nullptr)
-			return std::numeric_limits<T>::max();
+			return MinMaxNum<T>::max();
 
 		return mMinNum->MNumber;
 	}

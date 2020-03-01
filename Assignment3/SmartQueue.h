@@ -1,7 +1,7 @@
 #pragma once
-#include <limits>
 #include <cmath>
 
+#include "MinMaxNum.h"
 #include "Node.h"
 
 namespace assignment3
@@ -18,8 +18,8 @@ namespace assignment3
 		inline void Enqueue(const T& number);
 		inline const T& Peek() const;
 		inline const T Dequeue();
-		inline const T& GetMax() const;
-		inline const T& GetMin() const;
+		inline const T GetMax() const;
+		inline const T GetMin() const;
 		inline const double GetAverage() const;
 		inline const T& GetSum() const;
 		inline const double GetVariance() const;
@@ -127,7 +127,7 @@ namespace assignment3
 		if (mMaxNum == mHead)
 		{
 			mMaxNum = nullptr;
-			T minNum = std::numeric_limits<T>::max();
+			T minNum = MinMaxNum<T>::max();
 			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
 				if (minNum >= i->MNumber)
@@ -141,7 +141,7 @@ namespace assignment3
 		if (mMinNum == mHead)
 		{
 			mMinNum = nullptr;
-			T maxNum = std::numeric_limits<T>::min();
+			T maxNum = MinMaxNum<T>::min();
 			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
 				if (maxNum <= i->MNumber)
@@ -172,19 +172,19 @@ namespace assignment3
 	}
 
 	template<typename T>
-	inline const T& SmartQueue<T>::GetMax() const
+	inline const T SmartQueue<T>::GetMax() const
 	{
 		if (mHead == nullptr)
-			return std::numeric_limits<T>::min();
+			return MinMaxNum<T>::min();
 
 		return mMaxNum->MNumber;
 	}
 
 	template<typename T>
-	inline const T& SmartQueue<T>::GetMin() const
+	inline const T SmartQueue<T>::GetMin() const
 	{
 		if (mHead == nullptr)
-			return std::numeric_limits<T>::max();
+			return MinMaxNum<T>::max();
 
 		return mMinNum->MNumber;
 	}

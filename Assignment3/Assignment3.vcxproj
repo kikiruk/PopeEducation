@@ -76,6 +76,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MinMaxNum.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="QueueStack.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
