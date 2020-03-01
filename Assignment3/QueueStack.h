@@ -162,7 +162,7 @@ namespace assignment3
 			bFindMaxNum = true;
 
 		if (mHead->MStack.mTop == mMinNum)
-			bFindMinNum = false;
+			bFindMinNum = true;
 
 		T answer = mHead->MStack.mTop->MNumber;
 

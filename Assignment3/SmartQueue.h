@@ -124,9 +124,9 @@ namespace assignment3
 	{
 		T answer = mHead->MNumber;
 
-		if (mMaxNum == mHead)
+		if (mMinNum == mHead)
 		{
-			mMaxNum = nullptr;
+			mMinNum = nullptr;
 			T minNum = MinMaxNum<T>::max();
 			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
@@ -138,9 +138,9 @@ namespace assignment3
 			}
 		}
 
-		if (mMinNum == mHead)
+		if (mMaxNum == mHead)
 		{
-			mMinNum = nullptr;
+			mMaxNum = nullptr;
 			T maxNum = MinMaxNum<T>::min();
 			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
