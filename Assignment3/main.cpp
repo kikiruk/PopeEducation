@@ -9,16 +9,12 @@ using namespace std;
 
 int main()
 {
-	SmartQueue<int> ss;
+	QueueStack<int> ss(3);
 	ss.Enqueue(1);
 
-	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
 	ss.Enqueue(1);
-	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
 	ss.Enqueue(-2);
-	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
 	ss.Enqueue(3);
-	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
 	ss.Enqueue(1);
 	ss.Enqueue(1);
 	ss.Enqueue(1);
@@ -27,17 +23,20 @@ int main()
 	ss.Enqueue(1);
 	ss.Enqueue(1);
 	ss.Enqueue(1);
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	ss.Dequeue();
-	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+
+	QueueStack<int> tt(ss);
+
+
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
+	ss.Dequeue(); 	cout << ss.GetMin() << " < " << ss.GetMax() << endl;
 }
