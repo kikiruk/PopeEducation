@@ -33,6 +33,7 @@ namespace assignment3
 		Node<T>* mTail;
 		unsigned int mCount;
 		T mSum;
+		T mSumOfSquared;
 		Node<T>* mMaxNum;
 		Node<T>* mMinNum;
 	};
@@ -43,6 +44,7 @@ namespace assignment3
 		mTail(nullptr),
 		mCount(0),
 		mSum(0),
+		mSumOfSquared(0),
 		mMaxNum(nullptr),
 		mMinNum(nullptr) 
 	{
@@ -62,7 +64,8 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue<T>& copy)	:
 		mCount(copy.mCount),
-		mSum(copy.mSum)
+		mSum(copy.mSum),
+		mSumOfSquared(copy.mSumOfSquared)
 	{
 		copyFunc(copy);
 	}
@@ -81,6 +84,7 @@ namespace assignment3
 
 			mCount = copy.mCount;
 			mSum = copy.mSum;
+			mSumOfSquared = copy.mSumOfSquared;
 
 			copyFunc(copy);
 		}
@@ -109,6 +113,7 @@ namespace assignment3
 		}
 
 		mSum += number;
+		mSumOfSquared += std::pow(number, 2);
 		++mCount;
 
 	}
@@ -165,6 +170,7 @@ namespace assignment3
 		}
 
 		mSum -= answer;
+		mSumOfSquared -= std::pow(answer, 2);
 		--mCount;
 
 
@@ -205,10 +211,7 @@ namespace assignment3
 	inline const double SmartQueue<T>::GetVariance() const
 	{
 		double average = GetAverage();
-		double deviationSquareSum = 0;
-
-		for (Node<T>* i = mHead; i != nullptr; i = i->MNext)
-			deviationSquareSum += std::pow(i->MNumber - average, 2);
+		double deviationSquareSum = (mSumOfSquared / mCount) - std::pow((average), 2);
 
 		return std::round(deviationSquareSum / mCount * 1000) / 1000;
 	}
@@ -216,15 +219,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartQueue<T>::GetStandardDeviation() const
 	{
-		double average = GetAverage();
-		double standardDeviation = 0;
-
-		for (Node<T>* i = mHead; i != nullptr; i = i->MNext)
-			standardDeviation += std::pow(i->MNumber - average, 2);
-
-		standardDeviation = sqrt(standardDeviation / mCount);
-
-		return std::round(standardDeviation * 1000) / 1000;
+		return std::sqrt(GetVariance());
 	}
 
 	template<typename T>

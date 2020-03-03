@@ -39,6 +39,7 @@ namespace assignment3
 		Node<T>* mTop;
 		unsigned int mCount;
 		T mSum;
+		T mSumOfSquared;
 		Node<T>* mMaxNum;
 		Node<T>* mMinNum;
 	};
@@ -50,6 +51,7 @@ namespace assignment3
 		mTop(nullptr),
 		mCount(0),
 		mSum(0),
+		mSumOfSquared(0),
 		mMaxNum(nullptr),
 		mMinNum(nullptr)
 	{
@@ -58,7 +60,8 @@ namespace assignment3
 	template<typename T>
 	inline SmartStack<T>::SmartStack(const SmartStack<T>& copy) :
 		mCount(copy.mCount),
-		mSum(copy.mSum)
+		mSum(copy.mSum),
+		mSumOfSquared(copy.mSumOfSquared)
 	{
 		copyFunc(copy);
 	}
@@ -88,6 +91,7 @@ namespace assignment3
 
 			mCount = copy.mCount;
 			mSum = copy.mSum;
+			mSumOfSquared = copy.mSumOfSquared;
 
 			copyFunc(copy);
 		}
@@ -99,6 +103,7 @@ namespace assignment3
 	inline void SmartStack<T>::Push(const T& data)
 	{
 		mSum += data;
+		mSumOfSquared += std::pow(data, 2);
 		++mCount;
 
 		if (mTop == nullptr)
@@ -122,6 +127,7 @@ namespace assignment3
 	inline const T SmartStack<T>::Pop()
 	{
 		mSum -= mTop->MNumber;
+		mSumOfSquared -= std::pow(mTop->MNumber, 2);
 		--mCount;
 
 		if (mTop == mMinNum)
@@ -200,10 +206,7 @@ namespace assignment3
 	inline const double SmartStack<T>::GetVariance() const
 	{
 		double average = GetAverage();
-		double deviationSquareSum = 0;
-
-		for (Node<T>* i = mTop; i != nullptr; i = i->MNext)
-			deviationSquareSum += std::pow(i->MNumber - average, 2);
+		double deviationSquareSum = (mSumOfSquared / mCount) - std::pow((average), 2);
 
 		return std::round(deviationSquareSum / mCount * 1000) / 1000;
 	}
@@ -211,15 +214,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartStack<T>::GetStandardDeviation() const
 	{
-		double average = GetAverage();
-		double standardDeviation = 0;
-
-		for (Node<T>* i = mTop; i != nullptr; i = i->MNext)
-			standardDeviation += std::pow(i->MNumber - average, 2);
-
-		standardDeviation = sqrt(standardDeviation / mCount);
-
-		return std::round(standardDeviation * 1000) / 1000;
+		return std::sqrt(GetVariance());
 	}
 
 	template<typename T>
