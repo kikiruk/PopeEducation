@@ -173,7 +173,6 @@ namespace assignment3
 		mSumOfSquared -= std::pow(answer, 2);
 		--mCount;
 
-
 		return answer;
 	}
 
@@ -210,16 +209,18 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartQueue<T>::GetVariance() const
 	{
-		double average = GetAverage();
-		double deviationSquareSum = (mSumOfSquared / mCount) - std::pow((average), 2);
+		double deviationSquareSum = (mSumOfSquared / mCount) - std::pow((mSum / mCount), 2);
 
-		return std::round(deviationSquareSum / mCount * 1000) / 1000;
+		return std::round(deviationSquareSum * 1000) / 1000;
 	}
 
 	template<typename T>
 	inline const double SmartQueue<T>::GetStandardDeviation() const
 	{
-		return std::sqrt(GetVariance());
+		double standardDeviation = (mSumOfSquared / mCount) - std::pow((mSum / mCount), 2);
+		standardDeviation = std::sqrt(standardDeviation);
+
+		return std::round(standardDeviation * 1000) / 1000;
 	}
 
 	template<typename T>
