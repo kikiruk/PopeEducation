@@ -231,8 +231,8 @@ namespace assignment3
 	template<typename T>
 	inline void SmartStack<T>::copyFunc(const SmartStack<T>& copy)
 	{
-		Node<T> Tmp(0, nullptr);
-		Node<T>* j = &Tmp;
+		Node<T> tmp(0, nullptr);
+		Node<T>* j = &tmp;
 		Node<T>* i = copy.mTop;
 
 		for (; i != nullptr; i = i->MNext, j = j->MNext)
