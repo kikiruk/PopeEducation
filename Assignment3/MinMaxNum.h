@@ -8,30 +8,30 @@ namespace assignment3
 	class MinMaxNum
 	{
 	public:
-		static T Min();
-		static T Max();
+		static T GetMin();
+		static T GetMax();
 	};
 
 	template<typename T>
-	inline T MinMaxNum<T>::Min()
+	inline T MinMaxNum<T>::GetMin()
 	{
 		return std::numeric_limits<T>::min();
 	}
 
 	template<typename T>
-	inline T MinMaxNum<T>::Max()
+	inline T MinMaxNum<T>::GetMax()
 	{
 		return std::numeric_limits<T>::max();
 	}
 
 	template<>
-	inline float MinMaxNum<float>::Min()
+	inline float MinMaxNum<float>::GetMin()
 	{
 		return -FLT_MAX;
 	}
 
 	template<>
-	inline double MinMaxNum<double>::Min()
+	inline double MinMaxNum<double>::GetMin()
 	{
 		return -DBL_MAX;
 	}

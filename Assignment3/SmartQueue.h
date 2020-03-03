@@ -127,7 +127,7 @@ namespace assignment3
 		if (mMinNum == mHead)
 		{
 			mMinNum = nullptr;
-			T minNum = MinMaxNum<T>::Max();
+			T minNum = MinMaxNum<T>::GetMax();
 			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
 				if (minNum >= i->MNumber)
@@ -141,7 +141,7 @@ namespace assignment3
 		if (mMaxNum == mHead)
 		{
 			mMaxNum = nullptr;
-			T maxNum = MinMaxNum<T>::Min();
+			T maxNum = MinMaxNum<T>::GetMin();
 			for (Node<T>* i = mHead->MNext; i != nullptr; i = i->MNext)
 			{
 				if (maxNum <= i->MNumber)
@@ -175,7 +175,7 @@ namespace assignment3
 	inline const T SmartQueue<T>::GetMax() const
 	{
 		if (mHead == nullptr)
-			return MinMaxNum<T>::Min();
+			return MinMaxNum<T>::GetMin();
 
 		return mMaxNum->MNumber;
 	}
@@ -184,7 +184,7 @@ namespace assignment3
 	inline const T SmartQueue<T>::GetMin() const
 	{
 		if (mHead == nullptr)
-			return MinMaxNum<T>::Max();
+			return MinMaxNum<T>::GetMax();
 
 		return mMinNum->MNumber;
 	}

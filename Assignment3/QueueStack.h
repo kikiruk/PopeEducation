@@ -190,7 +190,7 @@ namespace assignment3
 		if (bFindMinNum)
 		{
 			mMinNum = nullptr;
-			T minNum = MinMaxNum<T>::Max();
+			T minNum = MinMaxNum<T>::GetMax();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->MNext)
 			{
 				if (minNum >= i->MStack.mMinNum->MNumber)
@@ -204,7 +204,7 @@ namespace assignment3
 		if (bFindMaxNum)
 		{
 			mMaxNum = nullptr;
-			T maxNum = MinMaxNum<T>::Min();
+			T maxNum = MinMaxNum<T>::GetMin();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->MNext)
 			{
 				if (maxNum <= i->MStack.mMaxNum->MNumber)
@@ -225,7 +225,7 @@ namespace assignment3
 	inline const T QueueStack<T>::GetMax() const
 	{
 		if (mMaxNum == nullptr)
-			return MinMaxNum<T>::Min();
+			return MinMaxNum<T>::GetMin();
 
 		return mMaxNum->MNumber;
 	}
@@ -234,7 +234,7 @@ namespace assignment3
 	inline const T QueueStack<T>::GetMin() const
 	{
 		if (mMinNum == nullptr)
-			return MinMaxNum<T>::Max();
+			return MinMaxNum<T>::GetMax();
 
 		return mMinNum->MNumber;
 	}
