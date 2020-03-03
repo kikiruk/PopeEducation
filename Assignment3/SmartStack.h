@@ -39,7 +39,7 @@ namespace assignment3
 		Node<T>* mTop;
 		unsigned int mCount;
 		T mSum;
-		T mSumOfSquared;
+		double mSumOfSquared;
 		Node<T>* mMaxNum;
 		Node<T>* mMinNum;
 	};
@@ -103,7 +103,7 @@ namespace assignment3
 	inline void SmartStack<T>::Push(const T& data)
 	{
 		mSum += data;
-		mSumOfSquared += static_cast<T>(std::pow(data, 2));
+		mSumOfSquared += std::pow(data, 2);
 		++mCount;
 
 		if (mTop == nullptr)
@@ -127,7 +127,7 @@ namespace assignment3
 	inline const T SmartStack<T>::Pop()
 	{
 		mSum -= mTop->MNumber;
-		mSumOfSquared -= static_cast<T>(std::pow(mTop->MNumber, 2));
+		mSumOfSquared -= std::pow(mTop->MNumber, 2);
 		--mCount;
 
 		if (mTop == mMinNum)
@@ -205,7 +205,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartStack<T>::GetVariance() const
 	{
-		double deviationSquareSum = (static_cast<double>(mSumOfSquared) / mCount) -
+		double deviationSquareSum = (mSumOfSquared / mCount) -
 			std::pow((static_cast<double>(mSum) / mCount), 2);
 
 		return std::round(deviationSquareSum * 1000) / 1000;
@@ -214,7 +214,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartStack<T>::GetStandardDeviation() const
 	{
-		double standardDeviation = (static_cast<double>(mSumOfSquared) / mCount) -
+		double standardDeviation = (mSumOfSquared / mCount) -
 			std::pow((static_cast<double>(mSum) / mCount), 2);
 		standardDeviation = std::sqrt(standardDeviation);
 

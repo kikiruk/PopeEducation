@@ -33,7 +33,7 @@ namespace assignment3
 		Node<T>* mTail;
 		unsigned int mCount;
 		T mSum;
-		T mSumOfSquared;
+		double mSumOfSquared;
 		Node<T>* mMaxNum;
 		Node<T>* mMinNum;
 	};
@@ -113,7 +113,7 @@ namespace assignment3
 		}
 
 		mSum += number;
-		mSumOfSquared += static_cast<T>(std::pow(number, 2));
+		mSumOfSquared += std::pow(number, 2);
 		++mCount;
 
 	}
@@ -170,7 +170,7 @@ namespace assignment3
 		}
 
 		mSum -= answer;
-		mSumOfSquared -= static_cast<T>(std::pow(answer, 2));
+		mSumOfSquared -= std::pow(answer, 2);
 		--mCount;
 
 		return answer;
@@ -209,7 +209,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartQueue<T>::GetVariance() const
 	{
-		double deviationSquareSum = (static_cast<double>(mSumOfSquared) / mCount) -
+		double deviationSquareSum = (mSumOfSquared / mCount) -
 			std::pow((static_cast<double>(mSum) / mCount), 2);
 
 		return std::round(deviationSquareSum * 1000) / 1000;
@@ -218,7 +218,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartQueue<T>::GetStandardDeviation() const
 	{
-		double standardDeviation = (static_cast<double>(mSumOfSquared) / mCount) -
+		double standardDeviation = (mSumOfSquared / mCount) -
 			std::pow((static_cast<double>(mSum) / mCount), 2);
 		standardDeviation = std::sqrt(standardDeviation);
 
