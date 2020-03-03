@@ -103,7 +103,7 @@ namespace assignment3
 	inline void SmartStack<T>::Push(const T& data)
 	{
 		mSum += data;
-		mSumOfSquared += std::pow(data, 2);
+		mSumOfSquared += static_cast<T>(std::pow(data, 2));
 		++mCount;
 
 		if (mTop == nullptr)
@@ -127,7 +127,7 @@ namespace assignment3
 	inline const T SmartStack<T>::Pop()
 	{
 		mSum -= mTop->MNumber;
-		mSumOfSquared -= std::pow(mTop->MNumber, 2);
+		mSumOfSquared -= static_cast<T>(std::pow(mTop->MNumber, 2));
 		--mCount;
 
 		if (mTop == mMinNum)

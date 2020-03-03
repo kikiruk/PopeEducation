@@ -113,7 +113,7 @@ namespace assignment3
 		}
 
 		mSum += number;
-		mSumOfSquared += std::pow(number, 2);
+		mSumOfSquared += static_cast<T>(std::pow(number, 2));
 		++mCount;
 
 	}
@@ -170,7 +170,7 @@ namespace assignment3
 		}
 
 		mSum -= answer;
-		mSumOfSquared -= std::pow(answer, 2);
+		mSumOfSquared -= static_cast<T>(std::pow(answer, 2));
 		--mCount;
 
 		return answer;
