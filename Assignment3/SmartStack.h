@@ -205,7 +205,8 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartStack<T>::GetVariance() const
 	{
-		double deviationSquareSum = (mSumOfSquared / mCount) - std::pow((mSum / mCount), 2);
+		double deviationSquareSum = (static_cast<double>(mSumOfSquared) / mCount) -
+			std::pow((mSum / mCount), 2);
 
 		return std::round(deviationSquareSum * 1000) / 1000;
 	}
@@ -213,7 +214,8 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartStack<T>::GetStandardDeviation() const
 	{
-		double standardDeviation = (mSumOfSquared / mCount) - std::pow((mSum / mCount), 2);
+		double standardDeviation = (static_cast<double>(mSumOfSquared) / mCount) -
+			std::pow((mSum / mCount), 2);
 		standardDeviation = std::sqrt(standardDeviation);
 
 		return std::round(standardDeviation * 1000) / 1000;
