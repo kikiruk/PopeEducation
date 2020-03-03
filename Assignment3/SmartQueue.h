@@ -210,7 +210,7 @@ namespace assignment3
 	inline const double SmartQueue<T>::GetVariance() const
 	{
 		double deviationSquareSum = (static_cast<double>(mSumOfSquared) / mCount) -
-			std::pow((mSum / mCount), 2);
+			std::pow((static_cast<double>(mSum) / mCount), 2);
 
 		return std::round(deviationSquareSum * 1000) / 1000;
 	}
@@ -219,7 +219,7 @@ namespace assignment3
 	inline const double SmartQueue<T>::GetStandardDeviation() const
 	{
 		double standardDeviation = (static_cast<double>(mSumOfSquared) / mCount) -
-			std::pow((mSum / mCount), 2);
+			std::pow((static_cast<double>(mSum) / mCount), 2);
 		standardDeviation = std::sqrt(standardDeviation);
 
 		return std::round(standardDeviation * 1000) / 1000;
