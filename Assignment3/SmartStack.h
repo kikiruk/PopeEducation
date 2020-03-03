@@ -127,7 +127,7 @@ namespace assignment3
 		if (mTop == mMinNum)
 		{
 			mMinNum = nullptr;
-			T minNum = MinMaxNum<T>::max();
+			T minNum = MinMaxNum<T>::Max();
 			for (Node<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
 			{
 				if (i->MNumber <= minNum)
@@ -141,7 +141,7 @@ namespace assignment3
 		if (mTop == mMaxNum)
 		{
 			mMaxNum = nullptr;
-			T maxNum = MinMaxNum<T>::min();
+			T maxNum = MinMaxNum<T>::Min();
 			for (Node<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
 			{
 				if (i->MNumber >= maxNum)
@@ -170,7 +170,7 @@ namespace assignment3
 	inline const T SmartStack<T>::GetMax() const
 	{
 		if (mMaxNum == nullptr)
-			return MinMaxNum<T>::min();
+			return MinMaxNum<T>::Min();
 
 		return mMaxNum->MNumber;
 	}
@@ -179,7 +179,7 @@ namespace assignment3
 	inline const T SmartStack<T>::GetMin() const
 	{
 		if (mMinNum == nullptr)
-			return MinMaxNum<T>::max();
+			return MinMaxNum<T>::Max();
 
 		return mMinNum->MNumber;
 	}
