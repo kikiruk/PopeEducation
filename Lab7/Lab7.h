@@ -13,7 +13,7 @@ namespace lab7
 	{
 		std::map<K, V> m;
 
-		size_t roop = std::min(keys.size(),values.size());
+		size_t roop = std::min(keys.size(), values.size());
 
 		for (size_t i = 0; i < roop; i++)
 			m.insert(std::pair<K, V>(keys[i], values[i]));
@@ -55,7 +55,8 @@ namespace lab7
 		{
 			rv.push_back(v[i]);
 
-			if (i == 0) break;
+			if (i == 0) 
+				break;
 		}
 
 		return rv;
@@ -68,7 +69,7 @@ namespace lab7
 		std::set<T> duplicateCheck;
 		combined.reserve(v1.capacity() + v2.capacity());
 
-		const std::vector<T>* vectors[2] = { &v1,&v2 };
+		const std::vector<T>* vectors[2] = { &v1, &v2 };
 		size_t roop = 0;
 		for (size_t i = 0; i < 2; i++)
 		{
