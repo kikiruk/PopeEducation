@@ -73,7 +73,7 @@ namespace lab7
 		for (size_t i = 0; i < 2; i++)
 		{
 			roop = vectors[i]->size();
-			for (int j = 0; j < roop; j++)
+			for (size_t j = 0; j < roop; j++)
 			{
 				if (duplicateCheck.insert((*vectors[i])[j]).second)
 				{
