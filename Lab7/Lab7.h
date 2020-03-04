@@ -25,7 +25,7 @@ namespace lab7
 	std::vector<K> GetKeys(const std::map<K, V>& m)
 	{
 		std::vector<K> v;
-		v.reserve(m.capacity());
+		v.reserve(m.size());
 
 		for (auto i = m.begin(); i != m.end(); i++)
 			v.push_back(i->first);
@@ -37,7 +37,7 @@ namespace lab7
 	std::vector<V> GetValues(const std::map<K, V>& m)
 	{
 		std::vector<V> v;
-		v.reserve(m.capacity());
+		v.reserve(m.size());
 
 		for (auto i = m.begin(); i != m.end(); i++)
 			v.push_back(i->second);
@@ -51,8 +51,12 @@ namespace lab7
 		std::vector<T> rv;
 		rv.reserve(v.capacity());
 
-		for (size_t i = v.size() - 1; i >= 0; i--)
+		for (size_t i = v.size() - 1; true; i--)
+		{
 			rv.push_back(v[i]);
+
+			if (i == 0) break;
+		}
 
 		return rv;
 	}
