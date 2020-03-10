@@ -22,22 +22,22 @@ namespace lab8
 		const size_t GetCapacity() const;
 
 	private:
-		uint32_t size;
-		T arr[N];
+		uint32_t mSize;
+		T mArr[N];
 	};
 
 	template<class T, size_t N>
 	inline FixedVector<T, N>::FixedVector() :
-		size(0)
+		mSize(0)
 	{
-		memset(arr, 0, sizeof(T) * N);
+		memset(mArr, 0, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
 	inline FixedVector<T, N>::FixedVector(const FixedVector& copy) :
-		size(copy.size)
+		mSize(copy.mSize)
 	{
-		memset(arr, 0, sizeof(T) * N);
+		memset(mArr, 0, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
@@ -45,7 +45,7 @@ namespace lab8
 	{
 		if (this != &copy)
 		{
-			size = copy.size;
+			mSize = copy.mSize;
 		}
 
 		return *this;
@@ -54,10 +54,10 @@ namespace lab8
 	template<class T, uint32_t N>
 	inline bool FixedVector<T, N>::Add(const T& data)
 	{
-		if (size == N)
+		if (mSize == N)
 			return false;
 
-		arr[size++] = data;
+		mArr[mSize++] = data;
 
 		return true;
 	}
@@ -67,11 +67,12 @@ namespace lab8
 	{
 		for (uint32_t i = 0; i < N; i++)
 		{
-			if (arr[i] == data)
+			if (mArr[i] == data)
 			{
-				memcpy(arr + i, arr + i + 1, sizeof(T) * (N - (i + 1)));
-				memset(arr + size, 0, sizeof(T));
-				--size;
+				if(i != mSize - 1)
+					memcpy(mArr + i, mArr + i + 1, sizeof(T) * (N - (i + 1)));
+
+				memset(mArr + --mSize, 0, sizeof(T));
 				return true;
 			}
 		}
@@ -82,13 +83,13 @@ namespace lab8
 	template<class T, uint32_t N>
 	inline const T& FixedVector<T, N>::Get(const uint32_t index) const
 	{
-		return arr[index];
+		return mArr[index];
 	}
 
 	template<class T, uint32_t N>
 	inline T& FixedVector<T, N>::operator[](const uint32_t index)
 	{
-		return arr[index];
+		return mArr[index];
 	}
 
 	template<class T, uint32_t N>
@@ -96,7 +97,7 @@ namespace lab8
 	{
 		for (uint32_t i = 0; i < N; i++)
 		{
-			if (arr[i] == data)
+			if (mArr[i] == data)
 				return i;
 		}
 
@@ -106,7 +107,7 @@ namespace lab8
 	template<class T, uint32_t N>
 	inline const size_t FixedVector<T, N>::GetSize() const
 	{
-		return size;
+		return mSize;
 	}
 
 	template<class T, uint32_t N>
