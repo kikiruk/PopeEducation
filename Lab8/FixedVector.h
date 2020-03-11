@@ -22,20 +22,23 @@ namespace lab8
 		const size_t GetCapacity() const;
 
 	private:
+		const uint32_t mMax;
 		uint32_t mSize;
 		T mArr[N];
 	};
 
 	template<class T, size_t N>
 	inline FixedVector<T, N>::FixedVector() :
-		mSize(0)
+		mSize(0),
+		mMax(N)
 	{
 		memset(mArr, 0, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
 	inline FixedVector<T, N>::FixedVector(const FixedVector& copy) :
-		mSize(copy.mSize)
+		mSize(copy.mSize),
+		mMax(copy.N)
 	{
 		memset(mArr, 0, sizeof(T) * N);
 	}
@@ -46,6 +49,7 @@ namespace lab8
 		if (this != &copy)
 		{
 			mSize = copy.mSize;
+			mMax = copy.mMax;
 		}
 
 		return *this;
@@ -69,7 +73,7 @@ namespace lab8
 		{
 			if (mArr[i] == data)
 			{
-				if(i != mSize - 1)
+				if (i != mSize - 1)
 					memcpy(mArr + i, mArr + i + 1, sizeof(T) * (N - (i + 1)));
 
 				memset(mArr + --mSize, 0, sizeof(T));
