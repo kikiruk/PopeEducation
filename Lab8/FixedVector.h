@@ -14,6 +14,7 @@ namespace lab8
 		const FixedVector& operator=(const FixedVector& copy);
 
 		bool Add(const T& data);
+		bool Add(const bool& data);
 		bool Remove(const T& data);
 		const T& Get(const uint32_t index) const;
 		T& operator[](const uint32_t index);
@@ -57,6 +58,17 @@ namespace lab8
 
 	template<class T, uint32_t N>
 	inline bool FixedVector<T, N>::Add(const T& data)
+	{
+		if (mSize == N)
+			return false;
+
+		mArr[mSize++] = data;
+
+		return true;
+	}
+
+	template<uint32_t N>
+	inline bool FixedVector<bool ,N>::Add(const bool& data)
 	{
 		if (mSize == N)
 			return false;

@@ -3,16 +3,9 @@
 
 namespace lab8
 {
-	template<uint32_t N>
-	inline bool FixedVector<bool, N>::Add(const bool& data)
-	{
-		if (mSize == N)
-			return false;
-		
-		mArr[mSize++] = data;
-		
-		return true;
-	}
+	
+
+
 
 	//template<class T, uint32_t N>
 	//inline bool FixedVector<T, N>::Remove(const T & data)
