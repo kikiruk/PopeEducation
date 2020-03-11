@@ -20,7 +20,7 @@ namespace lab8
 	
 	private:
 		uint32_t mSize;
-		int mArr[N];
+		bool mArr[N];
 	};
 	
 	template<size_t N>
