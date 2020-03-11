@@ -14,7 +14,6 @@ namespace lab8
 		const FixedVector& operator=(const FixedVector& copy);
 
 		bool Add(const T& data);
-		bool Add(const bool& data);
 		bool Remove(const T& data);
 		const T& Get(const uint32_t index) const;
 		T& operator[](const uint32_t index);
@@ -23,25 +22,22 @@ namespace lab8
 		const size_t GetCapacity() const;
 
 	private:
-		const uint32_t mMax;
 		uint32_t mSize;
 		T mArr[N];
 	};
 
 	template<class T, size_t N>
 	inline FixedVector<T, N>::FixedVector() :
-		mSize(0),
-		mMax(N)
+		mSize(0)
 	{
 		memset(mArr, 0, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
 	inline FixedVector<T, N>::FixedVector(const FixedVector& copy) :
-		mSize(copy.mSize),
-		mMax(copy.N)
+		mSize(copy.mSize)
 	{
-		memset(mArr, 0, sizeof(T) * N);
+		memcpy(mArr, copy.mArr, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
@@ -50,7 +46,7 @@ namespace lab8
 		if (this != &copy)
 		{
 			mSize = copy.mSize;
-			mMax = copy.mMax;
+			memcpy(mArr, copy.mArr, sizeof(T) * N);
 		}
 
 		return *this;
@@ -67,16 +63,7 @@ namespace lab8
 		return true;
 	}
 
-	template<uint32_t N>
-	inline bool FixedVector<bool ,N>::Add(const bool& data)
-	{
-		if (mSize == N)
-			return false;
 
-		mArr[mSize++] = data;
-
-		return true;
-	}
 
 	template<class T, uint32_t N>
 	inline bool FixedVector<T, N>::Remove(const T& data)
@@ -108,6 +95,7 @@ namespace lab8
 		return mArr[index];
 	}
 
+
 	template<class T, uint32_t N>
 	inline const int FixedVector<T, N>::GetIndex(const T& data) const
 	{
@@ -131,5 +119,4 @@ namespace lab8
 	{
 		return N;
 	}
-
 }
