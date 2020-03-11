@@ -9,9 +9,9 @@ namespace lab8
 	class FixedVector
 	{
 	public:
-		FixedVector();
-		FixedVector(const FixedVector& copy);
-		const FixedVector& operator=(const FixedVector& copy);
+		FixedVector<T, N>();
+		FixedVector<T, N>(const FixedVector<T, N>& copy);
+		const FixedVector<T, N>& operator=(const FixedVector<T, N>& copy);
 
 		bool Add(const T& data);
 		bool Remove(const T& data);
@@ -27,21 +27,21 @@ namespace lab8
 	};
 
 	template<class T, size_t N>
-	inline FixedVector<T, N>::FixedVector() :
+	inline FixedVector<T, N>::FixedVector<T, N>() :
 		mSize(0)
 	{
 		memset(mArr, 0, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
-	inline FixedVector<T, N>::FixedVector(const FixedVector& copy) :
+	inline FixedVector<T, N>::FixedVector<T, N>(const FixedVector<T, N>& copy) :
 		mSize(copy.mSize)
 	{
 		memcpy(mArr, copy.mArr, sizeof(T) * N);
 	}
 
 	template<class T, size_t N>
-	const FixedVector<T, N>& FixedVector<T, N>::operator=(const FixedVector& copy)
+	const FixedVector<T, N>& FixedVector<T, N>::operator=(const FixedVector<T, N>& copy)
 	{
 		if (this != &copy)
 		{

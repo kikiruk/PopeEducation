@@ -7,8 +7,8 @@ namespace lab8
 	{
 	public:
 		FixedVector<bool, N>();
-		FixedVector(const FixedVector& copy);
-		const FixedVector& operator=(const FixedVector& copy);
+		FixedVector<bool, N>(const FixedVector<bool, N>& copy);
+		const FixedVector<bool, N>& operator=(const FixedVector<bool, N>& copy);
 		
 		bool Add(const bool data);
 		bool Remove(const bool data);
@@ -24,21 +24,21 @@ namespace lab8
 	};
 	
 	template<size_t N>
-	inline FixedVector<bool, N>::FixedVector() :
+	inline FixedVector<bool, N>::FixedVector<bool, N>() :
 		mSize(0)
 	{
 		memset(mArr, 0, sizeof(bool) * N);
 	}
 	
 	template<size_t N>
-	inline FixedVector<bool, N>::FixedVector(const FixedVector& copy) :
+	inline FixedVector<bool, N>::FixedVector<bool, N>(const FixedVector<bool, N>& copy) :
 		mSize(copy.mSize)
 	{
 		memcpy(mArr, copy.mArr, sizeof(bool) * N);
 	}
 	
 	template<size_t N>
-	const FixedVector<bool, N>& FixedVector<bool, N>::operator=(const FixedVector& copy)
+	const FixedVector<bool, N>& FixedVector<bool, N>::operator=(const FixedVector<bool, N>& copy)
 	{
 		if (this != &copy)
 		{
