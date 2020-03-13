@@ -68,11 +68,11 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::Remove(const bool data)
 	{
-		for (uint32_t i = 0; i < mSize; i++)
+		for (uint32_t i = 0; i < mSize % 32; i++)
 		{
 			if (((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, i))) == mArr[mSize / 32]) == data)
 			{
-				for (uint32_t j = i + 1; j < mSize; j++)
+				for (uint32_t j = i + 1; j < mSize % 32; j++)
 				{
 					if ((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, j))) == mArr[mSize / 32])
 						mArr[mSize / 32] |= static_cast<uint32_t>(std::pow(2, j - 1));
@@ -91,19 +91,19 @@ namespace lab8
 	template<size_t N>
 	inline const bool FixedVector<bool, N>::Get(const size_t index) const
 	{
-		return ((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, index))) == mArr[mSize / 32]);
+		return ((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, index % 32))) == mArr[mSize / 32]);
 	}
 	
 	template<size_t N>
 	inline bool FixedVector<bool, N>::operator[](const size_t index)
 	{
-		return ((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, index))) == mArr[mSize / 32]);
+		return ((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, index % 32))) == mArr[mSize / 32]);
 	}
 	
 	template<size_t N>
 	inline const int FixedVector<bool, N>::GetIndex(const bool data) const
 	{
-		for (uint32_t i = 0; i < mSize; i++)
+		for (uint32_t i = 0; i < mSize % 32; i++)
 		{
 			if (((mArr[mSize / 32] | static_cast<uint32_t>(std::pow(2, i))) == mArr[mSize / 32]) == data)
 				return i;
