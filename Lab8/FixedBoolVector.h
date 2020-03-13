@@ -54,7 +54,11 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::Add(const bool data)
 	{
-		mArr |= std::pow(2, mSize++);
+		if(data == true)
+			mArr |= std::pow(2, mSize++);
+		else
+			mArr &= ~std::pow(2, mSize++);
+
 		return true;
 	}
 	
