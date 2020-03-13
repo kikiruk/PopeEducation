@@ -65,6 +65,18 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::Remove(const bool data)
 	{
+		//for (uint32_t i = 0; i < mSize; i++)
+		//{
+		//	if (((mArr & std::pow(2, i)) == mArr) == data)
+		//	{
+		//		for (uint32_t j = i; j < mSize; j++)
+		//		{
+		//			
+		//		}
+		//
+		//		break;
+		//	}
+		//}
 
 		return false;
 	}
