@@ -125,7 +125,7 @@ int main()
 	FixedVector<bool, 65> boolVector2;
 	cout << sizeof(boolVector2) << endl;
 	cout << (sizeof(int32_t) * 3) + sizeof(size_t) << endl;
-	//assert(sizeof(boolVector2) == ((sizeof(int32_t) * 3) + sizeof(size_t)));
+	assert(sizeof(boolVector2) == ((sizeof(int32_t) * 3) + sizeof(size_t)));
 	std::cout << "Test FixedBoolVector constructor - fit memroy: PASS" << std::endl;
 	for (int i = 0; i < 65; i++)
 	{
