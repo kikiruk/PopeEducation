@@ -4,11 +4,13 @@
 #include "FixedVector.h"
 #include "FixedBoolVector.h"
 
+using namespace std;
 using namespace lab8;
  
 int main()
 {
-	std::cout << sizeof(size_t) + sizeof(uint32_t) << std::endl;
+	bool a = true;
+	std::cout << &a << std::endl;
 	int integerArray1[] = { 23, 25, 10, -4, 70 };
 	enum { INTEGER_VECTOR1_SIZE = 4 };
 
@@ -122,6 +124,8 @@ int main()
 	std::cout << "Test FixedBoolVector operator[]() - read: PASS" << std::endl;
 
 	FixedVector<bool, 65> boolVector2;
+	cout << sizeof(boolVector2) << endl;
+	cout << (sizeof(int32_t) * 3) + sizeof(size_t) << endl;
 	assert(sizeof(boolVector2) == ((sizeof(int32_t) * 3) + sizeof(size_t)));
 	std::cout << "Test FixedBoolVector constructor - fit memroy: PASS" << std::endl;
 	for (int i = 0; i < 65; i++)
