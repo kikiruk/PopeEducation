@@ -106,7 +106,7 @@ namespace lab8
 		for (uint32_t i = 0; i < mSize; i++)
 		{
 			if (((mArr[i / 32] | static_cast<uint32_t>(std::pow(2, i % 32))) == mArr[i / 32]) == data)
-				return;
+				return i;
 		}
 
 		return -1;
