@@ -75,7 +75,7 @@ namespace lab8
 	{
 		for (uint32_t i = 0; i < mSize; i++)
 		{
-			if (((mArr[i / 32] | doSquared(i)) == mArr[i / 32]) == bData)
+			if (((mArr[i / 32] | doSquared(i % 32)) == mArr[i / 32]) == bData)
 			{
 				for (uint32_t j = i + 1; j < mSize; j++)
 				{
