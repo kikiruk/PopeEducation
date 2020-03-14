@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <cstring>
+#include <cassert>
 #pragma once
 
 namespace lab8
