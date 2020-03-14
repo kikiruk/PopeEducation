@@ -93,13 +93,13 @@ namespace lab8
 	template<size_t N>
 	inline const bool FixedVector<bool, N>::Get(const size_t index) const
 	{
-		return ((mArr[mSize / 32] | squared(index % 32)) == mArr[mSize / 32]);
+		return ((mArr[index / 32] | squared(index % 32)) == mArr[index / 32]);
 	}
 	
 	template<size_t N>
 	inline bool FixedVector<bool, N>::operator[](const size_t index)
 	{
-		return ((mArr[mSize / 32] | squared(index % 32)) == mArr[mSize / 32]);
+		return ((mArr[index / 32] | squared(index % 32)) == mArr[index / 32]);
 	}
 	
 	template<size_t N>
