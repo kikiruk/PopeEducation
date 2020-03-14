@@ -26,8 +26,5 @@
     <ClInclude Include="FixedBoolVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Squared.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
