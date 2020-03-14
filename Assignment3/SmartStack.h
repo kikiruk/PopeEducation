@@ -121,9 +121,9 @@ namespace assignment3
 			if (data < mMinNum->MNumber)
 				mMinNum = mTop;
 		}
-
-		mTop->MMaxData = mMaxNum;
-		mTop->MMinData = mMinNum;
+		//
+		//mTop->MMaxData = mMaxNum;
+		//mTop->MMinData = mMinNum;
 	}
 
 	template<typename T>
@@ -133,13 +133,38 @@ namespace assignment3
 		mSumOfSquared -= std::pow(mTop->MNumber, 2);
 		--mCount;
 
+		if (mTop == mMinNum)
+		{
+			mMinNum = nullptr;
+			T minNum = MinMaxNum<T>::GetMax();
+			for (NodeForStack<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
+			{
+				if (i->MNumber <= minNum)
+				{
+					minNum = i->MNumber;
+					mMinNum = i;
+				}
+			}
+		}
+
+		if (mTop == mMaxNum)
+		{
+			mMaxNum = nullptr;
+			T maxNum = MinMaxNum<T>::GetMin();
+			for (NodeForStack<T>* i = mTop->MNext; i != nullptr; i = i->MNext)
+			{
+				if (i->MNumber >= maxNum)
+				{
+					maxNum = i->MNumber;
+					mMaxNum = i;
+				}
+			}
+		}
+
 		T returnNum = mTop->MNumber;
 		NodeForStack<T>* tmp = mTop;
 		mTop = mTop->MNext;
 		delete tmp;
-
-		mMaxNum = mTop->MMaxData;
-		mMinNum = mTop->MMinData;
 
 		return returnNum;
 	}
