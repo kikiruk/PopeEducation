@@ -50,8 +50,8 @@ namespace assignment3
 		unsigned int mCount;
 		unsigned int mStackCount;
 		T mSum;
-		NodeForStack<T>* mMaxNum;
-		NodeForStack<T>* mMinNum;
+		StackNode<T>* mMaxNum;
+		StackNode<T>* mMinNum;
 	};
 
 	template<typename T>
@@ -134,11 +134,11 @@ namespace assignment3
 
 			mTail->MStack.Push(number);
 
-			if (mMaxNum->MNumber < number)
-				mMaxNum = mTail->MStack.mMaxNum;
+			if (mMaxNum->mMaxNum < number)
+				mMaxNum = mTail;
 
-			if (mMinNum->MNumber > number)
-				mMinNum = mTail->MStack.mMinNum;
+			if (mMinNum->mMinNum > number)
+				mMinNum = mTail;
 		}
 
 		mSum += number;
@@ -155,7 +155,7 @@ namespace assignment3
 	template<typename T>
 	inline const T QueueStack<T>::Dequeue()
 	{
-		bool bFindMinNum = f                                             lse;
+		bool bFindMinNum = false;
 
 		if (mHead->MStack.mTop == mMaxNum)
 			bFindMaxNum = true;
@@ -192,10 +192,10 @@ namespace assignment3
 			T minNum = MinMaxNum<T>::GetMax();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->MNext)
 			{
-				if (minNum >= i->MStack.mMinNum->MNumber)
+				if (minNum >= i->MStack.mMinNum)
 				{
-					mMinNum = i->MStack.mMinNum;
-					minNum = i->MStack.mMinNum->MNumber;
+					mMinNum = i;
+					minNum = i->MStack.mMinNum;
 				}
 			}
 		}
@@ -206,10 +206,10 @@ namespace assignment3
 			T maxNum = MinMaxNum<T>::GetMin();
 			for (StackNode<T>* i = mHead; i != nullptr; i = i->MNext)
 			{
-				if (maxNum <= i->MStack.mMaxNum->MNumber)
+				if (maxNum <= i->MStack.mMaxNum)
 				{
-					mMaxNum = i->MStack.mMaxNum;
-					maxNum = i->MStack.mMaxNum->MNumber;
+					mMaxNum = i;
+					maxNum = i->MStack.mMaxNum;
 				}
 			}
 		}
@@ -272,11 +272,11 @@ namespace assignment3
 
 		while (true)
 		{
-			if (j->MStack.mMaxNum == copy.mMaxNum)
-				mMaxNum = i->MStack.mMaxNum;
+			if (j == copy.mMaxNum)
+				mMaxNum = i;
 
-			if (j->MStack.mMinNum == copy.mMinNum)
-				mMinNum = i->MStack.mMinNum;
+			if (j == copy.mMinNum)
+				mMinNum = i;
 
 			j = j->MNext;
 

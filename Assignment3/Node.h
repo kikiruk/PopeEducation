@@ -25,21 +25,20 @@ public:
 	NodeForStack(T number, NodeForStack<T>* next) :
 		MNumber(number),
 		MNext(next),
-		MMinData(nullptr),
-		MMaxData(nullptr)
+		MMinData(0),
+		MMaxData(0)
 	{}
 
 	NodeForStack(const NodeForStack<T>& copy) :
 		MNumber(copy.MNumber),
 		MNext(nullptr),
-		MMinData(nullptr),
-		MMaxData(nullptr)
+		MMinData(0),
+		MMaxData(0)
 	{}
 
 	T MNumber;
 	NodeForStack<T>* MNext;
-	NodeForStack<T>* MMinData;
-	NodeForStack<T>* MMaxData;
+	T MMinData;
+	T MMaxData;
 };
-
 
