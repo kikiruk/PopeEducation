@@ -60,7 +60,7 @@ namespace lab8
 		if(data == true)
 			mArr[mSize / 32] |= Squared::pow_2(mSize % 32);
 		else
-			mArr[mSize / 32] &= Squared::pow_2(mSize % 32);
+			mArr[mSize / 32] &= ~Squared::pow_2(mSize % 32);
 
 		++mSize;
 
