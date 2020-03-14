@@ -78,7 +78,7 @@
   <ItemGroup>
     <ClInclude Include="FixedBoolVector.h" />
     <ClInclude Include="FixedVector.h" />
-    <ClInclude Include="Pow.h" />
+    <ClInclude Include="Squared.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
