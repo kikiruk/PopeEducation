@@ -50,8 +50,8 @@ namespace assignment3
 		unsigned int mCount;
 		unsigned int mStackCount;
 		T mSum;
-		Node<T>* mMaxNum;
-		Node<T>* mMinNum;
+		NodeForStack<T>* mMaxNum;
+		NodeForStack<T>* mMinNum;
 	};
 
 	template<typename T>
