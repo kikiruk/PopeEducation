@@ -161,8 +161,16 @@ namespace assignment3
 		//	}
 		//}
 
-		mMinNum = mTop->MNext->MMinData;
-		mMaxNum = mTop->MNext->MMaxData;
+		if (mTop->MNext != nullptr)
+		{
+			mMinNum = mTop->MNext->MMinData;
+			mMaxNum = mTop->MNext->MMaxData;
+		}
+		else
+		{
+			mMinNum = nullptr;
+			mMaxNum = nullptr;
+		}
 
 		T returnNum = mTop->MNumber;
 		NodeForStack<T>* tmp = mTop;
