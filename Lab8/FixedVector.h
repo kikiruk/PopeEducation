@@ -2,7 +2,6 @@
 #include <cstring>
 #pragma once
 
-
 namespace lab8
 {
 	template <class T, size_t N>

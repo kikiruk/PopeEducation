@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 
 using namespace std;
 
@@ -53,7 +52,6 @@ namespace lab8
 		return *this;
 	}
 	
-	
 	template<size_t N>
 	inline bool FixedVector<bool, N>::Add(const bool bData)
 	{
@@ -84,25 +82,11 @@ namespace lab8
 					else
 						mArr[(j - 1) / 32] &= ~doSquared((j - 1) % 32);
 				}
-				/******/
-				mArr[(mSize - 1) / 32] &= ~doSquared((mSize - 1) % 32);
 
-				for (int i = 0; i < 3; i++)
-				{
-					cout << mArr[i] << endl;
-				}
-				cout  << endl;
-				/******/
 				--mSize;
 				return true;
 			}
 		}
-
-		for (int i = 0; i < 3; i++)
-		{
-			cout << mArr[i] << endl;
-		}
-		cout << endl;
 
 		return false;
 	}
@@ -245,7 +229,7 @@ namespace lab8
 			return 2147483648;
 			break;
 		default:
-			return -1;
+			assert(false);
 			break;
 		}
 	}
