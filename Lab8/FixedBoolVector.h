@@ -22,7 +22,7 @@ namespace lab8
 		const size_t GetCapacity() const;
 	
 	private:
-		uint32_t squared(uint32_t num) const;
+		uint32_t doSquared(uint32_t num) const;
 		uint32_t mSize;
 		uint32_t mArr[N / 32 + 1];
 	};
@@ -55,15 +55,15 @@ namespace lab8
 	
 	
 	template<size_t N>
-	inline bool FixedVector<bool, N>::Add(const bool data)
+	inline bool FixedVector<bool, N>::Add(const bool bData)
 	{
 		if (mSize == N)
 			return false;
 
-		if(data == true)
-			mArr[mSize / 32] |= squared(mSize % 32);
+		if (bData == true)
+			mArr[mSize / 32] |= doSquared(mSize % 32);
 		else
-			mArr[mSize / 32] &= ~squared(mSize % 32);
+			mArr[mSize / 32] &= ~doSquared(mSize % 32);
 
 		++mSize;
 
@@ -71,21 +71,21 @@ namespace lab8
 	}
 	
 	template<size_t N>
-	inline bool FixedVector<bool, N>::Remove(const bool data)
+	inline bool FixedVector<bool, N>::Remove(const bool bData)
 	{
 		for (uint32_t i = 0; i < mSize; i++)
 		{
-			if (((mArr[i / 32] | squared(i)) == mArr[i / 32]) == data)
+			if (((mArr[i / 32] | doSquared(i)) == mArr[i / 32]) == bData)
 			{
 				for (uint32_t j = i + 1; j < mSize; j++)
 				{
-					if ((mArr[j / 32] | squared(j % 32)) == mArr[j / 32])
-						mArr[(j - 1) / 32] |= squared((j - 1) % 32);
+					if ((mArr[j / 32] | doSquared(j % 32)) == mArr[j / 32])
+						mArr[(j - 1) / 32] |= doSquared((j - 1) % 32);
 					else
-						mArr[(j - 1) / 32] &= ~squared((j - 1) % 32);
+						mArr[(j - 1) / 32] &= ~doSquared((j - 1) % 32);
 				}
 				/******/
-				mArr[(mSize - 1) / 32] &= ~squared((mSize - 1) % 32);
+				mArr[(mSize - 1) / 32] &= ~doSquared((mSize - 1) % 32);
 
 				for (int i = 0; i < 3; i++)
 				{
@@ -110,21 +110,21 @@ namespace lab8
 	template<size_t N>
 	inline const bool FixedVector<bool, N>::Get(const size_t index) const
 	{
-		return ((mArr[index / 32] | squared(index % 32)) == mArr[index / 32]);
+		return ((mArr[index / 32] | doSquared(index % 32)) == mArr[index / 32]);
 	}
 	
 	template<size_t N>
 	inline bool FixedVector<bool, N>::operator[](const size_t index)
 	{
-		return ((mArr[index / 32] | squared(index % 32)) == mArr[index / 32]);
+		return ((mArr[index / 32] | doSquared(index % 32)) == mArr[index / 32]);
 	}
 	
 	template<size_t N>
-	inline const int FixedVector<bool, N>::GetIndex(const bool data) const
+	inline const int FixedVector<bool, N>::GetIndex(const bool bData) const
 	{
 		for (uint32_t i = 0; i < mSize; i++)
 		{
-			if (((mArr[i / 32] | squared(i % 32)) == mArr[i / 32]) == data)
+			if (((mArr[i / 32] | doSquared(i % 32)) == mArr[i / 32]) == bData)
 				return i;
 		}
 
@@ -144,7 +144,7 @@ namespace lab8
 	}
 
 	template<size_t N>
-	inline uint32_t FixedVector<bool, N>::squared(uint32_t num) const
+	inline uint32_t FixedVector<bool, N>::doSquared(uint32_t num) const
 	{
 		switch (num)
 		{
