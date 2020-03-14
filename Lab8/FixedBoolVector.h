@@ -19,7 +19,7 @@ namespace lab8
 		const size_t GetCapacity() const;
 	
 	private:
-		uint32_t squared(uint32_t num);
+		uint32_t squared(uint32_t num) const;
 		uint32_t mSize;
 		uint32_t mArr[N / 32 + 1];
 	};
@@ -127,7 +127,7 @@ namespace lab8
 	}
 
 	template<size_t N>
-	inline uint32_t FixedVector<bool, N>::squared(uint32_t num)
+	inline uint32_t FixedVector<bool, N>::squared(uint32_t num) const
 	{
 		switch (num)
 		{
