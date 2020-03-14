@@ -1,5 +1,5 @@
 #pragma once
-#include "Pow.h"
+#include "Squared.h"
 
 namespace lab8
 {
@@ -58,9 +58,9 @@ namespace lab8
 			return false;
 
 		if(data == true)
-			mArr[mSize / 32] |= Pow::pow_2(mSize % 32);
+			mArr[mSize / 32] |= Squared::pow_2(mSize % 32);
 		else
-			mArr[mSize / 32] &= Pow::pow_2(mSize % 32);
+			mArr[mSize / 32] &= Squared::pow_2(mSize % 32);
 
 		++mSize;
 
@@ -72,14 +72,14 @@ namespace lab8
 	{
 		for (uint32_t i = 0; i < mSize; i++)
 		{
-			if (((mArr[i / 32] | Pow::pow_2(i)) == mArr[i / 32]) == data)
+			if (((mArr[i / 32] | Squared::pow_2(i)) == mArr[i / 32]) == data)
 			{
 				for (uint32_t j = i + 1; j < mSize; j++)
 				{
-					if ((mArr[j / 32] | Pow::pow_2(j % 32)) == mArr[j / 32])
-						mArr[(j - 1) / 32] |= Pow::pow_2((j - 1) % 32);
+					if ((mArr[j / 32] | Squared::pow_2(j % 32)) == mArr[j / 32])
+						mArr[(j - 1) / 32] |= Squared::pow_2((j - 1) % 32);
 					else
-						mArr[(j - 1) / 32] &= ~Pow::pow_2((j - 1) % 32);
+						mArr[(j - 1) / 32] &= ~Squared::pow_2((j - 1) % 32);
 				}
 		
 				--mSize;
@@ -93,13 +93,13 @@ namespace lab8
 	template<size_t N>
 	inline const bool FixedVector<bool, N>::Get(const size_t index) const
 	{
-		return ((mArr[mSize / 32] | Pow::pow_2(index % 32)) == mArr[mSize / 32]);
+		return ((mArr[mSize / 32] | Squared::pow_2(index % 32)) == mArr[mSize / 32]);
 	}
 	
 	template<size_t N>
 	inline bool FixedVector<bool, N>::operator[](const size_t index)
 	{
-		return ((mArr[mSize / 32] | Pow::pow_2(index % 32)) == mArr[mSize / 32]);
+		return ((mArr[mSize / 32] | Squared::pow_2(index % 32)) == mArr[mSize / 32]);
 	}
 	
 	template<size_t N>
@@ -107,7 +107,7 @@ namespace lab8
 	{
 		for (uint32_t i = 0; i < mSize; i++)
 		{
-			if (((mArr[i / 32] | Pow::pow_2(i % 32)) == mArr[i / 32]) == data)
+			if (((mArr[i / 32] | Squared::pow_2(i % 32)) == mArr[i / 32]) == data)
 				return i;
 		}
 
