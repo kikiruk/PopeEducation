@@ -230,6 +230,7 @@ namespace lab8
 			break;
 		default:
 			assert(false);
+			return 0;
 			break;
 		}
 	}
