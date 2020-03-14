@@ -121,7 +121,7 @@ namespace assignment3
 
 			mTail->MStack.Push(number);
 
-			mMaxNum = mMinNum = mTail->MStack.mTop;
+			mMaxNum = mMinNum = mTail;
 		}
 		else
 		{
@@ -134,10 +134,10 @@ namespace assignment3
 
 			mTail->MStack.Push(number);
 
-			if (mMaxNum->mMaxNum < number)
+			if (mMaxNum->MStack.mMaxNum < number)
 				mMaxNum = mTail;
 
-			if (mMinNum->mMinNum > number)
+			if (mMinNum->MStack.mMinNum > number)
 				mMinNum = mTail;
 		}
 
@@ -156,11 +156,12 @@ namespace assignment3
 	inline const T QueueStack<T>::Dequeue()
 	{
 		bool bFindMinNum = false;
+		bool bFindMaxNum = false;
 
-		if (mHead->MStack.mTop == mMaxNum)
+		if (mHead->MStack.mTop->MNumber == mMaxNum->MStack.mMaxNum)
 			bFindMaxNum = true;
 
-		if (mHead->MStack.mTop == mMinNum)
+		if (mHead->MStack.mTop->MNumber == mMinNum->MStack.mMinNum)
 			bFindMinNum = true;
 
 		T answer = mHead->MStack.mTop->MNumber;
@@ -226,7 +227,7 @@ namespace assignment3
 		if (mMaxNum == nullptr)
 			return MinMaxNum<T>::GetMin();
 
-		return mMaxNum->MNumber;
+		return mMaxNum->MStack.mMaxNum;
 	}
 
 	template<typename T>
@@ -235,7 +236,7 @@ namespace assignment3
 		if (mMinNum == nullptr)
 			return MinMaxNum<T>::GetMax();
 
-		return mMinNum->MNumber;
+		return mMinNum->MStack.mMinNum;
 	}
 
 	template<typename T>

@@ -218,7 +218,7 @@ namespace assignment3
 	template<typename T>
 	inline const double SmartQueue<T>::GetStandardDeviation() const
 	{
-		//double standardDeviation = (mSumOfSquared / mCount) -
+		double standardDeviation = (mSumOfSquared / mCount) -
 			std::pow((static_cast<double>(mSum) / mCount), 2);
 		standardDeviation = std::sqrt(standardDeviation);
 

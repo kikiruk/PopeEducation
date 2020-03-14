@@ -126,8 +126,8 @@ namespace assignment3
 				mMinNum = data;
 		}
 		
-		mTop->MMaxData = MinMaxNum<T>::GetMin();
-		mTop->MMinData = MinMaxNum<T>::GetMax();
+		mTop->MMaxData = mMaxNum;
+		mTop->MMinData = mMinNum;
 	}
 
 	template<typename T>
