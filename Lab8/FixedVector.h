@@ -27,21 +27,21 @@ namespace lab8
 	};
 
 	template<class T, size_t N>
-	inline FixedVector<T, N>::FixedVector<T, N>() :
+	inline FixedVector<T, N>::FixedVector() :
 		mSize(0)
 	{
 		memset(mArr, 0, sizeof(mArr));
 	}
 
 	template<class T, size_t N>
-	inline FixedVector<T, N>::FixedVector<T, N>(const FixedVector<T, N>& copy) :
+	inline FixedVector<T, N>::FixedVector(const FixedVector& copy) :
 		mSize(copy.mSize)
 	{
 		memcpy(mArr, copy.mArr, sizeof(mArr));
 	}
 
 	template<class T, size_t N>
-	const FixedVector<T, N>& FixedVector<T, N>::operator=(const FixedVector<T, N>& copy)
+	const FixedVector<T, N>& FixedVector<T, N>::operator=(const FixedVector& copy)
 	{
 		if (this != &copy)
 		{
