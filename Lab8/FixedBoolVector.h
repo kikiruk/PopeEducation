@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+
+using namespace std;
 
 namespace lab8
 {
@@ -25,21 +28,21 @@ namespace lab8
 	};
 	
 	template<size_t N>
-	inline FixedVector<bool, N>::FixedVector<bool, N>() :
+	inline FixedVector<bool, N>::FixedVector() :
 		mSize(0)
 	{
 		memset(mArr, 0, sizeof(mArr));
 	}
 	
 	template<size_t N>
-	inline FixedVector<bool, N>::FixedVector<bool, N>(const FixedVector<bool, N>& copy) :
+	inline FixedVector<bool, N>::FixedVector(const FixedVector& copy) :
 		mSize(copy.mSize)
 	{
 		memcpy(mArr, copy.mArr, sizeof(mArr));
 	}
 	
 	template<size_t N>
-	const FixedVector<bool, N>& FixedVector<bool, N>::operator=(const FixedVector<bool, N>& copy)
+	const FixedVector<bool, N>& FixedVector<bool, N>::operator=(const FixedVector& copy)
 	{
 		if (this != &copy)
 		{
@@ -81,11 +84,25 @@ namespace lab8
 					else
 						mArr[(j - 1) / 32] &= ~squared((j - 1) % 32);
 				}
-		
+				/******/
+				mArr[(mSize - 1) / 32] &= ~squared((mSize - 1) % 32);
+
+				for (int i = 0; i < 3; i++)
+				{
+					cout << mArr[i] << endl;
+				}
+				cout  << endl;
+				/******/
 				--mSize;
 				return true;
 			}
 		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			cout << mArr[i] << endl;
+		}
+		cout << endl;
 
 		return false;
 	}
