@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <iostream>
 
 namespace lab8
 {
@@ -61,6 +62,12 @@ namespace lab8
 			mArr[mSize / 32] |= static_cast<uint32_t>(std::pow(2, mSize++ % 32));
 		else
 			mArr[mSize / 32] &= ~static_cast<uint32_t>(std::pow(2, mSize++ % 32));
+
+		for (int i = 0; i < (N / 32) + 1; i++)
+		{
+			std::cout << (int)mArr[i] << std::endl;
+		}
+		std::cout << std::endl;
 
 		return true;
 	}
