@@ -155,8 +155,7 @@ namespace assignment3
 	template<typename T>
 	inline const T QueueStack<T>::Dequeue()
 	{
-		bool bFindMinNum = false;
-		bool bFindMaxNum = false;
+		bool bFindMinNum = f                                             lse;
 
 		if (mHead->MStack.mTop == mMaxNum)
 			bFindMaxNum = true;

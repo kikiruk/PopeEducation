@@ -251,6 +251,8 @@ namespace assignment3
 		for (; i != nullptr; i = i->MNext, j = j->MNext)
 		{
 			j->MNext = new NodeForStack<T>(*i);
+			j->MNext->MMaxData = i->MMaxData;
+			j->MNext->MMinData = i->MMinData;
 
 			if (i == copy.mTop)
 				mTop = j->MNext;
