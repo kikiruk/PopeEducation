@@ -2,7 +2,7 @@
 
 namespace Pow
 {
-	uint32_t pow(uint32_t num)
+	uint32_t pow_2(uint32_t num)
 	{
 		switch(num)
 		{
