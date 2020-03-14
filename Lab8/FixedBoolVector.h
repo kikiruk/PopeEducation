@@ -1,6 +1,5 @@
 #pragma once
-#include <cmath>
-#include <iostream>
+#include "Pow.h"
 
 namespace lab8
 {
@@ -59,15 +58,11 @@ namespace lab8
 			return false;
 
 		if(data == true)
-			mArr[mSize / 32] |= static_cast<uint32_t>(std::pow(2, mSize++ % 32));
+			mArr[mSize / 32] |= Pow::pow(mSize % 32);
 		else
-			mArr[mSize / 32] &= ~static_cast<uint32_t>(std::pow(2, mSize++ % 32));
+			mArr[mSize / 32] &= Pow::pow(mSize % 32);
 
-		for (int i = 0; i < (N / 32) + 1; i++)
-		{
-			std::cout << (int)mArr[i] << std::endl;
-		}
-		std::cout << std::endl;
+		++mSize;
 
 		return true;
 	}

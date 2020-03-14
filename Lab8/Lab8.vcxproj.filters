@@ -26,5 +26,8 @@
     <ClInclude Include="FixedBoolVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
