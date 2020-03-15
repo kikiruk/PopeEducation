@@ -231,5 +231,4 @@ namespace assignment3
 				mTop = j->MNext;
 		}
 	}
-
 }
