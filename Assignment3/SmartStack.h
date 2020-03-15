@@ -229,12 +229,6 @@ namespace assignment3
 
 			if (i == copy.mTop)
 				mTop = j->MNext;
-
-			if (i == copy.mMaxNum)
-				mMaxNum = j->MNext;
-
-			if (i == copy.mMinNum)
-				mMinNum = j->MNext;
 		}
 	}
 
