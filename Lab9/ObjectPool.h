@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <queue>
 #include <cstring>
 
 namespace lab9
@@ -20,25 +20,22 @@ namespace lab9
 
 	private:
 		const size_t mMaxPoolSize;
-		std::vector<T*> mArr;
+		std::queue<T*> mArr;
 	};
 
 	template<class T>
 	inline ObjectPool<T>::ObjectPool(size_t maxPoolSize) :
 		mMaxPoolSize(maxPoolSize)
-	{
-		mArr.reserve(mMaxPoolSize);
-	}
+	{}
 
 	template<class T>
 	inline ObjectPool<T>::~ObjectPool()
 	{
-		for (auto it = mArr.begin(); it != mArr.end(); ++it)
+		while (!mArr.empty())
 		{
-			delete (*it);
+			delete mArr.front();
+			mArr.pop();
 		}
-
-		mArr.clear();
 	}
 
 	template<class T>
@@ -47,8 +44,8 @@ namespace lab9
 		if (mArr.size() == 0)
 			return new T();
 
-		T* tmp = mArr[0];
-		mArr.erase(mArr.begin());
+		T* tmp = mArr.front();
+		mArr.pop();
 
 		return tmp;
 	}
@@ -59,14 +56,7 @@ namespace lab9
 		if (mArr.size() == mMaxPoolSize)
 			delete objectPointer;
 
-		size_t size = mArr.size();
-		for (size_t i = 0; i < size; i++)
-		{
-			if (objectPointer == mArr[i])
-				return;
-		}
-
-		mArr.push_back(objectPointer);
+		mArr.push(objectPointer);
 	}
 
 	template<class T>
