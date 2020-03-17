@@ -54,7 +54,10 @@ namespace lab9
 	inline void ObjectPool<T>::Return(T* const objectPointer)
 	{
 		if (mArr.size() == mMaxPoolSize)
+		{
 			delete objectPointer;
+			return;
+		}
 
 		mArr.push(objectPointer);
 	}
