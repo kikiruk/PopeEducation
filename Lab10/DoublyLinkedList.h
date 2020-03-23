@@ -28,9 +28,9 @@ namespace lab10
 
 	template<typename T>
 	DoublyLinkedList<T>::DoublyLinkedList()
-		: mLength(0),
-		mHead(nullptr),
-		mTail(nullptr)
+		: mLength(0)
+		, mHead(nullptr)
+		, mTail(nullptr)
 	{
 	}
 
