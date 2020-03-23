@@ -103,8 +103,8 @@ namespace lab10
 				}
 				else if (ptr.lock().get() == mTail.get())
 				{
-					mTail->Next.reset();
 					mTail = mTail->Previous.lock();
+					mTail->Next.reset();
 				}
 				else
 				{
