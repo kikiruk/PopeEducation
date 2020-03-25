@@ -92,22 +92,34 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
+		std::shared_ptr<TreeNode<T>>* prevousPtr = &mRoot;
 		std::weak_ptr<TreeNode<T>> ptr = find(data);
 
 		if (ptr.lock() == nullptr)
 			return false;
+
+		if (ptr.lock()->Parent.lock() != nullptr)
+		{
+			std::weak_ptr<TreeNode<T>> parent = ptr.lock()->Parent.lock();
+
+			if (parent.lock()->Right == ptr.lock())
+				prevousPtr = &(parent.lock()->Right);
+			else if(parent.lock()->Left == ptr.lock())
+				prevousPtr = &(parent.lock()->Left);
+		}
 
 		while (true)
 		{
 			if (ptr.lock()->Left != nullptr)
 			{
 				ptr.lock()->Data = std::move(ptr.lock()->Left->Data);
+				prevousPtr = &(ptr.lock()->Left);
 				ptr = ptr.lock()->Left;
 			}
 			else if (ptr.lock()->Right != nullptr)
 			{
-				ptr.lock()->Data = std::move(ptr.lock()->Right->Data);
-				ptr = ptr.lock()->Right;
+				(*prevousPtr) = ptr.lock()->Right;
+				ptr = (*prevousPtr);
 			}
 			else
 			{
@@ -117,12 +129,7 @@ namespace assignment4
 					return true;
 				}
 
-				std::weak_ptr<TreeNode<T>> parent = ptr.lock()->Parent.lock();
-
-				if (parent.lock()->Left == ptr.lock())
-					parent.lock()->Left.reset();
-				else
-					parent.lock()->Right.reset();
+				(*prevousPtr).reset();
 
 				return true;
 			}

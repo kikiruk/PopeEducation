@@ -1,5 +1,6 @@
 #include <cassert>
 #include <ctime>
+#include <iostream>
 #include "TreeNode.h"
 #include "BinarySearchTree.h"
 
@@ -108,27 +109,88 @@ void Test_Delete()
 		tree.Insert(std::make_unique<int>(arr[i]));
 	}
 
+	std::vector<int> tmp;
 	//	End
 	assert(!tree.Delete(9)); 	// 존재하지 않는 노드 삭제
-	assert(tree.Delete(20));	// Right 노드 삭제
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
+	assert(tree.Delete(20));	// Right 노드 삭제	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
 	assert(!tree.Search(20));	// 삭제 확인
 	assert(tree.Delete(12));	// Left 노드 삭제
+
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
 	assert(!tree.Search(12));	// 삭제 확인
 	assert(!tree.Delete(11));	// 존재하지 않는 노드 삭제
 
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
+
 	//	Middle
 	assert(tree.Delete(19));	// Left만 있는 노드 삭제
+
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
 	assert(!tree.Search(19));	// 삭제 확인
 	assert(tree.Search(17));
 	assert(tree.Delete(15));	// Right만 있는 노드 삭제
+
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
 	assert(!tree.Search(15));	// 삭제 확인
 	assert(tree.Delete(5)); 	// Left, Right 모두 있는 노드 삭제
+
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin(); i != tmp.end(); i++)
+	{
+		std::cout << *i << "    ";
+	}
+	std::cout << std::endl;
 	assert(!tree.Search(5));	assert(!tree.Delete(5));	// 존재하지 않는 노드 삭제
 
 	//	Head
 	assert(tree.Delete(10)); 	// Left, Right 모두 있는 헤드 삭제
 	assert(!tree.Search(10));	// 삭제 확인
 	assert(tree.Delete(4));
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+	for (auto i = tmp.begin();i != tmp.end();i++)
+	{
+		std::cout << *i <<"    ";
+	}
+	std::cout << std::endl;
 	assert(tree.Delete(7));
 	assert(tree.Delete(17));	// Left, Right 모두 없는 헤드 삭제
 	assert(!tree.Search(17));	// 삭제 확인
