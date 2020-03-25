@@ -121,6 +121,7 @@ void Test_Delete()
 	std::cout << std::endl;
 	assert(tree.Delete(20));	// Right 노드 삭제	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
 
+	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
 	for (auto i = tmp.begin(); i != tmp.end(); i++)
 	{
 		std::cout << *i << "    ";

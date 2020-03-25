@@ -100,7 +100,7 @@ namespace assignment4
 
 		if (ptr.lock()->Parent.lock() != nullptr)
 		{
-			std::weak_ptr<TreeNode<T>> parent = ptr.lock()->Parent.lock();
+  			std::weak_ptr<TreeNode<T>> parent = ptr.lock()->Parent.lock();
 
 			if (parent.lock()->Right == ptr.lock())
 				prevousPtr = &(parent.lock()->Right);
@@ -120,6 +120,8 @@ namespace assignment4
 			{
 				(*prevousPtr) = ptr.lock()->Right;
 				ptr = (*prevousPtr);
+
+				return true;
 			}
 			else
 			{
