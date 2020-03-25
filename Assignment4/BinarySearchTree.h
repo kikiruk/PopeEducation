@@ -113,7 +113,7 @@ namespace assignment4
 			{
 				if (ptr.lock() == mRoot)
 				{
-					mRoot = nullptr;
+					mRoot.reset();
 					return true;
 				}
 
