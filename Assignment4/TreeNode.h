@@ -11,8 +11,8 @@ namespace assignment4
 		TreeNode(std::unique_ptr<T> data);
 		TreeNode(std::shared_ptr<TreeNode<T>> parent, std::unique_ptr<T> data);
 		~TreeNode() = default;
-		TreeNode(const TreeNode& Copy) = delete;
-		TreeNode(const TreeNode&& Copy) = delete;
+		TreeNode(const TreeNode& copy) = delete;
+		TreeNode(const TreeNode&& copy) = delete;
 		TreeNode& operator=(const TreeNode&) = delete;
 
 		std::unique_ptr<T> Data;

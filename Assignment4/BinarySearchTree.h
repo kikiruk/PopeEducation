@@ -14,8 +14,8 @@ namespace assignment4
 	public:
 		BinarySearchTree();
 		~BinarySearchTree() = default;
-		BinarySearchTree(const BinarySearchTree& Copy) = delete;
-		BinarySearchTree(const BinarySearchTree&& Copy) = delete;
+		BinarySearchTree(const BinarySearchTree& copy) = delete;
+		BinarySearchTree(const BinarySearchTree&& copy) = delete;
 		BinarySearchTree& operator=(const BinarySearchTree&) = delete;
 
 
@@ -29,7 +29,7 @@ namespace assignment4
 	private:
 		std::shared_ptr<TreeNode<T>> find(const T& data) const;
 
-		static void mediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v);
+		static void doMediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v);
 
 	private:
 		std::shared_ptr<TreeNode<T>> mRoot;
@@ -135,7 +135,7 @@ namespace assignment4
 	{
 		std::vector<T> v;
 
-		mediumRecursive(startNode, v);
+		doMediumRecursive(startNode, v);
 
 		return v;
 	}
@@ -159,15 +159,15 @@ namespace assignment4
 	}
 
 	template<typename T>
-	inline void BinarySearchTree<T>::mediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v)
+	inline void BinarySearchTree<T>::doMediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v)
 	{
 		if (location.lock() == nullptr)
 			return;
 
-		mediumRecursive(location.lock()->Left, v);
+		doMediumRecursive(location.lock()->Left, v);
 
 		v.push_back(*(location.lock()->Data));
 
-		mediumRecursive(location.lock()->Right, v);
+		doMediumRecursive(location.lock()->Right, v);
 	}
 }
