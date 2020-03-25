@@ -10,6 +10,10 @@ namespace assignment4
 	public:
 		TreeNode(std::unique_ptr<T> data);
 		TreeNode(std::shared_ptr<TreeNode<T>> parent, std::unique_ptr<T> data);
+		~TreeNode() = default;
+		TreeNode(const TreeNode& Copy) = delete;
+		TreeNode(const TreeNode&& Copy) = delete;
+		TreeNode& operator=(const TreeNode&) = delete;
 
 		std::unique_ptr<T> Data;
 		std::shared_ptr<TreeNode<T>> Left;
@@ -19,11 +23,18 @@ namespace assignment4
 
 	template<typename T>
 	TreeNode<T>::TreeNode(std::unique_ptr<T> data)
+		: Data(std::move(data))
+		, Left(nullptr)
+		, Right(nullptr)
 	{
 	}
 
 	template<typename T>
 	TreeNode<T>::TreeNode(std::shared_ptr<TreeNode<T>> parent, std::unique_ptr<T> data)
+		: Data(std::move(data))
+		, Left(nullptr)
+		, Right(nullptr)
+		, Parent(parent)
 	{
 	}
 }
