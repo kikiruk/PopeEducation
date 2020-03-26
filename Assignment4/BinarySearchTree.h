@@ -27,7 +27,8 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
-		std::shared_ptr<TreeNode<T>>* find(const T data) const;
+		const std::shared_ptr<TreeNode<T>>* find(const T data) const; //same
+		std::shared_ptr<TreeNode<T>>* find(const T data);			//same
 
 		static void doMediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v);
 
@@ -153,7 +154,7 @@ namespace assignment4
 	}
 
 	template<typename T>
-	inline std::shared_ptr<TreeNode<T>>* BinarySearchTree<T>::find(const T data) const
+	inline const std::shared_ptr<TreeNode<T>>* BinarySearchTree<T>::find(const T data) const
 	{
 		const std::shared_ptr<TreeNode<T>>* ptr = &mRoot;
 		while (true)
@@ -161,7 +162,25 @@ namespace assignment4
 			if (*ptr == nullptr)
 				return nullptr;
 			else if (*((*ptr)->Data) == data)
-				return const_cast<std::shared_ptr<TreeNode<T>>*>(ptr);
+				return ptr;
+
+			if (*((*ptr)->Data) < data)
+				ptr = &((*ptr)->Right);
+			else
+				ptr = &((*ptr)->Left);
+		}
+	}
+
+	template<typename T>
+	inline std::shared_ptr<TreeNode<T>>* BinarySearchTree<T>::find(const T data)
+	{
+		std::shared_ptr<TreeNode<T>>* ptr = &mRoot;
+		while (true)
+		{
+			if (*ptr == nullptr)
+				return nullptr;
+			else if (*((*ptr)->Data) == data)
+				return ptr;
 
 			if (*((*ptr)->Data) < data)
 				ptr = &((*ptr)->Right);

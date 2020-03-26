@@ -22,10 +22,10 @@ int main()
 	Test_Search();
 	Test_Delete();
 	Test_Traverse();
-	TestCaseFromSlackOnlyLeftRight();
-	TestCaseFromSlackLeftRightWithRightChild();
-	TestCaseRandomNode();
-	Test_Delete_0hoo();
+	//TestCaseFromSlackOnlyLeftRight();
+	//TestCaseFromSlackLeftRightWithRightChild();
+	//TestCaseRandomNode();
+	//Test_Delete_0hoo();
 	
 	return 0;
 }
