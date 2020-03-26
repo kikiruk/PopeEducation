@@ -118,11 +118,14 @@ namespace assignment4
 			}
 			else
 			{
+				if (ptr.lock()->Right != nullptr)
+					ptr.lock()->Right->Parent = ptr.lock()->Parent.lock();
+
 				(*prevousPtr) = ptr.lock()->Right;
+
 				return true;
 			}
 		}
-
 	}
 
 	template<typename T>
