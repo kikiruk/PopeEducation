@@ -27,12 +27,13 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
-		std::shared_ptr<TreeNode<T>> find(const T& data) const;
+		std::shared_ptr<TreeNode<T>>* find(const T data) const;
 
 		static void doMediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v);
 
 	private:
 		std::shared_ptr<TreeNode<T>> mRoot;
+
 	};
 
 	template<typename T>
@@ -92,36 +93,49 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		std::shared_ptr<TreeNode<T>>* prevousPtr = &mRoot;
-		std::weak_ptr<TreeNode<T>> ptr = find(data);
+		std::shared_ptr<TreeNode<T>>* ptrNow = find(data);
 
-		if (ptr.lock() == nullptr)
+		if (ptrNow == nullptr)
 			return false;
 
-		if (ptr.lock()->Parent.lock() != nullptr)
-		{
-			std::weak_ptr<TreeNode<T>> parent = ptr.lock()->Parent.lock();
+		std::weak_ptr<TreeNode<T>> rememberPtr = *ptrNow;
 
-			if (parent.lock()->Right == ptr.lock())
-				prevousPtr = &(parent.lock()->Right);
-			else if (parent.lock()->Left == ptr.lock())
-				prevousPtr = &(parent.lock()->Left);
-		}
-
+		std::weak_ptr<TreeNode<T>> rememberParent;
 		while (true)
 		{
-			if (ptr.lock()->Left != nullptr)
+			if ((*ptrNow)->Left != nullptr)
 			{
-				ptr.lock()->Data = std::move(ptr.lock()->Left->Data);
-				prevousPtr = &(ptr.lock()->Left);
-				ptr = ptr.lock()->Left;
+				(*ptrNow)->Data = std::move((*ptrNow)->Left->Data);
+
+				if ((*ptrNow)->Left->Right != nullptr)
+				{
+					rememberParent = *ptrNow;
+					ptrNow = &((*ptrNow)->Right);
+
+					while (true)
+					{
+						if (*ptrNow == nullptr)
+						{
+							*ptrNow = rememberPtr.lock()->Left->Right;
+							rememberPtr.lock()->Left->Right.reset();
+							(*ptrNow)->Parent = rememberParent.lock();//부모노드 설정
+							break;
+						}
+
+						rememberParent = (*ptrNow);
+						ptrNow = &((*ptrNow)->Left);
+					}
+				}
+
+				ptrNow = &(rememberPtr.lock()->Left);
+				rememberPtr = *ptrNow;
 			}
 			else
 			{
-				if (ptr.lock()->Right != nullptr)
-					ptr.lock()->Right->Parent = ptr.lock()->Parent.lock();
-
-				(*prevousPtr) = ptr.lock()->Right;
+				if ((*ptrNow)->Right != nullptr)
+					(*ptrNow) = (*ptrNow)->Right;
+				else
+					(*ptrNow).reset();
 
 				return true;
 			}
@@ -139,20 +153,20 @@ namespace assignment4
 	}
 
 	template<typename T>
-	inline std::shared_ptr<TreeNode<T>> BinarySearchTree<T>::find(const T& data) const
+	inline std::shared_ptr<TreeNode<T>>* BinarySearchTree<T>::find(const T data) const
 	{
-		std::weak_ptr<TreeNode<T>> ptr = mRoot;
+		const std::shared_ptr<TreeNode<T>>* ptr = &mRoot;
 		while (true)
 		{
-			if (ptr.lock() == nullptr)
+			if (*ptr == nullptr)
 				return nullptr;
-			else if (*ptr.lock()->Data == data)
-				return ptr.lock();
+			else if (*((*ptr)->Data) == data)
+				return const_cast<std::shared_ptr<TreeNode<T>>*>(ptr);
 
-			if (*ptr.lock()->Data < data)
-				ptr = ptr.lock()->Right;
+			if (*((*ptr)->Data) < data)
+				ptr = &((*ptr)->Right);
 			else
-				ptr = ptr.lock()->Left;
+				ptr = &((*ptr)->Left);
 		}
 	}
 
