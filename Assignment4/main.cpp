@@ -112,86 +112,32 @@ void Test_Delete()
 	std::vector<int> tmp;
 	//	End
 	assert(!tree.Delete(9)); 	// 존재하지 않는 노드 삭제
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
 
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 	assert(tree.Delete(20));	// Right 노드 삭제	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
 
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 	assert(!tree.Search(20));	// 삭제 확인
 	assert(tree.Delete(12));	// Left 노드 삭제
 
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
-
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 	assert(!tree.Search(12));	// 삭제 확인
 	assert(!tree.Delete(11));	// 존재하지 않는 노드 삭제
-
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
-
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 
 	//	Middle
 	assert(tree.Delete(19));	// Left만 있는 노드 삭제
 
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
-
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 	assert(!tree.Search(19));	// 삭제 확인
 	assert(tree.Search(17));
 	assert(tree.Delete(15));	// Right만 있는 노드 삭제
-
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
-
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 	assert(!tree.Search(15));	// 삭제 확인
 	assert(tree.Delete(5)); 	// Left, Right 모두 있는 노드 삭제
-
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
-
-	for (auto i = tmp.begin(); i != tmp.end(); i++)
-	{
-		std::cout << *i << "    ";
-	}
-	std::cout << std::endl;
 	assert(!tree.Search(5));	assert(!tree.Delete(5));	// 존재하지 않는 노드 삭제
 
 	//	Head
 	assert(tree.Delete(10)); 	// Left, Right 모두 있는 헤드 삭제
 	assert(!tree.Search(10));	// 삭제 확인
 	assert(tree.Delete(4));
-	tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+	
 
-	for (auto i = tmp.begin();i != tmp.end();i++)
-	{
-		std::cout << *i <<"    ";
-	}
-	std::cout << std::endl;
+
 	assert(tree.Delete(7));
 	assert(tree.Delete(17));	// Left, Right 모두 없는 헤드 삭제
 	assert(!tree.Search(17));	// 삭제 확인
@@ -201,17 +147,29 @@ void Test_Delete()
 	for (size_t i = 0; i < 9; i++)
 	{
 		tree.Insert(std::make_unique<int>(arr[i]));
-	}
 
-	tree.Delete(arr[0]);
-	tree.Delete(arr[1]);
-	tree.Delete(arr[2]);
-	tree.Delete(arr[3]);
-	tree.Delete(arr[4]);
-	tree.Delete(arr[5]);
-	tree.Delete(arr[6]);
-	tree.Delete(arr[7]);
-	tree.Delete(arr[8]);
+		tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+		for (auto i = tmp.begin(); i != tmp.end(); i++)
+		{
+			std::cout << *i << ", ";
+		}
+		std::cout << std::endl;
+	}
+	
+	for (size_t i = 0; i < 9; i++)
+	{
+		tree.Delete(arr[i]);
+
+		tmp = tree.TraverseInOrder((tree.GetRootNode().lock()));
+
+		for (auto i = tmp.begin(); i != tmp.end(); i++)
+		{
+			std::cout << *i << ", ";
+		}
+		std::cout << std::endl;
+
+	}
 
 	return;
 }
