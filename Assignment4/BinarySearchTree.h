@@ -116,23 +116,9 @@ namespace assignment4
 				prevousPtr = &(ptr.lock()->Left);
 				ptr = ptr.lock()->Left;
 			}
-			else if (ptr.lock()->Right != nullptr)
-			{
-				(*prevousPtr) = ptr.lock()->Right;
-				ptr = (*prevousPtr);
-
-				return true;
-			}
 			else
 			{
-				if (ptr.lock() == mRoot)
-				{
-					mRoot.reset();
-					return true;
-				}
-
-				(*prevousPtr).reset();
-
+				(*prevousPtr) = ptr.lock()->Right;
 				return true;
 			}
 		}
