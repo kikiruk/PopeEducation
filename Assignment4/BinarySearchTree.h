@@ -28,7 +28,7 @@ namespace assignment4
 
 	private:
 		const std::shared_ptr<TreeNode<T>>* find(const T data) const; //same
-		std::shared_ptr<TreeNode<T>>* find(const T data);			//same
+		std::shared_ptr<TreeNode<T>>* find(const T data);			  //same
 
 		static void doMediumRecursive(std::weak_ptr<TreeNode<T>> location, std::vector<T>& v);
 
@@ -118,12 +118,12 @@ namespace assignment4
 						if (*ptrNow == nullptr)
 						{
 							*ptrNow = rememberPtr.lock()->Left->Right;
-							rememberPtr.lock()->Left->Right.reset();
+							rememberPtr.lock()->Left->Right.reset();  //왼쪽노드의 오른쪽부분을 다시붙임.
 							(*ptrNow)->Parent = rememberParent.lock();//부모노드 설정
 							break;
 						}
 
-						rememberParent = (*ptrNow);
+						rememberParent = *ptrNow;
 						ptrNow = &((*ptrNow)->Left);
 					}
 				}

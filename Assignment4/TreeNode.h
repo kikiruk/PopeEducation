@@ -11,7 +11,7 @@ namespace assignment4
 		TreeNode(std::unique_ptr<T> data);
 		TreeNode(std::shared_ptr<TreeNode<T>> parent, std::unique_ptr<T> data);
 		~TreeNode() = default;
-		TreeNode(const TreeNode& copy) = delete;
+		TreeNode(const TreeNode& copy);
 		TreeNode(const TreeNode&& copy) = delete;
 		TreeNode& operator=(const TreeNode&) = delete;
 
@@ -19,6 +19,9 @@ namespace assignment4
 		std::shared_ptr<TreeNode<T>> Left;
 		std::shared_ptr<TreeNode<T>> Right;
 		std::weak_ptr<TreeNode<T>> Parent;
+
+	private:
+		TreeNode(const TreeNode& copy, std::weak_ptr<TreeNode<T>>& parent);
 	};
 
 	template<typename T>
@@ -36,5 +39,24 @@ namespace assignment4
 		, Right(nullptr)
 		, Parent(parent)
 	{
+	}
+
+	template<typename T>
+	inline TreeNode<T>::TreeNode(const TreeNode& copy, std::weak_ptr<TreeNode<T>>& parent)
+		: Data(std::make_unique<T>(*(copy.Data))
+		, Left(make_shared<TreeNode<T>>((copy.Left == nullptr) ? nullptr : *copy.Left))
+		, Right(make_shared<TreeNode<T>>((copy.Right == nullptr) ? nullptr : *copy.Right))
+		, Parent(parent.lock())
+	{
+	}
+
+	template<typename T>
+	inline TreeNode<T>::TreeNode(const TreeNode& copy)
+		: Data(std::make_unique<T>(*(copy.Data))
+		, Left(make_shared<TreeNode<T>>(*(copy.Left))
+		, Right(make_shared<TreeNode<T>>(*(copy.Right))
+	{
+		Left->parent = Left;
+		Right->parent = Right;
 	}
 }
