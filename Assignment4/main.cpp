@@ -22,7 +22,7 @@ int main()
 	Test_Search();
 	Test_Delete();
 	Test_Traverse();
-	//TestCaseFromSlackOnlyLeftRight();
+	TestCaseFromSlackOnlyLeftRight();
 	//TestCaseFromSlackLeftRightWithRightChild();
 	//TestCaseRandomNode();
 	//Test_Delete_0hoo();
@@ -312,6 +312,8 @@ void TestCaseFromSlackOnlyLeftRight()
 	tree2.Insert(std::make_unique<int>(48));
 	tree2.Insert(std::make_unique<int>(24));
 	tree2.Insert(std::make_unique<int>(41));
+
+	tree1 = tree2;
 
 	std::vector<int> v1 = tree1.TraverseInOrder(tree1.GetRootNode().lock());
 	std::vector<int> v2 = tree2.TraverseInOrder(tree2.GetRootNode().lock());

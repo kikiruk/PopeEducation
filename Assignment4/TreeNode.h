@@ -3,17 +3,21 @@
 #include <memory>
 
 namespace assignment4
-{
+{	
+	template<typename T>
+	class BinarySearchTree;
+
 	template<typename T>
 	class TreeNode final
 	{
+	friend BinarySearchTree; //복사생성자를 private 로만들기 위해서
+	friend std::_Ref_count_obj;
+
 	public:
 		TreeNode(std::unique_ptr<T> data);
 		TreeNode(std::shared_ptr<TreeNode<T>> parent, std::unique_ptr<T> data);
 		~TreeNode() = default;
-		TreeNode(const TreeNode& copy);
 		TreeNode(const TreeNode&& copy) = delete;
-		TreeNode& operator=(const TreeNode&) = delete;
 
 		std::unique_ptr<T> Data;
 		std::shared_ptr<TreeNode<T>> Left;
@@ -21,7 +25,8 @@ namespace assignment4
 		std::weak_ptr<TreeNode<T>> Parent;
 
 	private:
-		TreeNode(const TreeNode& copy, std::weak_ptr<TreeNode<T>>& parent);
+		const TreeNode& operator=(const TreeNode&);
+		TreeNode(const TreeNode& copy);
 	};
 
 	template<typename T>
@@ -42,21 +47,44 @@ namespace assignment4
 	}
 
 	template<typename T>
-	inline TreeNode<T>::TreeNode(const TreeNode& copy, std::weak_ptr<TreeNode<T>>& parent)
-		: Data(std::make_unique<T>(*(copy.Data))
-		, Left(make_shared<TreeNode<T>>((copy.Left == nullptr) ? nullptr : *copy.Left))
-		, Right(make_shared<TreeNode<T>>((copy.Right == nullptr) ? nullptr : *copy.Right))
-		, Parent(parent.lock())
+	inline const TreeNode<T>& TreeNode<T>::operator=(const TreeNode& copy)
 	{
-	}
+		if (this != &copy)
+		{
+			Data = std::make_unique<T>(*copy.Data);
 
+			if (copy.Left != nullptr)
+			{
+				Left = std::make_shared<TreeNode<T>>(*copy.Left);
+				Left->Parent = Left;
+			}
+
+			if (copy.Right != nullptr)
+			{
+				Right = std::make_shared<TreeNode<T>>(*copy.Right);
+				Right->Parent = Right;
+			}
+		}
+
+		return *this;
+	}
+	
+	
 	template<typename T>
 	inline TreeNode<T>::TreeNode(const TreeNode& copy)
-		: Data(std::make_unique<T>(*(copy.Data))
-		, Left(make_shared<TreeNode<T>>(*(copy.Left))
-		, Right(make_shared<TreeNode<T>>(*(copy.Right))
+		: Data(std::make_unique<T>(*copy.Data))
 	{
-		Left->parent = Left;
-		Right->parent = Right;
+		if (copy.Left != nullptr)
+		{
+			Left = std::make_shared<TreeNode<T>>(*copy.Left);
+			Left->Parent = Left;
+		}
+	
+		if (copy.Right != nullptr)
+		{
+			Right = std::make_shared<TreeNode<T>>(*copy.Right);
+			Right->Parent = Right;
+		}
 	}
+
 }

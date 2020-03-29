@@ -14,9 +14,9 @@ namespace assignment4
 	public:
 		BinarySearchTree();
 		~BinarySearchTree() = default;
-		BinarySearchTree(const BinarySearchTree& copy) = delete;
+		BinarySearchTree(const BinarySearchTree& copy);
 		BinarySearchTree(const BinarySearchTree&& copy) = delete;
-		BinarySearchTree& operator=(const BinarySearchTree&) = delete;
+		const BinarySearchTree& operator=(const BinarySearchTree&);
 
 
 		void Insert(std::unique_ptr<T> data);
@@ -34,13 +34,31 @@ namespace assignment4
 
 	private:
 		std::shared_ptr<TreeNode<T>> mRoot;
-
 	};
 
 	template<typename T>
 	inline BinarySearchTree<T>::BinarySearchTree()
 		: mRoot(nullptr)
 	{
+	}
+
+	template<typename T>
+	inline BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree& copy)
+		: mRoot(std::make_shared<TreeNode<T>>(*copy.mRoot))
+	{
+		mRoot->Parent = mRoot;
+	}
+
+	template<typename T>
+	const BinarySearchTree<T>& BinarySearchTree<T>::operator=(const BinarySearchTree& copy)
+	{
+		if (this != &copy)
+		{
+			mRoot = copy.mRoot;
+			mRoot->Parent = mRoot;
+		}
+
+		return *this;
 	}
 
 	template<typename T>
