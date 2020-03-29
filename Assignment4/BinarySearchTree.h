@@ -46,7 +46,11 @@ namespace assignment4
 	inline BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree& copy)
 		: mRoot(std::make_shared<TreeNode<T>>(*copy.mRoot))
 	{
-		mRoot->Parent = mRoot;
+		if (mRoot->Left != nullptr)
+			mRoot->Left->Parent = mRoot;
+
+		if (mRoot->Right != nullptr)
+			mRoot->Right->Parent = mRoot;
 	}
 
 	template<typename T>
@@ -55,7 +59,12 @@ namespace assignment4
 		if (this != &copy)
 		{
 			mRoot = copy.mRoot;
-			mRoot->Parent = mRoot;
+
+			if (mRoot->Left != nullptr)
+				mRoot->Left->Parent = mRoot;
+
+			if (mRoot->Right != nullptr)
+				mRoot->Right->Parent = mRoot;
 		}
 
 		return *this;

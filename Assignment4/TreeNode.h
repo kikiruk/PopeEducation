@@ -56,15 +56,34 @@ namespace assignment4
 			if (copy.Left != nullptr)
 			{
 				Left = std::make_shared<TreeNode<T>>(*copy.Left);
-				Left->Parent = Left;
+
+				if (Left->Left != nullptr)
+				{
+					Left->Left->Parent = Left;
+				}
+
+				if (Left->Right != nullptr)
+				{
+					Left->Right->Parent = Left;
+				}
 			}
 
 			if (copy.Right != nullptr)
 			{
 				Right = std::make_shared<TreeNode<T>>(*copy.Right);
-				Right->Parent = Right;
+
+				if (Right->Left != nullptr)
+				{
+					Right->Left->Parent = Right;
+				}
+
+				if (Right->Right != nullptr)
+				{
+					Right->Right->Parent = Right;
+				}
 			}
 		}
+
 
 		return *this;
 	}
@@ -77,13 +96,31 @@ namespace assignment4
 		if (copy.Left != nullptr)
 		{
 			Left = std::make_shared<TreeNode<T>>(*copy.Left);
-			Left->Parent = Left;
+
+			if (Left->Left != nullptr)
+			{
+				Left->Left->Parent = Left;
+			}
+			
+			if (Left->Right != nullptr)
+			{
+				Left->Right->Parent = Left;
+			}
 		}
 	
 		if (copy.Right != nullptr)
 		{
 			Right = std::make_shared<TreeNode<T>>(*copy.Right);
-			Right->Parent = Right;
+			
+			if (Right->Left != nullptr)
+			{
+				Right->Left->Parent = Right;
+			}
+
+			if (Right->Right != nullptr)
+			{
+				Right->Right->Parent = Right;
+			}
 		}
 	}
 
