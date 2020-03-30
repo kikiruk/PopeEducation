@@ -65,11 +65,11 @@ namespace lab11
 		if (this != &other)
 		{
 			mSize = other.mSize;
-			mArray = new T[other.mSize];
+			mArray = make_unique<T[]>(other.mSize);
 
 			std::memcpy(mArray.get(), other.mArray.get(), sizeof(T) * other.mSize);
 		}
-		
+
 		return *this;
 	}
 
