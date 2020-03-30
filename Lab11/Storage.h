@@ -11,7 +11,7 @@ namespace lab11
 		Storage(unsigned int length);
 		Storage(unsigned int length, const T& initialValue);
 		Storage(const Storage& other);
-		Storage(Storage&& other);
+		Storage(Storage&& other) noexcept;
 		~Storage() = default;
 
 		const Storage& operator=(const Storage& other);
@@ -52,7 +52,7 @@ namespace lab11
 	}
 
 	template<typename T>
-	inline Storage<T>::Storage(Storage&& other)
+	inline Storage<T>::Storage(Storage&& other) noexcept
 		: mSize(other.mSize)
 		, mArray(std::move(other.mArray))
 	{
