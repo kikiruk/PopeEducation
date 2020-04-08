@@ -15,7 +15,7 @@ namespace assignment4
 		BinarySearchTree();
 		~BinarySearchTree() = default;
 		BinarySearchTree(const BinarySearchTree& copy);
-		BinarySearchTree(const BinarySearchTree&& copy) = delete;
+		BinarySearchTree(BinarySearchTree&& copy);
 		const BinarySearchTree& operator=(const BinarySearchTree&);
 
 
@@ -51,6 +51,13 @@ namespace assignment4
 
 		if (mRoot->Right != nullptr)
 			mRoot->Right->Parent = mRoot;
+	}
+
+	template<typename T>
+	inline BinarySearchTree<T>::BinarySearchTree(BinarySearchTree&& copy)
+	{
+		mRoot = copy.mRoot;
+		copy.mRoot.reset();
 	}
 
 	template<typename T>
